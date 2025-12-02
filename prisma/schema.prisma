@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Order {
+  id                 String   @id @map("_id") @default(auto()) @db.ObjectId
+  firstName          String
+  lastName           String
+  email              String
+  phone              String
+  shippingAddress    String
+  shippingCity       String
+  shippingPostalCode String
+  shippingCountry    String
+  billingAddress     String
+  billingCity        String
+  billingPostalCode  String
+  billingCountry     String
+  acceptCGV          Boolean
+  total              Float
+  items              Json
+  createdAt          DateTime @default(now())
+}
+
+model Product {
+  id             String   @id @map("_id") @default(auto()) @db.ObjectId
+  name           String
+  slug           String   @unique
+  description    Json     // tableau de textes
+  intro          String
+  theme          Json     // tableau de textes
+  images         Json     // tableau d'URLs
+  caracteristique Json    // objet {composition, meche, parfum, combustion, poids, contenant, fabrication}
+  variants       Json     // tableau d'objets {id, name, duration, price}
+  stock          Boolean
+  promo          Int?
+  like           Int?
+  createdAt      DateTime @default(now())
+}
+
+model VisitLog {
+  id         String   @id @map("_id") @default(auto()) @db.ObjectId
+  ipHash     String?  // hash ou partie de l'IP pour anonymisation
+  path       String   // page visitée
+  userAgent  String?  // optionnel
+  createdAt  DateTime @default(now())
+}
