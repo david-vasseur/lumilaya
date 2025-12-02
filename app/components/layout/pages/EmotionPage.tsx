@@ -161,7 +161,7 @@ function EmotionPage({ products }: EmotionPageProps) {
 									<div className="flex items-center justify-between pt-4 border-t border-[#2C2C2C]/5">
 										<div>
 											<span className="text-xs text-[#2C2C2C]/50 block mb-1">À partir de</span>
-											<span className="text-2xl font-light text-[#2C2C2C]">{product.variants[0].price}€</span>
+											<span className="text-2xl font-light text-[#2C2C2C]">{product.variants[0].price.toFixed(2)} €</span>
 										</div>
 										<div className="flex items-center gap-2 text-[#7A9B8E] text-sm font-medium group-hover:gap-3 transition-all">
 											Découvrir

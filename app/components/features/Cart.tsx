@@ -26,11 +26,11 @@ function Cart() {
                     <span></span>
                 </div>
                 {items.map((item, index) => (
-                    <CartItem key={index} id={item.id} name={item.name} image={item.image} price={Number((item.price * item.qty).toFixed(1))} qty={item.qty} />
+                    <CartItem key={index} id={item.id} name={item.name} image={item.image} price={Number((item.price * item.qty).toFixed(2))} qty={item.qty} />
                 ))}
                 
             </div>
-            <span>Total de commande : {total().toFixed(1)} €</span>
+            <span>Total de commande : {total().toFixed(2)} €</span>
             {path !== "/checkout" && isOpen  && (
                 <Link 
                     href={"/checkout"}
