@@ -14,8 +14,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
 model Order {
   id                 String   @id @map("_id") @default(auto()) @db.ObjectId
+  stripeSessionId    String @unique
   firstName          String
   lastName           String
   email              String
@@ -36,6 +38,7 @@ model Order {
 
 model Product {
   id             String   @id @map("_id") @default(auto()) @db.ObjectId
+  collection     String
   name           String
   slug           String   @unique
   description    Json     // tableau de textes

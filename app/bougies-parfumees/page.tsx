@@ -125,7 +125,7 @@ function BougiesParfumees() {
               key={index}
               className="product-grid-card group cursor-pointer"
             >
-              <div className="relative h-96 mb-5 rounded-lg overflow-hidden bg-gradient-to-br from-[#D4C5B9] to-[#B4A59A] transform group-hover:scale-[1.02] transition-transform duration-500">
+              <div className="relative h-96 mb-5 rounded-lg overflow-hidden bg-linear-to-br from-[#D4C5B9] to-[#B4A59A] transform group-hover:scale-[1.02] transition-transform duration-500">
                 <div className="absolute inset-0 bg-[#2C2C2C]/10 group-hover:bg-[#2C2C2C]/5 transition-colors duration-500" />
 
                 <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
@@ -168,7 +168,7 @@ function BougiesParfumees() {
           ))}
         </div>
 
-        <div className="bg-gradient-to-br from-[#D4C5B9]/20 to-[#7A9B8E]/10 rounded-lg p-12 text-center">
+        <div className="bg-linear-to-br from-[#D4C5B9]/20 to-[#7A9B8E]/10 rounded-lg p-12 text-center">
           <Sparkles className="w-12 h-12 text-[#D4C5B9] mx-auto mb-6" />
           <h2 className="text-2xl font-light text-[#2C2C2C] mb-4">
             L'art de la parfumerie

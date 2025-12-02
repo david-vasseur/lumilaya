@@ -6,6 +6,8 @@ import { useForm } from "@tanstack/react-form"
 import { ShoppingCart, CreditCard, MapPin, User } from "lucide-react";
 import { useState } from "react";
 import { ICheckout } from "@/schema/checkout";
+import { useCartStore } from "@/lib/store/cartStore";
+import { handleCheckout } from "./CheckOut.action";
 
 const europeanCountries = [
     { code: "FR", name: "France" },
@@ -30,6 +32,7 @@ const europeanCountries = [
 
 export const CheckoutForm = () => {
     const [sameAddress, setSameAddress] = useState(true);
+    const { items, total } = useCartStore();
 
     const form = useForm({
         defaultValues: {
@@ -58,9 +61,25 @@ export const CheckoutForm = () => {
             onChange: CheckoutSchema,
         },
         onSubmit: async ({ value }) => {
-            console.log(value);
-            // Redirection vers paiement
-            // const response = await processCheckout(value);
+            console.log("infos:", value, items, total().toFixed(2));
+            const result = await handleCheckout(items, {
+                firstName: value.firstName,
+                lastName: value.lastName,
+                email: value.email,
+                phone: value.phone,
+                shippingAddress: value.shippingAddress,
+                shippingCity: value.shippingCity,
+                shippingPostalCode: value.shippingPostalCode,
+                shippingCountry: value.shippingCountry,
+                billingAddress: value.billingAddress,
+                billingCity: value.billingCity,
+                billingPostalCode: value.billingPostalCode,
+                billingCountry: value.billingCountry,
+                acceptCGV: value.acceptCGV
+            });
+            if (result?.url) {
+                window.location.href = result.url; 
+            };
         },
     })
 
