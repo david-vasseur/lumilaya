@@ -42,7 +42,7 @@ function Faq() {
             "keywords": faq.keywords,
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": faq.answer.split(';').map(s => s.trim()).join('<br>')
+                "text": faq.answer.split(';').map((s: string) => s.trim()).join('<br>')
             }
         }))
     };
