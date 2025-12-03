@@ -63,4 +63,38 @@ export async function handleCheckout(
     };
 }
 
+export async function clientCheckout(session_id: string) {
+  if (!session_id) throw new Error("Session ID manquant");
+
+  // Récupération de la session
+  const session = await stripe.checkout.sessions.retrieve(session_id, {
+    expand: ["line_items"], // pour récupérer les produits commandés
+  });
+
+  // Numéro de commande : à récupérer depuis metadata ou client_reference_id
+  const orderId =
+    (session.metadata && session.metadata.order_id) || session.client_reference_id || null;
+
+  // Nom du client
+  const customerName = session.customer_details?.name || "Client inconnu";
+
+  // Montant payé (en centimes)
+  const amountTotal = session.amount_total || 0;
+
+  // Produits commandés
+  const lineItems =
+    session.line_items?.data.map((item) => ({
+      name: item.description,
+      quantity: item.quantity,
+      price: item.price?.unit_amount,
+    })) || [];
+
+  return {
+    orderId,
+    customerName,
+    amountTotal,
+    lineItems,
+  };
+}
+
 

@@ -1,11 +1,30 @@
 import Link from "next/link";
+import { clientCheckout } from "../components/features/form/CheckOut.action";
 
-export default function CheckoutSuccessPage({
+export default async function CheckoutSuccessPage({
     searchParams,
     }: {
     searchParams: { session_id?: string };
     }) {
-    const sessionId = searchParams.session_id;
+    const params = await searchParams;
+    const sessionId = params?.session_id;
+
+    if (sessionId) {
+        const { orderId, customerName, amountTotal } = await clientCheckout(sessionId);
+
+        return (
+            <div className="h-screen w-screen flex flex-col gap-10 items-center justify-center">
+                <h1 className="text-4xl text-gray-600">✅ Paiement confirmé</h1>
+                <p className="text-2xl text-gray-600">Merci pour votre commande ${customerName}</p>
+                <p className="text-2xl text-gray-600">
+                    Le paiement de la commande <strong>{orderId}</strong> de <strong>{amountTotal} €</strong> a bien été validé.
+                </p>
+                <Link href={"/"} className="bg-gray-300 px-6 py-3 rounded-lg shadow-2xl text-gray-600">Retour à l'accueil</Link>
+            </div>
+        );
+    }
+
+    
 
     if (!sessionId) {
         return (
@@ -17,13 +36,5 @@ export default function CheckoutSuccessPage({
 
     }
 
-    return (
-        <div className="h-screen flex flex-col gap-10 items-center justify-center">
-            <h1>✅ Paiement confirmé</h1>
-            <p>Merci pour votre commande !</p>
-            <p>
-                Session ID : <strong>{sessionId}</strong>
-            </p>
-        </div>
-    );
+    
 }
