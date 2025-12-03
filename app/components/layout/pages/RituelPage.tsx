@@ -10,11 +10,11 @@ import { IProduct } from '@/type/product';
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface EmotionPageProps {
+interface RituelPageProps {
   products: IProduct[];
 }
 
-function EmotionPage({ products }: EmotionPageProps) {
+function RituelPage({ products }: RituelPageProps) {
 
     	useGSAP(() => {
 		// Animation Hero
@@ -64,7 +64,7 @@ function EmotionPage({ products }: EmotionPageProps) {
         <div className="min-h-screen bg-[#FDFBF7]">
 			{/* Hero Section */}
 			<div className="relative h-[80vh] overflow-hidden">
-				<Image fill alt="image d'une bougie" src={"/images/produits/plaisir.webp"} className="object-cover object-bottom" />
+				<Image fill alt="image d'une bougie" src={"/images/produits/terre.webp"} className="object-cover object-bottom" />
 				{/* Contenu Hero */}
 				<div className="relative h-full flex items-center justify-center">
 					<div className="hero-content text-center px-6 max-w-4xl">
@@ -74,7 +74,7 @@ function EmotionPage({ products }: EmotionPageProps) {
 						</div>
 
 						<h1 className="text-6xl md:text-7xl font-extrabold text-white mb-6 leading-tight tracking-wide">
-							Emotions & Plaisirs
+							Entre Terre & Ciel
 						</h1>
 
 						<p className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed mb-10">
@@ -112,7 +112,7 @@ function EmotionPage({ products }: EmotionPageProps) {
 					{products.map((product, index) => (
 						<Link
 							key={index}
-							href={`/bougies-emotions/${product.slug}`}
+							href={`/bougies-rituel/${product.slug}`}
 							className="product-grid-card group"
 						>
 							<div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500">
@@ -219,4 +219,4 @@ function EmotionPage({ products }: EmotionPageProps) {
     )
 }
 
-export default EmotionPage;
+export default RituelPage;

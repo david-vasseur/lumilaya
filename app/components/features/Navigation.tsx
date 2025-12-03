@@ -47,9 +47,9 @@ function Navigation() {
                         Bougies Emotions & Plaisirs
                     </Link>
                     <Link
-                        href={"/bougies-parfumees"}
+                        href={"/bougies-rituel"}
                         className={`text-sm tracking-wide transition-colors ${
-                        path === "/bougies-parfumees"
+                        path === "/bougies-rituel"
                             ? 'text-[#2C2C2C] font-medium'
                             : 'text-[#2C2C2C]/60 hover:text-[#2C2C2C]'
                         }`}

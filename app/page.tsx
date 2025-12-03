@@ -6,6 +6,7 @@ import ProductList from './components/actions/product.action';
 import { FAQSection } from "./components/layout/Faq2";
 import SavoirFaire from "./components/layout/Savoir";
 import { ReviewsSection } from "./components/layout/ReviewSection";
+import BestProducts from "./components/layout/BestProducts";
 
 export default async function Home() {
 
@@ -14,7 +15,7 @@ export default async function Home() {
 			<HeroSection />
 			<SavoirFaire />
 			<Bento />
-			<Best />
+			<BestProducts />
 			<ReviewsSection />
 			<FAQSection />
 		</>

@@ -105,7 +105,6 @@ function Bento() {
                                 <Image src={"/images/produits/plaisir.webp"} fill alt='image Emotion & Plaisir' className="group-hover:scale-105 transition-transform duration-700" />
                             <div className="absolute inset-0 bg-[#2C2C2C]/20 group-hover:bg-[#2C2C2C]/10 transition-colors duration-500" />
                             <div className="relative h-full flex flex-col items-center justify-center p-8 text-[#FDFBF7]">
-                                <Leaf className="w-16 h-16 mb-6 opacity-90" />
                                 <h3 className="text-3xl font-light mb-4 tracking-wider">Bougies Emotions & Plaisirs</h3>
                                 <p className="text-center opacity-90 max-w-sm">
                                 Cire végétale pure, essences botaniques brutes, pour une atmosphère authentique
@@ -117,13 +116,12 @@ function Bento() {
                         </Link>
 
                         <Link
-                            href={"/bougies-parfumees"}
+                            href={"/bougies-rituel"}
                             className="category-card group relative h-[500px] rounded-lg overflow-hidden shadow-xl"
                             >
                                 <Image src={"/images/produits/terre.webp"} fill alt='image Emotion & Plaisir' className="group-hover:scale-105 transition-transform duration-700" />
                             <div className="absolute inset-0 bg-[#2C2C2C]/20 group-hover:bg-[#2C2C2C]/10 transition-colors duration-500" />
                             <div className="relative h-full flex flex-col items-center justify-center p-8 text-[#FDFBF7]">
-                                <Sparkles className="w-16 h-16 mb-6 opacity-90" />
                                 <h3 className="text-3xl font-light mb-4 tracking-wider">Bougies Entre Terre & Ciel</h3>
                                 <p className="text-center opacity-90 max-w-sm">
                                 Compositions olfactives raffinées, notes envoûtantes, pour une expérience luxueuse

@@ -1,5 +1,5 @@
 import ProductList from "../components/actions/product.action";
-import EmotionPage from "../components/layout/pages/EmotionPage";
+import RituelPage from "../components/layout/pages/RituelPage";
 
 
 async function BougiesNaturelles() {
@@ -11,7 +11,7 @@ async function BougiesNaturelles() {
 	if (!products) return
 
 	return (
-		<EmotionPage products={products} />
+		<RituelPage products={products} />
 	);
 }
 
