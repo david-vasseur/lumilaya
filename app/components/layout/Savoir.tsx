@@ -10,6 +10,7 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 export default function SavoirFaire() {
   const containerRef = useRef<HTMLDivElement>(null);
   const panelsRef = useRef<HTMLDivElement[]>([]);
+  const imagesRef = useRef<HTMLImageElement[]>([]);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -44,6 +45,18 @@ export default function SavoirFaire() {
           type: "lines,words,chars",
         });
 
+        const images = gsap.utils.toArray(imagesRef.current)
+
+        gsap.fromTo(images, 
+          { scale: 0.4 },
+          { scale: 3,stagger: 0.05, scrollTrigger: {
+            trigger: panelsRef.current[0],
+            start: "top 80%",
+            end: "bottom -=125%",
+            scrub: 0.5,
+          }, }
+        )
+
         gsap.from(split.chars, {
           scrollTrigger: {
             trigger: panel,
@@ -73,7 +86,7 @@ export default function SavoirFaire() {
             className="absolute top-0 left-0 w-full h-screen flex flex-col items-center justify-center z-10 overflow-hidden px-4"
         >
             {/* Texte */}
-            <div className="text-center max-w-xl z-20">
+            <div className="text-center bg-linear-to-br from-[#7A9B8E] via-[#6A8B7E] to-[#5A7B6E] p-10 rounded-lg max-w-xl shadow-lg z-20">
                 <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-600">
                 Fabrication artisanale
                 </h2>
@@ -84,19 +97,22 @@ export default function SavoirFaire() {
 
             {/* Images */}
             <img
+            ref={(el) => {(imagesRef.current[0] = el!)}}
                 src="/images/produits/liberation.webp"
                 alt="Artisan 1"
-                className="absolute w-32 md:w-48 top-[20%] left-[10%] rotate-[-10deg]"
+                className="absolute w-32 md:w-48 top-[20%] left-[10%] rotate-[-10deg] shadow-xl"
             />
             <img
+            ref={(el) => {(imagesRef.current[1] = el!)}}
                 src="/images/produits/ancrage.webp"
                 alt="Artisan 2"
-                className="absolute w-32 md:w-48 top-[50%] right-[15%] rotate-[5deg]"
+                className="absolute w-32 md:w-48 top-[50%] right-[15%] rotate-[5deg] shadow-xl"
             />
             <img
+            ref={(el) => {(imagesRef.current[2] = el!)}}
                 src="/images/produits/douceur.webp"
                 alt="Artisan 3"
-                className="absolute w-32 md:w-48 bottom-[15%] left-[50%] -translate-x-1/2 rotate-[-5deg]"
+                className="absolute w-32 md:w-48 bottom-[15%] left-[50%] -translate-x-1/2 rotate-[-5deg] shadow-xl"
             />
         </div>
 

@@ -175,7 +175,7 @@ export const ReviewsSection = () => {
     return (
         <section 
             ref={sectionRef}
-            className="w-full bg-gradient-to-b from-[#F5F1EB] to-[#FDFBF7] py-16 lg:py-24"
+            className="w-full bg-linear-to-b from-[#F5F1EB] to-[#FDFBF7] py-16 lg:py-24"
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
@@ -237,7 +237,7 @@ export const ReviewsSection = () => {
                             {reviews.map((review) => (
                                 <div
                                     key={review.id}
-                                    className="flex-shrink-0 px-4"
+                                    className="shrink-0 px-4"
                                     style={{ width: `${100 / visibleCount}%` }}
                                 >
                                     <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 relative h-full">
@@ -260,7 +260,7 @@ export const ReviewsSection = () => {
                                                         />
                                                     </div>
                                                 ) : (
-                                                    <div className="w-12 h-12 bg-[#7A9B8E]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                                    <div className="w-12 h-12 bg-[#7A9B8E]/10 rounded-full flex items-center justify-center shrink-0">
                                                         <span className="text-[#7A9B8E] font-medium text-lg">
                                                             {review.author.split(' ').map(n => n[0]).join('')}
                                                         </span>
