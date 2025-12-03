@@ -7,6 +7,7 @@ import { useModalStore } from '@/lib/store/modalStore';
 import CartItem from '../ui/CartItem';
 import Cart from './Cart';
 import { useCartStore } from '@/lib/store/cartStore';
+import Image from 'next/image';
 
 
 function Navigation() {
@@ -19,10 +20,9 @@ function Navigation() {
         <nav className="fixed top-0 left-0 right-0 z-50 bg-[#FDFBF7]/90 backdrop-blur-sm border-b border-[#2C2C2C]/10">
             <div className="mx-auto px-6 py-4 flex items-center justify-between">
                 <Link href={"/"} className="flex items-center gap-2 group">
-                    <Flame className="w-6 h-6 text-[#7A9B8E] group-hover:text-[#2C2C2C] transition-colors" />
-                    <span className="text-xl font-light tracking-wider text-[#2C2C2C]">
-                        LUMILAYA
-                    </span>
+                    <div className="h-10 w-20 relative -my-4">
+                        <Image fill alt='logo lumilaya' src={"/images/logo.webp"} />
+                    </div>
                 </Link>
 
                 <div className="flex gap-8">

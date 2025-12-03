@@ -37,7 +37,7 @@ function Bento() {
 
     return (
         <>
-            <section className="brand-section py-32 px-6">
+            <section id="boutique" className="brand-section py-32 px-6">
                 <div className="max-w-4xl mx-auto text-center">
                     <p className="brand-text text-2xl md:text-3xl font-light text-[#2C2C2C] leading-relaxed">
                         Chaque bougie <span className="italic font-extrabold">LUMILAYA</span> est une invitation au voyage sensoriel,

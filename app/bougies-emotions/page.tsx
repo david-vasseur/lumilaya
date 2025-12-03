@@ -1,4 +1,4 @@
-import { IProduct } from "@/type/product";
+
 import ProductList from "../components/actions/product.action";
 import EmotionPage from "../components/layout/pages/EmotionPage";
 
