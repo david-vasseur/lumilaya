@@ -16,7 +16,7 @@ function CartItem({ id, image, name, price, qty = 1 }: ICartItem) {
 
     return (
         <div className="grid grid-cols-[60%_10%_15%_15%] items-center justify-between py-4 border-b border-zinc-400">
-            <div className="flex gap-5">
+            <div className="flex gap-5 items-center">
                 <Image src={image} width={40} height={40} alt='image produit' className="rounded-lg" />
                 <p>{name}</p>
             </div>            

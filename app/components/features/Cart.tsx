@@ -20,7 +20,7 @@ function Cart() {
                 
                     <p className="flex items-center justify-center">Produit</p>
                           
-                    <span className="flex items-center justify-center">Quantité</span>
+                    <span className="flex items-center justify-center">Qté</span>
                    
                     <span className="flex items-center justify-center">Prix €</span>
                     <span></span>

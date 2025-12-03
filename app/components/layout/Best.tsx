@@ -8,6 +8,15 @@ gsap.registerPlugin(ScrollTrigger)
 
 function Best() {
 
+    // const [isPending, startTransition] = useTransition();
+
+    // const handleClick = () => {
+    //     startTransition(async () => {
+    //   await seedProduct(); // appel côté serveur
+    //   alert("Produit Tendresse ajouté !");
+    // });
+    // };
+
     useGSAP(() => {
 
         gsap.from('.product-card', {
@@ -37,7 +46,7 @@ function Best() {
     }, [])
 
     return (
-        <section className="bestsellers-section py-32 px-6">
+        <section className="bestsellers-section py-32 px-6 bg-linear-to-br from-[#7A9B8E] via-[#6A8B7E] to-[#5A7B6E]">
             <div className="max-w-7xl mx-auto">
                 <h2 className="text-4xl font-light text-[#2C2C2C] text-center mb-4 tracking-wide">
                     Best-Sellers

@@ -7,50 +7,44 @@
 // export async function seedProduct() {
 //   await prisma.product.create({
 //     data: {
-//       collection: "Emotion",
-//       name: "Magie",
-//         slug: "bougie-magique",
+//       collection: "Terre",
+//       name: "Protection",
+//         slug: "bougie-protection",
 //         description: [
-//             "Plongez dans l’atmosphère magique des fêtes avec cette bougie qui évoque les plaisirs chaleureux de Noël. Les notes de tête d’orange apportent une fraîcheur lumineuse et pétillante, rapidement enveloppée par le cœur chaleureux et épicé de la cannelle. En fond, la vanille et le caramel créent un sillage gourmand et réconfortant, rappelant les douceurs sucrées et les instants cocooning de l’hiver.", 
-//             "Une fragrance festive qui transforme votre intérieur en véritable havre de Noël, empli de chaleur et de convivialité."
+//             "Pensée comme un rituel puissant, cette bougie crée un sanctuaire intérieur et purifie l’espace autour de soi. Ses notes boisées de santal, les effluves sacrés de l’encens et la douceur apaisante de lavande enveloppent l’atmosphère d’une énergie protectrice, invitant au recentrage et à la sérénité.", 
+//             "Au cœur de la bougie, la tourmaline noire diffuse sa puissance contre les énergies négatives, tandis que les fleurs de sauge et de romarin purifient et harmonisent l’espace, renforçant la bulle énergétique qui vous entoure. Parfaite pour les rituels de pleine lune, elle soutient les intentions de protection, de purification et de recentrage, créant un cocon lumineux propice à la sérénité et à la force intérieure."
 //         ],
-//         intro: "Une alchimie festive entre l’éclat fruité de l’orange, la chaleur réconfortante de la cannelle et la douceur gourmande du caramel et de la vanille. Confectionnée avec une cire de soja 100% naturelle et des fragrances de haute qualité.",
+//         intro: "Sécurisante et puissante, 'Protection' enveloppe votre espace d’une énergie bienveillante. Le bois de santal, l’encens et la lavande apaisent, tandis que la tourmaline noire, le romarin et la sauge créent un bouclier contre les influences négatives. Une bougie sélectionnée pour purifier, recentrer et renforcer votre sérénité intérieure.",
 //         theme: [
-//             "Orange",
-//             "Canelle",
-//             "Caramel, Vanille"
+//             "Lavande",
+//             "Encens",
+//             "Bois de Sental"
 //         ],images: [
-//             "/images/produits/magie.webp",
-//             "/images/produits/magie2.webp",            
-//             "/images/produits/magie2.webp",            
-//             "/images/produits/magie2.webp",            
-//             "/images/produits/magie2.webp"
+//             "/images/produits/protection.webp",
+//             "/images/produits/protection2.webp",            
+//             "/images/produits/protection3.webp",            
+//             "/images/produits/protection3.webp",            
+//             "/images/produits/protection3.webp"
 //         ],
 //         caracteristique: {
 //             composition: "60% Soja, 40% Coco",
 //             meche: "Coton Bio",
 //             parfum: "Fragrance de Grasse sans CMR",
-//             combustion: "35 - 40",
+//             combustion: "40 - 45",
 //             poids: "330",
 //             contenant: "Verre recyclable",
 //             fabrication: "France, Gard"
 //         },
 //         variants: [
 //             {
-//                 id: 4.1,
-//                 name: "Bougie Magie 150g",
-//                 duration: "35",
-//                 price: 19.9
-//             },
-//             {
-//                 id: 4.2,
-//                 name: "Bougie Magie 200g",
-//                 duration: "40",
-//                 price: 24.9
+//                 id: 8.2,
+//                 name: "Bougie Protection 200g",
+//                 duration: "45",
+//                 price: 29.9
 //             }
 //         ],
 //         stock: true,
-//         promo: 15,
+//         promo: 0,
 //         like: 5
 //     }
 //   });

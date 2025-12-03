@@ -113,24 +113,24 @@ export const HeroSection = () => {
 			{/* Overlay gradient pour améliorer la lisibilité */}
 			<div 
 				ref={overlayRef}
-				className="absolute inset-0 bg-gradient-to-br from-[#2C2C2C]/60 via-[#2C2C2C]/40 to-transparent"
+				className="absolute inset-0 bg-linear-to-br from-[#2C2C2C]/60 via-[#2C2C2C]/40 to-transparent"
 			/>
 			{/* Contenu principal */}
 			<div ref={contentRef} className="relative h-full flex items-center justify-center z-10">
 				<div className="text-center px-6 max-w-5xl">
 
 					{/* Titre principal avec effet de découpe */}
-					<div className="overflow-hidden mb-2">
-						<h1 className="hero-title-line text-7xl md:text-8xl lg:text-9xl font-extralight text-white tracking-tight">
-							LUMILAYA
+					<div className="overflow-hidden mb-2 py-7">
+						<h1 className="hero-title-line text-7xl md:text-9xl lg:text-9xl font-base font-ballet! text-white ">
+							<em>Lumi'laya</em>
 						</h1>
 					</div>
 
-					<div className="overflow-hidden mb-8">
+					{/* <div className="overflow-hidden mb-8">
 						<p className="hero-title-line text-2xl md:text-3xl font-light text-white/90 tracking-widest">
 							L'ESSENCE DE L'HIMALAYA
 						</p>
-					</div>
+					</div> */}
 
 					{/* Sous-titre */}
 					<p className="hero-subtitle text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-12 leading-relaxed">
@@ -188,7 +188,7 @@ export const HeroSection = () => {
 			</div>
 
 			{/* Vignette décorative en bas */}
-			<div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#FDFBF7] to-transparent z-20" />
+			<div className="absolute bottom-0 left-0 right-0 h-32 bg-linear-to-t from-[#FDFBF7] to-transparent z-20" />
 		</section>
 	);
 };

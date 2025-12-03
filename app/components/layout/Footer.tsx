@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { Leaf, Mail, Phone, MapPin, Facebook, Instagram, Twitter } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -74,9 +75,9 @@ const Footer = () => {
 					<div className="footer-brand lg:col-span-4">
 						<div className="flex items-center gap-3 mb-6">
 							<div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-								<Leaf className="w-6 h-6 text-white" />
+								<Image width={48} height={48} src={'/images/footer.webp'} alt='logo' />
 							</div>
-							<span className="text-2xl font-light">Bougies Naturelles</span>
+							<span className="text-2xl font-light font-ballet">Lumi'laya</span>
 						</div>
 						<p className="text-white/80 leading-relaxed mb-6">
 							Des créations authentiques aux essences botaniques brutes. 
@@ -149,7 +150,7 @@ const Footer = () => {
 					</div>
 
 					{/* Contact */}
-					<div className="footer-column lg:col-span-3">
+					<div className="footer-column relative z-2 lg:col-span-3">
 						<h3 className="text-lg font-medium mb-6">Nous contacter</h3>
 						<ul className="space-y-4">
 							<li className="flex items-start gap-3">
@@ -182,7 +183,7 @@ const Footer = () => {
 				<div className="footer-bottom flex flex-col lg:flex-row justify-between items-center gap-6">
 					<div className="flex items-center gap-2 text-white/60 text-sm">
 						<Leaf className="w-4 h-4" />
-						<span>© 2024 Bougies Naturelles. Tous droits réservés.</span>
+						<span>© 2025 DVWEB-agency. Tous droits réservés.</span>
 					</div>
 
 					{/* Liens légaux - petits en bas à droite */}
@@ -203,8 +204,8 @@ const Footer = () => {
 			</div>
 
 			{/* Icône décorative */}
-			<div className="absolute bottom-10 right-10 opacity-5 pointer-events-none">
-				<Leaf className="w-64 h-64" />
+			<div className="absolute z-0 bottom-10 right-10 opacity-100 pointer-events-none">
+				<Image height={400} width={400} src={"/images/footer.webp"} alt='logo'/>
 			</div>
 		</footer>
 	);

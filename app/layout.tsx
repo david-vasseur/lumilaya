@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Ballet, Dynalight, Geist, Geist_Mono, Parisienne, The_Nautigal, Whisper } from "next/font/google";
 import "./globals.css";
 import Navigation from "./components/features/Navigation";
 import Footer from "./components/layout/Footer";
@@ -14,6 +14,11 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+const ballet = Parisienne({
+  variable: "--font-ballet",
+  weight: ['400']
+})
 
 export const metadata: Metadata = {
   title: "LUMILAYA • Bougies naturelles artisanales",
@@ -70,7 +75,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${ballet.variable} antialiased overflow-x-hidden`}
       >
         <Navigation />
         {children}
