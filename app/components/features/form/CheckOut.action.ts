@@ -37,6 +37,8 @@ export async function handleCheckout(
         quantity: p.qty,
     }));
 
+    const orderId = `ORD-${customer.lastName}-${Date.now()}`;
+
     // Créer la session Stripe Checkout
     const session = await stripe.checkout.sessions.create({
             payment_method_types: ["card"],
@@ -44,6 +46,7 @@ export async function handleCheckout(
             mode: "payment",
             success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/checkout-success?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/checkout-cancel`,
+            client_reference_id: orderId,
             customer_email: customer.email,
             metadata: {
                 firstName: customer.firstName,
