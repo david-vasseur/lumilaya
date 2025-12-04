@@ -1,14 +1,11 @@
 "use client"
 
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Leaf, Clock, Sparkles, ArrowRight, Heart } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useGSAP } from '@gsap/react';
 import { IProduct } from '@/type/product';
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface EmotionPageProps {
   products: IProduct[];

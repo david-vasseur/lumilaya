@@ -1,13 +1,10 @@
 "use client"
 
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { Leaf, Mail, Phone, MapPin, Facebook, Instagram, Twitter } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const Footer = () => {
 

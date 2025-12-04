@@ -1,14 +1,11 @@
 "use client"
 
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Sparkles, ArrowDown, Leaf } from 'lucide-react';
-
-gsap.registerPlugin(ScrollTrigger);
 
 export const HeroSection = () => {
 	const heroRef = useRef<HTMLDivElement>(null);

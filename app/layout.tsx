@@ -79,7 +79,6 @@ export default function RootLayout({
       >
         <Navigation />
         {children}
-        <Footer />
         <Modal />
       </body>
     </html>

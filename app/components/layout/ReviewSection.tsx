@@ -4,10 +4,7 @@ import { useRef, useEffect, useState } from 'react';
 import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
-
-gsap.registerPlugin(ScrollTrigger);
 
 // Interface pour typage (compatible avec Google My Business API)
 interface Review {

@@ -4,14 +4,11 @@ import { useState } from 'react';
 import { Star, Heart, Share2, ShoppingCart, Minus, Plus, Truck, Shield, Leaf, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCartStore } from '@/lib/store/cartStore';
 import { IProduct } from '@/type/product';
-
-gsap.registerPlugin(ScrollTrigger)
 
 interface EmotionSlugProps {
   products: IProduct[];
