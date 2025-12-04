@@ -32,6 +32,8 @@ function RituelSlug({ products }: RituelSlugProps) {
     const product = products.find(product => product.slug === path );
     const suggest = products.filter(product => product.slug !== path); 
     const { addItem, items } = useCartStore();
+    const promo = Number(product?.promo || 0);
+    const finalPrice = promo > 0 ? product!.variants[variant].price * (1 - promo / 100) : product?.variants[variant].price;
     
 
     useGSAP(() => {
@@ -227,7 +229,7 @@ function RituelSlug({ products }: RituelSlugProps) {
                 </button>
               </div>
 
-              <button onClick={() => addItem({ id: product?.variants[variant].id, name: product?.variants[variant].name, price: product?.variants[variant].price, image: product?.images[0] || "", qty: quantity  } ) } className="cursor-pointer flex-1 bg-[#7A9B8E] text-white py-4 rounded-lg hover:bg-[#6A8B7E] transition-all duration-200 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl">
+              <button onClick={() => addItem({ productId: product.id, id: product?.variants[variant].id, name: product?.variants[variant].name, promo: product.promo ?? 0, price: Number(finalPrice?.toFixed(2)), image: product?.images[0] || "", qty: quantity  } ) } className="cursor-pointer flex-1 bg-[#7A9B8E] text-white py-4 rounded-lg hover:bg-[#6A8B7E] transition-all duration-200 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl">
                 <ShoppingCart className="w-5 h-5" />
                 Ajouter au panier
               </button>

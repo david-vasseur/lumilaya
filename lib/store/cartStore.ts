@@ -2,10 +2,12 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 interface CartItem {
+    productId: string;
     id: number;
     name: string;
     price: number;
     qty: number;
+    promo: number;
     image: string;
 }
 

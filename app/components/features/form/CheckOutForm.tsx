@@ -8,6 +8,13 @@ import { useState } from "react";
 import { ICheckout } from "@/schema/checkout";
 import { useCartStore } from "@/lib/store/cartStore";
 import { handleCheckout } from "./CheckOut.action";
+import { getPricesForStripe, TotalProduct } from "../../actions/product.action";
+
+type ServerItem = {
+  productId: string;
+  variantId: number;
+  qty: number;
+};
 
 const europeanCountries = [
     { code: "FR", name: "France" },
@@ -61,8 +68,18 @@ export const CheckoutForm = () => {
             onChange: CheckoutSchema,
         },
         onSubmit: async ({ value }) => {
-            console.log("infos:", value, items, total().toFixed(2));
-            const result = await handleCheckout(items, {
+            // Transformer les items front vers ServerItem
+            const serverItems: ServerItem[] = items.map(i => ({
+                productId: i.productId,
+                variantId: i.id,
+                qty: i.qty,
+            }));
+
+            // 1️⃣ Calcul serveur du prix final par produit
+            const pricesForStripe = await getPricesForStripe(serverItems);
+
+            // 2️⃣ Créer la session Stripe avec les prix serveur
+            const result = await handleCheckout(pricesForStripe, {
                 firstName: value.firstName,
                 lastName: value.lastName,
                 email: value.email,
@@ -77,10 +94,13 @@ export const CheckoutForm = () => {
                 billingCountry: value.billingCountry,
                 acceptCGV: value.acceptCGV
             });
+
+            // 3️⃣ Redirection vers Stripe
             if (result?.url) {
                 window.location.href = result.url; 
-            };
-        },
+            }
+            }
+
     })
 
     return (

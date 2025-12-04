@@ -5,12 +5,35 @@ import CartItem from "../ui/CartItem";
 import Link from "next/link";
 import { useModalStore } from "@/lib/store/modalStore";
 import { usePathname } from "next/navigation";
+import { TotalProduct } from "../actions/product.action";
+import { useEffect, useState } from "react";
 
 function Cart() {
 
-    const { items, total } = useCartStore();
+    const [total, setTotal] = useState<number>(0);
+    const { items } = useCartStore();
     const { closeModal, isOpen } = useModalStore();
     const path = usePathname();
+    
+    useEffect(() => {
+
+    const fetchTotal = async () => {
+        const serverItems = items.map(item => ({
+            productId: item.productId,
+            variantId: item.id,
+            qty: item.qty
+        }));
+
+        const result = await TotalProduct(serverItems);
+        setTotal(result);
+    };
+
+    if (items.length > 0) {
+        fetchTotal();
+    } else {
+        setTotal(0);
+    }
+    }, [items]);
     
     return (
         <div className="flex flex-col gap-10 items-center">
@@ -30,7 +53,7 @@ function Cart() {
                 ))}
                 
             </div>
-            <span>Total de commande : {total().toFixed(2)} €</span>
+            <span>Total de commande : {total.toFixed(2)} €</span>
             {path !== "/checkout" && isOpen  && (
                 <Link 
                     href={"/checkout"}
