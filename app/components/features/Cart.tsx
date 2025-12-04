@@ -21,6 +21,7 @@ function Cart() {
         const serverItems = items.map(item => ({
             productId: item.productId,
             variantId: item.id,
+            name: item.name,
             qty: item.qty
         }));
 
