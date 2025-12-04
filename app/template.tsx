@@ -5,12 +5,20 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import { usePathname } from "next/navigation";
 import Footer from "./components/layout/Footer";
+import { useEffect } from "react";
+import { useDeviceStore } from "@/lib/store/deviceStore";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const Template = ({ children }: { children: React.ReactNode }) => {
 
     const pathName = usePathname();
+    const { detectDevice } = useDeviceStore();
+
+    	useEffect(() => {
+		const cleanup = detectDevice();
+		return cleanup; 
+	}, [detectDevice]);
 
     return (
         <div>

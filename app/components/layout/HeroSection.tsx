@@ -98,7 +98,7 @@ export const HeroSection = () => {
 			{/* Image de fond avec Next.js Image */}
 			<div ref={imageRef} className="absolute inset-0">
 				<Image 
-					src="/images/test2.465Z.png"
+					src="/images/landing/hero1.webp"
 					alt="Himalaya avec bougie naturelle"
 					fill
 					priority
