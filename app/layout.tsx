@@ -4,6 +4,7 @@ import "./globals.css";
 import Navigation from "./components/features/Navigation";
 import Footer from "./components/layout/Footer";
 import Modal from "./components/features/Modal";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -79,6 +80,7 @@ export default function RootLayout({
       >
         <Navigation />
         {children}
+        <Toaster position="top-center" toastOptions={{style: {backgroundColor: "#7A9B8E"}} } />
         <Modal />
       </body>
     </html>

@@ -87,7 +87,8 @@ export async function TopRatedProducts() {
 
 type ServerItem = {
   productId: string;  // ✅ ObjectId du produit
-  variantId: number;  // ✅ 11, 12, 21, etc.
+  variantId: number;
+  name: string;  // ✅ 11, 12, 21, etc.
   qty: number;
 };
 
@@ -174,7 +175,7 @@ export async function getPricesForStripe(items: ServerItem[]): Promise<PricePerP
     result.push({
       productId: item.productId,
       variantId: item.variantId,
-      name: product.name, // <-- ajouter le name ici
+      name: item.name, // <-- ajouter le name ici
       price: finalPrice,
       qty: item.qty
     });
