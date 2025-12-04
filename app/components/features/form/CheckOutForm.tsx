@@ -13,6 +13,7 @@ import { getPricesForStripe, TotalProduct } from "../../actions/product.action";
 type ServerItem = {
   productId: string;
   variantId: number;
+  name: string;
   qty: number;
 };
 
@@ -72,6 +73,7 @@ export const CheckoutForm = () => {
             const serverItems: ServerItem[] = items.map(i => ({
                 productId: i.productId,
                 variantId: i.id,
+                name: i.name,
                 qty: i.qty,
             }));
 

@@ -136,6 +136,7 @@ export async function TotalProduct(items: ServerItem[]): Promise<number> {
 type PricePerProduct = {
   productId: string;
   variantId: number;
+  name: string;
   price: number; // prix unitaire avec promo appliquée
   qty: number;
 };
@@ -150,6 +151,7 @@ export async function getPricesForStripe(items: ServerItem[]): Promise<PricePerP
     where: { id: { in: productIds } },
     select: {
       id: true,
+      name: true, // <-- ajouter le name ici
       variants: true,
       promo: true
     },
@@ -172,6 +174,7 @@ export async function getPricesForStripe(items: ServerItem[]): Promise<PricePerP
     result.push({
       productId: item.productId,
       variantId: item.variantId,
+      name: product.name, // <-- ajouter le name ici
       price: finalPrice,
       qty: item.qty
     });
@@ -179,3 +182,4 @@ export async function getPricesForStripe(items: ServerItem[]): Promise<PricePerP
 
   return result;
 }
+
