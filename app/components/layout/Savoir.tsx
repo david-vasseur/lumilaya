@@ -25,8 +25,8 @@ export default function SavoirFaire() {
       // Panel 2 → slide from right over panel 1
       tl.fromTo(
         panelsRef.current[1],
-        { x: "100%", opacity: 1 },
-        { x: "0%", opacity: 1, duration: 1, ease: "power1.out" }
+        { y: "100%", opacity: 1 },
+        { y: "0%", opacity: 1, duration: 1, ease: "power1.out" }
       );
 
       // Panel 4 → slide from bottom over panel 2
@@ -58,7 +58,7 @@ export default function SavoirFaire() {
           scrollTrigger: {
             trigger: panel,
             start: "top 80%",
-            end: "bottom 20%",
+            end: "top 70%",
             scrub: 0.5,
           },
           opacity: 0,
@@ -73,76 +73,98 @@ export default function SavoirFaire() {
   }, []);
 
     return (
-        <div
-            ref={containerRef}
-            className="relative w-full h-[200vh] overflow-hidden"
-        >
-        {/* Panel 1 */}
-        <div
-            ref={(el) => {(panelsRef.current[0] = el!)}}
-            className="absolute top-0 left-0 w-full h-screen flex flex-col items-center justify-center z-10 overflow-hidden px-4"
-        >
-            {/* Texte */}
-            <div className="text-center bg-linear-to-br from-[#7A9B8E] via-[#6A8B7E] to-[#5A7B6E] p-10 rounded-lg max-w-xl shadow-lg z-20">
-                <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-600">
-                Fabrication artisanale
-                </h2>
-                <p className="text-lg md:text-xl text-gray-600">
-                Chaque création est conçue avec soin, utilisant uniquement des ingrédients naturels et locaux, pour garantir qualité et authenticité.
-                </p>
-            </div>
+  <div
+    ref={containerRef}
+    className="relative w-full h-[200vh] overflow-hidden bg-[#FDFBF7]"
+  >
 
-            {/* Images */}
-            <img
-            ref={(el) => {(imagesRef.current[0] = el!)}}
-                src="/images/produits/liberation.webp"
-                alt="Artisan 1"
-                className="absolute w-32 md:w-48 top-[20%] left-[10%] rotate-[-10deg] shadow-xl"
-            />
-            <img
-            ref={(el) => {(imagesRef.current[1] = el!)}}
-                src="/images/produits/ancrage.webp"
-                alt="Artisan 2"
-                className="absolute w-32 md:w-48 top-[50%] right-[15%] rotate-[5deg] shadow-xl"
-            />
-            <img
-            ref={(el) => {(imagesRef.current[2] = el!)}}
-                src="/images/produits/douceur.webp"
-                alt="Artisan 3"
-                className="absolute w-32 md:w-48 bottom-[15%] left-[50%] -translate-x-1/2 rotate-[-5deg] shadow-xl"
-            />
-        </div>
+    {/* PANEL 1 — INGRÉDIENTS */}
+    <div
+      ref={(el) => {(panelsRef.current[0] = el!)}}
+      className="absolute inset-0 h-screen flex flex-col items-center justify-center z-10 px-6"
+    >
+      <div className="max-w-2xl text-center space-y-6">
+        <span className="text-[#7A9B8E] text-sm tracking-widest uppercase">
+          Qualité & sécurité
+        </span>
 
-      {/* Panel 2 */}
-      <div
-        ref={(el) => {(panelsRef.current[1] = el!)}}
-        className="absolute top-0 left-0 w-full h-screen flex items-center justify-center bg-linear-to-br from-[#7A9B8E] via-[#6A8B7E] to-[#5A7B6E] z-20"
-      >
-        <div className="text text-4xl font-bold text-center px-4">
-          Ingrédients naturels
-        </div>
-        <img
-          src="/images/natural.png"
-          alt="Ingrédients naturels"
-          className="absolute bottom-10 right-10 w-1/3"
-        />
+        <h2 className="text-4xl md:text-5xl font-light text-[#2C2C2C] text text">
+          🌿 Ingrédients sains & naturels
+        </h2>
+
+        <p className="text-lg text-[#2C2C2C]/70 leading-relaxed">
+          Des cires végétales, des mèches en coton et des parfums soigneusement
+          sélectionnés pour respecter votre air, votre intérieur et votre
+          bien-être.
+        </p>
       </div>
 
-      {/* Panel 4 */}
-      <div
-        ref={(el) => {(panelsRef.current[2] = el!)}}
-        className="absolute top-0 left-0 w-full h-screen flex items-center justify-center bg-blue-200 z-30"
-      >
-        <div className="text text-4xl font-bold text-center px-4">
-          Création locale
-        </div>
-        <img
-          src="/images/local.png"
-          alt="Création locale"
-          className="absolute top-10 left-10 w-1/3"
-        />
-      </div>
+      <img
+        ref={(el) => {(imagesRef.current[0] = el!)}}
+        src="/images/landing/savoir1.webp"
+        className="absolute w-40 md:w-56 bottom-[10%] left-[10%] rotate-[-6deg] shadow-2xl rounded-xl"
+        alt="Ingrédients naturels"
+      />
     </div>
-  );
+
+    {/* PANEL 2 — FAIT MAIN */}
+    <div
+      ref={(el) => {(panelsRef.current[1] = el!)}}
+      className="absolute inset-0 h-screen flex flex-col items-center justify-center bg-[#F4F1EC] z-20 px-6"
+    >
+      <div className="max-w-2xl text-center space-y-6">
+        <span className="text-[#7A9B8E] text-sm tracking-widest uppercase">
+          Savoir-faire
+        </span>
+
+        <h2 className="text-4xl md:text-5xl font-light text-[#2C2C2C] text text">
+          🕯️ Fabriqué à la main en France
+        </h2>
+
+        <p className="text-lg text-[#2C2C2C]/70 leading-relaxed">
+          Chaque bougie est coulée artisanalement, en petites séries, avec une
+          attention extrême portée aux détails et aux finitions.
+        </p>
+      </div>
+
+      <img
+        ref={(el) => {(imagesRef.current[1] = el!)}}
+        src="/images/landing/savoir2.webp"
+        className="absolute w-40 md:w-56 top-[18%] right-[12%] rotate-[4deg] shadow-2xl rounded-xl"
+        alt="Fabrication artisanale"
+      />
+    </div>
+
+    {/* PANEL 3 — LIVRAISON */}
+    <div
+      ref={(el) => {(panelsRef.current[2] = el!)}}
+      className="absolute inset-0 h-screen flex flex-col items-center justify-center bg-[#ECE9E3] z-30 px-6"
+    >
+      <div className="max-w-2xl text-center space-y-6">
+        <span className="text-[#7A9B8E] text-sm tracking-widest uppercase">
+          Expérience client
+        </span>
+
+        <h2 className="text-4xl md:text-5xl font-light text-[#2C2C2C] text text">
+          🚚 Expédition rapide & soignée
+        </h2>
+
+        <p className="text-lg text-[#2C2C2C]/70 leading-relaxed">
+          Vos commandes sont préparées avec attention, emballées avec soin et
+          expédiées rapidement pour une expérience irréprochable.
+        </p>
+      </div>
+
+      <img
+        ref={(el) => {(imagesRef.current[2] = el!)}}
+        src="/images/landing/savoir3.webp"
+        className="absolute w-40 md:w-56 bottom-[12%] right-[15%] rotate-[-3deg] shadow-2xl rounded-xl"
+        alt="Livraison soignée"
+      />
+    </div>
+
+  </div>
+);
 }
+
 

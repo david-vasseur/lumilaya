@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { 
     Leaf, 
     Mountain, 
@@ -371,94 +372,79 @@ const NotreHistoirePage = () => {
             </section>
 
             {/* Nos valeurs */}
-            <section className="values-section py-32 bg-[#FDFBF7]">
-                <div className="max-w-7xl mx-auto px-6">
-                    <div className="text-center mb-20">
-                        <div className="inline-flex items-center gap-2 bg-[#7A9B8E]/10 px-4 py-2 rounded-full mb-6">
-                            <Heart className="w-5 h-5 text-[#7A9B8E]" />
-                            <span className="text-sm font-medium text-[#7A9B8E]">Nos valeurs</span>
-                        </div>
-                        <h2 className="text-5xl font-light text-[#2C2C2C] mb-6">
-                            Ce qui nous anime
-                        </h2>
-                        <p className="text-xl text-[#2C2C2C]/60 max-w-3xl mx-auto">
-                            Des principes qui guident chacune de nos actions, chaque jour
-                        </p>
-                    </div>
+            <section className="py-32 bg-[#FDFBF7] overflow-hidden">
+                <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+                {/* IMAGE */}
+                <motion.div
+                initial={{ opacity: 0, x: -60 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.9, ease: "easeOut" }}
+                viewport={{ once: true }}
+                className="relative"
+                >
+                <div className="absolute inset-0 bg-[#7A9B8E]/10 rounded-3xl blur-3xl" />
+                <img
+                src="/images/histoire/histoire2.webp" // Remplace par ton image
+                alt="Origine du nom Lumi'laya"
+                className="relative z-10 rounded-3xl shadow-2xl object-cover w-full h-full"
+                />
+                </motion.div>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <div className="value-card bg-white rounded-3xl p-10 shadow-lg hover:shadow-2xl transition-all">
-                            <div className="w-16 h-16 bg-linear-to-br from-[#7A9B8E] to-[#5A7B6E] rounded-2xl flex items-center justify-center mb-6">
-                                <Leaf className="w-8 h-8 text-white" />
-                            </div>
-                            <h3 className="text-2xl font-light text-[#2C2C2C] mb-4">Naturel & Pur</h3>
-                            <p className="text-[#2C2C2C]/60 leading-relaxed">
-                                100% d'ingrédients naturels, sans compromis. La nature est notre source d'inspiration 
-                                et notre plus grande alliée.
-                            </p>
-                        </div>
 
-                        <div className="value-card bg-white rounded-3xl p-10 shadow-lg hover:shadow-2xl transition-all">
-                            <div className="w-16 h-16 bg-linear-to-br from-[#7A9B8E] to-[#5A7B6E] rounded-2xl flex items-center justify-center mb-6">
-                                <Heart className="w-8 h-8 text-white" />
-                            </div>
-                            <h3 className="text-2xl font-light text-[#2C2C2C] mb-4">Fait main</h3>
-                            <p className="text-[#2C2C2C]/60 leading-relaxed">
-                                Chaque bougie est coulée à la main avec amour et attention. 
-                                L'artisanat est au cœur de notre démarche.
-                            </p>
-                        </div>
-
-                        <div className="value-card bg-white rounded-3xl p-10 shadow-lg hover:shadow-2xl transition-all">
-                            <div className="w-16 h-16 bg-linear-to-br from-[#7A9B8E] to-[#5A7B6E] rounded-2xl flex items-center justify-center mb-6">
-                                <Users className="w-8 h-8 text-white" />
-                            </div>
-                            <h3 className="text-2xl font-light text-[#2C2C2C] mb-4">Communauté</h3>
-                            <p className="text-[#2C2C2C]/60 leading-relaxed">
-                                Vous êtes au centre de notre univers. Votre satisfaction et votre bien-être 
-                                sont notre priorité.
-                            </p>
-                        </div>
-
-                        <div className="value-card bg-white rounded-3xl p-10 shadow-lg hover:shadow-2xl transition-all">
-                            <div className="w-16 h-16 bg-linear-to-br from-[#7A9B8E] to-[#5A7B6E] rounded-2xl flex items-center justify-center mb-6">
-                                <Mountain className="w-8 h-8 text-white" />
-                            </div>
-                            <h3 className="text-2xl font-light text-[#2C2C2C] mb-4">Éco-responsable</h3>
-                            <p className="text-[#2C2C2C]/60 leading-relaxed">
-                                Emballages recyclables, circuit court, ingrédients locaux. 
-                                Nous minimisons notre impact à chaque étape.
-                            </p>
-                        </div>
-
-                        <div className="value-card bg-white rounded-3xl p-10 shadow-lg hover:shadow-2xl transition-all">
-                            <div className="w-16 h-16 bg-linear-to-br from-[#7A9B8E] to-[#5A7B6E] rounded-2xl flex items-center justify-center mb-6">
-                                <Award className="w-8 h-8 text-white" />
-                            </div>
-                            <h3 className="text-2xl font-light text-[#2C2C2C] mb-4">Excellence</h3>
-                            <p className="text-[#2C2C2C]/60 leading-relaxed">
-                                Nous ne nous contentons jamais du minimum. Chaque détail compte, 
-                                de la sélection des matières à la finition.
-                            </p>
-                        </div>
-
-                        <div className="value-card bg-white rounded-3xl p-10 shadow-lg hover:shadow-2xl transition-all">
-                            <div className="w-16 h-16 bg-linear-to-br from-[#7A9B8E] to-[#5A7B6E] rounded-2xl flex items-center justify-center mb-6">
-                                <Sparkles className="w-8 h-8 text-white" />
-                            </div>
-                            <h3 className="text-2xl font-light text-[#2C2C2C] mb-4">Authenticité</h3>
-                            <p className="text-[#2C2C2C]/60 leading-relaxed">
-                                Transparence totale sur nos pratiques et nos ingrédients. 
-                                Ce que vous voyez est ce que vous obtenez.
-                            </p>
-                        </div>
-                    </div>
+                {/* TEXTE */}
+                <motion.div
+                initial={{ opacity: 0, x: 60 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.9, ease: "easeOut", delay: 0.1 }}
+                viewport={{ once: true }}
+                >
+                <div className="inline-flex items-center gap-2 bg-[#7A9B8E]/10 px-4 py-2 rounded-full mb-6">
+                <span className="text-sm font-medium text-[#7A9B8E]">Les origines</span>
                 </div>
-            </section>
+
+
+                <h2 className="text-5xl font-light text-[#2C2C2C] mb-8">
+                Pourquoi Lumi’laya ?
+                </h2>
+
+
+                <div className="space-y-6 text-lg text-[#2C2C2C]/70 leading-relaxed">
+                <p>
+                Je voulais un nom qui soit un pont entre la lumière extérieure — celle
+                d’une flamme qui éclaire, réchauffe et rassemble — et la lumière
+                intérieure, celle que l’on ravive en soi lorsque l’on revient à
+                l’essentiel.
+                </p>
+
+
+                <p>
+                <span className="font-medium text-[#2C2C2C]">“Lumi”</span> pour la
+                lumière, la clarté, l’ouverture.
+                <br />
+                <span className="font-medium text-[#2C2C2C]">“Laya”</span>, un terme
+                spirituel qui évoque la dissolution du mental, le retour à l’essence,
+                l’union de l’âme avec la conscience profonde.
+                </p>
+
+
+                <p>
+                Laya, c’est l’abandon des nœuds qui nous alourdissent. C’est l’espace
+                où tout se relâche, où l’on laisse la vie circuler librement.
+                </p>
+
+
+                <p className="text-[#7A9B8E] font-medium">
+                Lumi’laya est donc née de cette intention : allumer une flamme qui
+                éclaire autant l’espace autour de soi que celui en soi.
+                </p>
+                </div>
+                </motion.div>
+                </div>
+                </section>
 
             {/* CTA final */}
             <section className="relative py-32 overflow-hidden">
-                <div className="absolute inset-0 bg-linear-to-br from-[#7A9B8E] to-[#5A7B6E]">
+                <div className="absolute inset-0 bg-linear-to-br from-[#F5F1EB] to-[#E5DFD3]">
                     <div className="absolute inset-0 opacity-20">
                         <div className="absolute top-10 left-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
                         <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#2C2C2C] rounded-full blur-3xl"></div>
@@ -466,23 +452,19 @@ const NotreHistoirePage = () => {
                 </div>
 
                 <div className="relative max-w-4xl mx-auto px-6 text-center">
-                    <Mountain className="w-20 h-20 text-white/20 mx-auto mb-8" />
-                    <h2 className="text-5xl font-light text-white mb-8">
-                        Rejoignez l'aventure LUMILAYA
-                    </h2>
-                    <p className="text-2xl text-white/90 mb-12 leading-relaxed">
+                    <h2 className="text-2xl text-[#7A9B8E] mb-12 leading-relaxed">
                         Découvrez nos bougies et laissez-vous emporter par la magie de la nature
-                    </p>
+                    </h2>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <a 
-                            href="/boutique"
-                            className="inline-flex items-center justify-center gap-3 bg-white text-[#7A9B8E] px-8 py-4 rounded-full font-medium hover:bg-white/90 transition-all shadow-xl"
+                            href="/#boutique"
+                            className="inline-flex items-center justify-center gap-3 bg-[#7A9B8E] text-white px-8 py-4 rounded-full font-medium hover:bg-white/70 hover:text-[#7A9B8E] duration-300 transition-all shadow-xl"
                         >
                             Découvrir la boutique
                         </a>
                         <a 
                             href="/contact"
-                            className="inline-flex items-center justify-center gap-3 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-8 py-4 rounded-full font-medium hover:bg-white/20 transition-all"
+                            className="inline-flex items-center justify-center gap-3 bg-white text-[#7A9B8E]  backdrop-blur-sm border-2 border-white/30 px-8 py-4 rounded-full font-medium hover:bg-[#7A9B8E]/20 duration-300 transition-all"
                         >
                             Nous contacter
                         </a>
