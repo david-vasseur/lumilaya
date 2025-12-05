@@ -151,10 +151,10 @@ function EmotionSlug({ products }: EmotionSlugProps) {
           <div className="product-info">
             <div className="flex items-center gap-2 mb-4">
               <span className="bg-[#F5F1EB] text-[#7A9B8E] text-sm px-3 py-1 rounded-full">
-                Collection Essentielle
+                {product.collection === "Emotion" ? "Collection Emotions & Plaisirs" : "Collection Entre Terre & Ciel"}
               </span>
               <span className="text-[#2C2C2C]/40">•</span>
-              <span className="text-sm text-[#2C2C2C]/60">En stock</span>
+              <span className="text-sm text-[#2C2C2C]/60">{product.stock === true ? "En stock" : "Rupture - Livraison sous 7 jours"}</span>
             </div>
 
             <h1 className="text-5xl font-light text-[#2C2C2C] mb-4 leading-tight">
@@ -205,7 +205,8 @@ function EmotionSlug({ products }: EmotionSlugProps) {
                 Taille
               </label>
               <div className="flex gap-3">
-                {['150g', '200g'].map((size) => (
+                {product.collection === "Emotion" ? (
+                  ['150g', '200g'].map((size) => (
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
@@ -217,9 +218,17 @@ function EmotionSlug({ products }: EmotionSlugProps) {
                   >
                     {size}
                   </button>
-                ))}
+                ))
+                ) : (
+                  <button
+                    className={`px-6 py-3 rounded-lg border-2 transition-all border-[#7A9B8E] bg-[#7A9B8E]/5 text-[#7A9B8E]`}
+                  >
+                    200g
+                  </button>
+                )}
+                
               </div>
-              <p className="text-sm text-[#2C2C2C]/50 mt-2">≈ 50-60h de combustion</p>
+              <p className="text-sm text-[#2C2C2C]/50 mt-2">≈ {product.variants[variant].duration} - {Math.round(Number(product.variants[variant].duration) + 10)}h de combustion</p>
             </div>
 
             {/* Quantité et ajout panier */}
@@ -311,7 +320,7 @@ function EmotionSlug({ products }: EmotionSlugProps) {
                 Ingrédients purs
               </h3>
               <p className="text-[#2C2C2C]/60 leading-relaxed">
-                Cire de soja 100% naturelle, mèche en coton bio et huiles essentielles 
+                Cire de soja et de coco 100% naturelles, mèche en coton bio et frangrances de Grasse 
                 certifiées. Aucun parfum synthétique, aucun additif.
               </p>
             </div>
@@ -400,11 +409,11 @@ function EmotionSlug({ products }: EmotionSlugProps) {
               </div>
               <div className="flex justify-between py-3 border-b border-[#2C2C2C]/10">
                 <span className="text-[#2C2C2C]/60">Durée de combustion</span>
-                <span className="text-[#2C2C2C] font-medium">{product?.caracteristique.combustion} heures</span>
+                <span className="text-[#2C2C2C] font-medium">{product.variants[variant].duration} - {Math.round(Number(product.variants[variant].duration) + 10)} heures</span>
               </div>
               <div className="flex justify-between py-3 border-b border-[#2C2C2C]/10">
                 <span className="text-[#2C2C2C]/60">Poids net</span>
-                <span className="text-[#2C2C2C] font-medium">{product?.caracteristique.poids}g</span>
+                <span className="text-[#2C2C2C] font-medium">{product.collection === "Emotion" && variant === 0 ? product?.caracteristique.poids : Math.round(Number(product?.caracteristique.poids) + 60)}g</span>
               </div>
               <div className="flex justify-between py-3 border-b border-[#2C2C2C]/10">
                 <span className="text-[#2C2C2C]/60">Contenant</span>
@@ -425,7 +434,7 @@ function EmotionSlug({ products }: EmotionSlugProps) {
           </h2>
           <div className="grid md:grid-cols-4 gap-8">
             {suggest.map((item) => (
-              <Link href={`/bougies-emotions/${item.slug}`} key={item.name} className="group cursor-pointer">
+              <Link href={`/${product.collection === "Emotion" ? "bougies-emotions" : "bougies-rituel"}/${item.slug}`} key={item.name} className="group cursor-pointer">
                 <div className="relative h-80 rounded-xl overflow-hidden mb-4 bg-linear-to-br from-[#7A9B8E] to-[#5A7B6E] group-hover:scale-105 transition-transform">
                   
                   <Image

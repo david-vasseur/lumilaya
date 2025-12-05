@@ -143,9 +143,9 @@ function EmotionPage({ products }: EmotionPageProps) {
 									</div>
 
 									{/* Icône décorative */}
-									<div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+									{/* <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
 										<Sparkles className="w-16 h-16 text-white/0 group-hover:text-white/30 transition-all duration-500" />
-									</div>
+									</div> */}
 								</div>
 
 								<div className="p-6">

@@ -10,7 +10,7 @@ async function ProductDetail() {
 	if (!products) return
 
 	return (
-		<RituelSlug products={products} />
+		<EmotionSlug products={products} />
 	);
 }
 export default ProductDetail;
