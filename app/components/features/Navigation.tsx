@@ -25,17 +25,20 @@ function Navigation() {
     const bands = Array.from({ length: NUM_BANDS });
 
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-[#FDFBF7]/90 backdrop-blur-sm border-b border-[#2C2C2C]/10">
+        <nav className={`fixed top-0 left-0 right-0 z-50 ${isMobile ? "" : "bg-[#FDFBF7]/90 backdrop-blur-sm border-b border-[#2C2C2C]/10"}`}>
             
             {isMobile ? (
                     <>
-                        <div className="absolute w-screen h-[10vh] flex justify-between items-center px-5 z-50000">
+                        <div className="absolute w-screen h-[8vh] bg-[#7A9B8E] flex justify-between items-center px-5 z-50000">
                             <div className="flex gap-2 cursor-pointer">
                                 <ShoppingCart 
-                                    className="w-6 h-6 text-[#7A9B8E] group-hover:text-[#2C2C2C] transition-colors" 
+                                    className="w-6 h-6 text-white group-hover:text-[#2C2C2C] transition-colors" 
                                     onClick={() => {openModal(<Cart />)} }
                                 />
-                                <span className="text-[#7A9B8E] font-bold">{items.length}</span>
+                                <span className="text-white font-bold">{items.length}</span>
+                            </div>
+                            <div className="h-10 w-20 relative -my-4">
+                                <Image fill alt='logo lumilaya' src={"/images/logo.webp"} />
                             </div>
                             <div onClick={() => setIsMenuOpen(!isMenuOpen)}>
                                 <AnimatePresence mode="wait">
@@ -47,7 +50,7 @@ function Navigation() {
                                         exit={{ opacity: 0, rotate: 90 }}
                                         transition={{ duration: 0.2 }}
                                     >
-                                        <X className={`w-8 h-8 text-cyan-100`} />
+                                        <X className={`w-8 h-8 text-white`} />
                                     </motion.div>						
                                 ) : (
                                     <motion.div
@@ -68,7 +71,7 @@ function Navigation() {
                             <>			
                                 <motion.div 
                                     key="overlay"
-                                    className="fixed h-screen w-screen backdrop-blur-[0.5px] top-0 z-20 flex"
+                                    className="fixed h-screen w-screen backdrop-blur-[0.5px] top-0 z-20 flex overflow-hidden"
                                     initial="initial"
                                     animate="animate"
                                     exit="exit"
@@ -97,7 +100,7 @@ function Navigation() {
                                         animate={{ opacity: 1 }}
                                         transition={{ duration: 0.2, delay: 0.5, ease: "easeInOut" }}
                                     >
-                                        {["Accueil", "Emotions & Plaisirs", "Entre Terre & Ciel", "Nous contacter"].map((item, index) => (
+                                        {["Accueil", "Emotions & Plaisirs", "Entre Terre & Ciel", "Notre histoire", "Nous contacter"].map((item, index) => (
                                             <>
                                                 <motion.li 
                                                     onClick={() => setIsMenuOpen(false)}
@@ -111,7 +114,7 @@ function Navigation() {
                                                     ease: "easeInOut",
                                                     }}
                                                 >
-                                                    <Link href={`${item === "Accueil" ? "/" : item === "Emotions & Plaisirs" ? "/bougies-emotions" : item === "Entre Terre & Ciel" ? "/bougies-rituel" : "/contact"}`}>
+                                                    <Link href={`${item === "Accueil" ? "/" : item === "Emotions & Plaisirs" ? "/bougies-emotions" : item === "Entre Terre & Ciel" ? "/bougies-rituel" : item === "Notre histoire" ? "/notre-histoire" : "/contact"}`}>
                                                         {item}
                                                     </Link>
                                                 </motion.li>

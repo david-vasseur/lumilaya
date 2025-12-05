@@ -67,9 +67,9 @@ const Footer = () => {
 
 			<div className="footer-container relative max-w-7xl mx-auto px-6 pt-20 pb-8">
 				{/* Contenu principal */}
-				<div className="grid lg:grid-cols-12 gap-12 mb-16">
+				<div className="grid grid-col-2 lg:grid-cols-12 gap-12 mb-16">
 					{/* Brand Section */}
-					<div className="footer-brand lg:col-span-4">
+					<div className="footer-brand col-span-2 lg:col-span-4">
 						<div className="flex items-center gap-3 mb-6">
 							<div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
 								<Image width={48} height={48} src={'/images/footer.webp'} alt='logo' />
@@ -103,7 +103,7 @@ const Footer = () => {
 					</div>
 
 					{/* Navigation */}
-					<div className="footer-column lg:col-span-2">
+					<div className="footer-column col-span-1 lg:col-span-2">
 						<h3 className="text-lg font-medium mb-6">Navigation</h3>
 						<ul className="space-y-3">
 							<li>
@@ -130,7 +130,7 @@ const Footer = () => {
 					</div>
 
 					{/* Collections */}
-					<div className="footer-column lg:col-span-3">
+					<div className="footer-column col-span-1 lg:col-span-3">
 						<h3 className="text-lg font-medium mb-6">Collections</h3>
 						<ul className="space-y-3">
 							<li>
@@ -145,7 +145,7 @@ const Footer = () => {
 							</li>
 						</ul>
 					</div>
-
+					
 					{/* Contact */}
 					<div className="footer-column relative z-2 lg:col-span-3">
 						<h3 className="text-lg font-medium mb-6">Nous contacter</h3>
