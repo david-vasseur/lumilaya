@@ -87,6 +87,38 @@ export default function SavoirFaire() {
           ease: "power2.out",
         });
 
+
+        const mm = gsap.matchMedia();
+
+        mm.add("(max-width: 767px)", () => {
+          panelsRef.current.forEach((panel) => {
+            const titleElement = panel.querySelector(".title-text");
+            if (titleElement) {
+              gsap.from(titleElement, {
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                ease: "power2.out",
+              });
+            }
+
+            gsap.from(panel.querySelector(".subtitle-text"), {
+              opacity: 0,
+              y: 20,
+              duration: 0.8,
+              ease: "power2.out",
+            });
+
+            gsap.from(panel.querySelector(".description"), {
+              opacity: 0,
+              y: 25,
+              duration: 0.8,
+              ease: "power2.out",
+            });
+          });
+        });
+
+
         // Animate feature cards
         const features = panel.querySelectorAll(".feature-card");
         gsap.from(features, {
