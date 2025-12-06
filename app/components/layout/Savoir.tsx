@@ -4,123 +4,214 @@ import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { Leaf, Hand, Truck, Award, Shield, Heart, CheckCircle, Star } from "lucide-react";
+import { useGSAP } from "@gsap/react";
 
 export default function SavoirFaire() {
   const containerRef = useRef<HTMLDivElement>(null);
   const panelsRef = useRef<HTMLDivElement[]>([]);
   const imagesRef = useRef<HTMLImageElement[]>([]);
 
-  useLayoutEffect(() => {
+useGSAP(() => {
+    if (!containerRef.current) return;
+
     const ctx = gsap.context(() => {
+      const mm = gsap.matchMedia();
+
+      // -----------------------------
+      // Timeline pour panels qui s'empilent (desktop + mobile)
+      // -----------------------------
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=100%",
+          end: "+=200%",
           scrub: 1,
           pin: true,
           pinSpacing: false,
         },
       });
 
-      // Panel 2 → slide from bottom over panel 1
       tl.fromTo(
         panelsRef.current[1],
         { y: "100%", opacity: 1 },
         { y: "0%", opacity: 1, duration: 1, ease: "power1.out" }
       );
 
-      // Panel 3 → slide from bottom over panel 2
       tl.fromTo(
         panelsRef.current[2],
         { y: "100%", opacity: 1 },
         { y: "0%", opacity: 1, duration: 1, ease: "power1.out" }
       );
 
-      // Animate text with SplitText
-      panelsRef.current.forEach((panel, index) => {
-        const titleElement = panel.querySelector(".title-text");
-        if (titleElement) {
-          const split = new SplitText(titleElement, {
-            type: "lines,words,chars",
-          });
+      // -----------------------------
+      // Desktop animations
+      // -----------------------------
+      mm.add("(min-width: 768px)", () => {
+        panelsRef.current.forEach((panel, index) => {
+          // Texte avec SplitText
+          const titleElement = panel.querySelector(".title-text");
+          if (titleElement) {
+            const split = new SplitText(titleElement, { type: "lines,words,chars" });
+            gsap.from(split.chars, {
+              scrollTrigger: {
+                trigger: panel,
+                start: "top 80%",
+                end: "top 60%",
+                scrub: 0.5,
+              },
+              opacity: 0,
+              y: 30,
+              rotationX: -90,
+              transformOrigin: "50% 50%",
+              stagger: 0.015,
+              ease: "power2.out",
+            });
+          }
 
-          gsap.from(split.chars, {
+          // Subtitle
+          gsap.from(panel.querySelector(".subtitle-text"), {
             scrollTrigger: {
               trigger: panel,
-              start: "top 80%",
+              start: "top 75%",
+              end: "top 65%",
+              scrub: 0.5,
+            },
+            opacity: 0,
+            y: 20,
+            ease: "power2.out",
+          });
+
+          // Description
+          gsap.from(panel.querySelector(".description"), {
+            scrollTrigger: {
+              trigger: panel,
+              start: "top 70%",
               end: "top 60%",
               scrub: 0.5,
             },
             opacity: 0,
-            y: 30,
-            rotationX: -90,
-            transformOrigin: "50% 50%",
-            stagger: 0.015,
+            y: 25,
             ease: "power2.out",
           });
-        }
 
-        // Animate subtitle
-        gsap.from(panel.querySelector(".subtitle-text"), {
-          scrollTrigger: {
-            trigger: panel,
-            start: "top 75%",
-            end: "top 65%",
-            scrub: 0.5,
-          },
-          opacity: 0,
-          y: 20,
-          ease: "power2.out",
-        });
-
-        // Animate description
-        gsap.from(panel.querySelector(".description"), {
-          scrollTrigger: {
-            trigger: panel,
-            start: "top 70%",
-            end: "top 60%",
-            scrub: 0.5,
-          },
-          opacity: 0,
-          y: 25,
-          ease: "power2.out",
-        });
-
-
-        const mm = gsap.matchMedia();
-
-        mm.add("(max-width: 767px)", () => {
-          panelsRef.current.forEach((panel) => {
-            const titleElement = panel.querySelector(".title-text");
-            if (titleElement) {
-              gsap.from(titleElement, {
-                opacity: 0,
-                y: 30,
-                duration: 0.8,
+          // Images
+          const img = imagesRef.current[index];
+          if (img) {
+            gsap.fromTo(
+              img,
+              { scale: 0.6, opacity: 0, rotation: index % 2 === 0 ? -15 : 15 },
+              {
+                scale: 1,
+                opacity: 1,
+                rotation: 0,
+                scrollTrigger: {
+                  trigger: panel,
+                  start: "top 80%",
+                  end: "top 50%",
+                  scrub: 0.8,
+                },
                 ease: "power2.out",
-              });
-            }
+              }
+            );
+          }
 
-            gsap.from(panel.querySelector(".subtitle-text"), {
-              opacity: 0,
-              y: 20,
-              duration: 0.8,
-              ease: "power2.out",
-            });
-
-            gsap.from(panel.querySelector(".description"), {
-              opacity: 0,
-              y: 25,
-              duration: 0.8,
-              ease: "power2.out",
-            });
+          // Feature cards
+          const features = panel.querySelectorAll(".feature-card");
+          gsap.from(features, {
+            scrollTrigger: {
+              trigger: panel,
+              start: "top 65%",
+              end: "top 55%",
+              scrub: 0.5,
+            },
+            opacity: 1,
+            y: 30,
+            scale: 0.95,
+            stagger: 0.1,
+            ease: "power2.out",
           });
 
-          imagesRef.current.forEach((img) => {
-            gsap.from(img, {
-              scale: 0.8,
+          // Stats
+          const stats = panel.querySelectorAll(".stat-item");
+          gsap.from(stats, {
+            scrollTrigger: {
+              trigger: panel,
+              start: "top 60%",
+              end: "top 50%",
+              scrub: 0.5,
+            },
+            opacity: 0,
+            x: index % 2 === 0 ? -30 : 30,
+            stagger: 0.1,
+            ease: "power2.out",
+          });
+
+          // Badges
+          const badge = panel.querySelector(".badge");
+          if (badge) {
+            gsap.from(badge, {
+              scrollTrigger: {
+                trigger: panel,
+                start: "top 85%",
+                end: "top 75%",
+                scrub: 0.5,
+              },
+              scale: 0,
               opacity: 0,
+              rotation: -180,
+              ease: "back.out(2)",
+            });
+          }
+
+          // Floating badges
+          const floatingBadge = panel.querySelector(".floating-badge");
+          if (floatingBadge) {
+            gsap.to(floatingBadge, {
+              y: -15,
+              duration: 2,
+              repeat: -1,
+              yoyo: true,
+              ease: "power1.inOut",
+            });
+          }
+
+          // Deco icons
+          const decoElements = panel.querySelectorAll(".deco-icon");
+          gsap.from(decoElements, {
+            scrollTrigger: {
+              trigger: panel,
+              start: "top 80%",
+              end: "top 70%",
+              scrub: 0.5,
+            },
+            scale: 0,
+            opacity: 0,
+            stagger: 0.1,
+            ease: "back.out(1.7)",
+          });
+        });
+      });
+
+      // -----------------------------
+      // Mobile animations (lightweight)
+      // -----------------------------
+      mm.add("(max-width: 767px)", () => {
+        panelsRef.current.forEach((panel, index) => {
+          const title = panel.querySelector(".title-text");
+          if (title) gsap.from(title, { opacity: 0, y: 20, duration: 0.8, ease: "power2.out" });
+
+          const subtitle = panel.querySelector(".subtitle-text");
+          if (subtitle) gsap.from(subtitle, { opacity: 0, y: 15, duration: 0.8, ease: "power2.out" });
+
+          const desc = panel.querySelector(".description");
+          if (desc) gsap.from(desc, { opacity: 0, y: 20, duration: 0.8, ease: "power2.out" });
+
+          // Images mobile : fade in simple sans scrub
+          const img = imagesRef.current[index];
+          if (img) {
+            gsap.from(img, {
+              opacity: 0,
+              scale: 0.85,
               duration: 0.8,
               ease: "power2.out",
               scrollTrigger: {
@@ -129,114 +220,17 @@ export default function SavoirFaire() {
                 toggleActions: "play none none none",
               },
             });
-          });
-        });
-
-
-        // Animate feature cards
-        const features = panel.querySelectorAll(".feature-card");
-        gsap.from(features, {
-          scrollTrigger: {
-            trigger: panel,
-            start: "top 65%",
-            end: "top 55%",
-            scrub: 0.5,
-          },
-          opacity: 1,
-          y: 30,
-          scale: 0.95,
-          stagger: 0.1,
-          ease: "power2.out",
-        });
-
-        // Animate stats
-        const stats = panel.querySelectorAll(".stat-item");
-        gsap.from(stats, {
-          scrollTrigger: {
-            trigger: panel,
-            start: "top 60%",
-            end: "top 50%",
-            scrub: 0.5,
-          },
-          opacity: 0,
-          x: index % 2 === 0 ? -30 : 30,
-          stagger: 0.1,
-          ease: "power2.out",
-        });
-      });
-
-      
-
-      // Animate images with scale and rotation
-      imagesRef.current.forEach((img, index) => {
-        gsap.fromTo(
-          img,
-          { scale: 0.6, opacity: 0, rotation: index % 2 === 0 ? -15 : 15 },
-          {
-            scale: 1,
-            opacity: 1,
-            rotation: 0,
-            scrollTrigger: {
-              trigger: panelsRef.current[index],
-              start: "top 80%",
-              end: "top 50%",
-              scrub: 0.8,
-            },
-            ease: "power2.out",
           }
-        );
-      });
-
-      // Animate badges
-      panelsRef.current.forEach((panel) => {
-        gsap.from(panel.querySelector(".badge"), {
-          scrollTrigger: {
-            trigger: panel,
-            start: "top 85%",
-            end: "top 75%",
-            scrub: 0.5,
-          },
-          scale: 0,
-          opacity: 0,
-          rotation: -180,
-          ease: "back.out(2)",
         });
       });
 
-      // Animate decorative elements
-      panelsRef.current.forEach((panel) => {
-        const decoElements = panel.querySelectorAll(".deco-icon");
-        gsap.from(decoElements, {
-          scrollTrigger: {
-            trigger: panel,
-            start: "top 80%",
-            end: "top 70%",
-            scrub: 0.5,
-          },
-          scale: 0,
-          opacity: 0,
-          stagger: 0.1,
-          ease: "back.out(1.7)",
-        });
-      });
-
-      // Floating animation for badges
-      panelsRef.current.forEach((panel) => {
-        const floatingBadge = panel.querySelector(".floating-badge");
-        if (floatingBadge) {
-          gsap.to(floatingBadge, {
-            y: -15,
-            duration: 2,
-            repeat: -1,
-            yoyo: true,
-            ease: "power1.inOut",
-          });
-        }
-      });
+      return () => mm.revert();
     }, containerRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [containerRef, panelsRef, imagesRef]);
+}
+
 
   return (
     <div
