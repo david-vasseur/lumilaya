@@ -116,6 +116,20 @@ export default function SavoirFaire() {
               ease: "power2.out",
             });
           });
+
+          imagesRef.current.forEach((img) => {
+            gsap.from(img, {
+              scale: 0.8,
+              opacity: 0,
+              duration: 0.8,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: img,
+                start: "top 90%",
+                toggleActions: "play none none none",
+              },
+            });
+          });
         });
 
 
@@ -150,6 +164,8 @@ export default function SavoirFaire() {
           ease: "power2.out",
         });
       });
+
+      
 
       // Animate images with scale and rotation
       imagesRef.current.forEach((img, index) => {
