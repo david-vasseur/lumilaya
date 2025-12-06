@@ -5,226 +5,207 @@ import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { Leaf, Hand, Truck, Award, Shield, Heart, CheckCircle, Star } from "lucide-react";
 import { useGSAP } from "@gsap/react";
+import { useDeviceStore } from "@/lib/store/deviceStore";
 
 export default function SavoirFaire() {
   const containerRef = useRef<HTMLDivElement>(null);
   const panelsRef = useRef<HTMLDivElement[]>([]);
   const imagesRef = useRef<HTMLImageElement[]>([]);
+  const { isMobile } = useDeviceStore();
+  console.log(isMobile);
+  
 
 useGSAP(() => {
-    if (!containerRef.current) return;
+  if (!containerRef.current) return;
 
-      const mm = gsap.matchMedia();
 
-      // -----------------------------
-      // Timeline pour panels qui s'empilent (desktop + mobile)
-      // -----------------------------
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "+=200%",
-          scrub: 1,
-          pin: true,
-          pinSpacing: false,
-        },
-      });
 
-      tl.fromTo(
-        panelsRef.current[1],
-        { y: "100%", opacity: 1 },
-        { y: "0%", opacity: 1, duration: 1, ease: "power1.out" }
-      );
+  // ============================================
+  // ✅ TIMELINE PANELS (SEULE PARTIE EN SCRUB)
+  // ============================================
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: containerRef.current,
+      start: "top top",
+      end: "+=100%",
+      scrub: 1,
+      pin: true,
+      pinSpacing: false,
+    },
+  });
 
-      tl.fromTo(
-        panelsRef.current[2],
-        { y: "100%", opacity: 1 },
-        { y: "0%", opacity: 1, duration: 1, ease: "power1.out" }
-      );
+  if (panelsRef.current[1]) {
+    tl.fromTo(
+      panelsRef.current[1],
+      { y: "100%" },
+      { y: "0%", duration: 1, ease: "power1.out" }
+    );
+  }
 
-      // -----------------------------
-      // Desktop animations
-      // -----------------------------
-      mm.add("(min-width: 768px)", () => {
-        panelsRef.current.forEach((panel, index) => {
-          // Texte avec SplitText
-          const titleElement = panel.querySelector(".title-text");
-          if (titleElement) {
-            const split = new SplitText(titleElement, { type: "lines,words,chars" });
-            gsap.from(split.chars, {
-              scrollTrigger: {
-                trigger: panel,
-                start: "top 80%",
-                end: "top 60%",
-                scrub: 0.5,
-              },
-              opacity: 0,
-              y: 30,
-              rotationX: -90,
-              transformOrigin: "50% 50%",
-              stagger: 0.015,
-              ease: "power2.out",
-            });
-          }
+  if (panelsRef.current[2]) {
+    tl.fromTo(
+      panelsRef.current[2],
+      { y: "100%" },
+      { y: "0%", duration: 1, ease: "power1.out" }
+    );
+  }
 
-          // Subtitle
-          gsap.from(panel.querySelector(".subtitle-text"), {
-            scrollTrigger: {
-              trigger: panel,
-              start: "top 75%",
-              end: "top 65%",
-              scrub: 0.5,
-            },
-            opacity: 0,
-            y: 20,
-            ease: "power2.out",
-          });
+  // ============================================
+  // ✅ ANIMATIONS D’ENTRÉE TEXTES (SANS SCRUB)
+  // ============================================
+  // panelsRef.current.forEach(panel => {
+  //   const title = panel.querySelector(".title-text");
+  //   const subtitle = panel.querySelector(".subtitle-text");
+  //   const desc = panel.querySelector(".description");
 
-          // Description
-          gsap.from(panel.querySelector(".description"), {
-            scrollTrigger: {
-              trigger: panel,
-              start: "top 70%",
-              end: "top 60%",
-              scrub: 0.5,
-            },
-            opacity: 0,
-            y: 25,
-            ease: "power2.out",
-          });
+  //   if (title) {
+  //     gsap.from(title, {
+  //       opacity: 1,
+  //       y: 30,
+  //       duration: 0.7,
+  //       ease: "power2.out",
+  //       scrollTrigger: {
+  //         trigger: panel,
+  //         start: "top 80%",
+  //         toggleActions: "play none none none",
+  //       },
+  //     });
+  //   }
 
-          // Images
-          const img = imagesRef.current[index];
-          if (img) {
-            gsap.fromTo(
-              img,
-              { scale: 0.6, opacity: 0, rotation: index % 2 === 0 ? -15 : 15 },
-              {
-                scale: 1,
-                opacity: 1,
-                rotation: 0,
-                scrollTrigger: {
-                  trigger: panel,
-                  start: "top 80%",
-                  end: "top 50%",
-                  scrub: 0.8,
-                },
-                ease: "power2.out",
-              }
-            );
-          }
+  //   if (subtitle) {
+  //     gsap.from(subtitle, {
+  //       opacity: 1,
+  //       y: 20,
+  //       duration: 0.6,
+  //       delay: 0.1,
+  //       ease: "power2.out",
+  //       scrollTrigger: {
+  //         trigger: panel,
+  //         start: "top 80%",
+  //         toggleActions: "play none none none",
+  //       },
+  //     });
+  //   }
 
-          // Feature cards
-          const features = panel.querySelectorAll(".feature-card");
-          gsap.from(features, {
-            scrollTrigger: {
-              trigger: panel,
-              start: "top 65%",
-              end: "top 55%",
-              scrub: 0.5,
-            },
-            opacity: 1,
-            y: 30,
-            scale: 0.95,
-            stagger: 0.1,
-            ease: "power2.out",
-          });
+  //   if (desc) {
+  //     gsap.from(desc, {
+  //       opacity: 1,
+  //       y: 25,
+  //       duration: 0.6,
+  //       delay: 0.2,
+  //       ease: "power2.out",
+  //       scrollTrigger: {
+  //         trigger: panel,
+  //         start: "top 80%",
+  //         toggleActions: "play none none none",
+  //       },
+  //     });
+  //   }
+  // });
 
-          // Stats
-          const stats = panel.querySelectorAll(".stat-item");
-          gsap.from(stats, {
-            scrollTrigger: {
-              trigger: panel,
-              start: "top 60%",
-              end: "top 50%",
-              scrub: 0.5,
-            },
-            opacity: 0,
-            x: index % 2 === 0 ? -30 : 30,
-            stagger: 0.1,
-            ease: "power2.out",
-          });
+  // // ============================================
+  // // ✅ FEATURE CARDS (ENTRÉE SIMPLE)
+  // // ============================================
+  // panelsRef.current.forEach(panel => {
+  //   const features = panel.querySelectorAll(".feature-card");
 
-          // Badges
-          const badge = panel.querySelector(".badge");
-          if (badge) {
-            gsap.from(badge, {
-              scrollTrigger: {
-                trigger: panel,
-                start: "top 85%",
-                end: "top 75%",
-                scrub: 0.5,
-              },
-              scale: 0,
-              opacity: 0,
-              rotation: -180,
-              ease: "back.out(2)",
-            });
-          }
+  //   if (!features.length) return;
 
-          // Floating badges
-          const floatingBadge = panel.querySelector(".floating-badge");
-          if (floatingBadge) {
-            gsap.to(floatingBadge, {
-              y: -15,
-              duration: 2,
-              repeat: -1,
-              yoyo: true,
-              ease: "power1.inOut",
-            });
-          }
+  //   gsap.from(features, {
+  //     opacity: 0,
+  //     y: 30,
+  //     scale: 0.95,
+  //     duration: 0.6,
+  //     stagger: 0.1,
+  //     ease: "power2.out",
+  //     scrollTrigger: {
+  //       trigger: panel,
+  //       start: "top 75%",
+  //       toggleActions: "play none none none",
+  //     },
+  //   });
+  // });
 
-          // Deco icons
-          const decoElements = panel.querySelectorAll(".deco-icon");
-          gsap.from(decoElements, {
-            scrollTrigger: {
-              trigger: panel,
-              start: "top 80%",
-              end: "top 70%",
-              scrub: 0.5,
-            },
-            scale: 0,
-            opacity: 0,
-            stagger: 0.1,
-            ease: "back.out(1.7)",
-          });
-        });
-      });
+  // // ============================================
+  // // ✅ STATS (ENTRÉE SIMPLE)
+  // // ============================================
+  // panelsRef.current.forEach((panel, index) => {
+  //   const stats = panel.querySelectorAll(".stat-item");
 
-      // -----------------------------
-      // Mobile animations (lightweight)
-      // -----------------------------
-      mm.add("(max-width: 767px)", () => {
-        panelsRef.current.forEach((panel, index) => {
-          const title = panel.querySelector(".title-text");
-          if (title) gsap.from(title, { opacity: 0, y: 20, duration: 0.8, ease: "power2.out" });
+  //   if (!stats.length) return;
 
-          const subtitle = panel.querySelector(".subtitle-text");
-          if (subtitle) gsap.from(subtitle, { opacity: 0, y: 15, duration: 0.8, ease: "power2.out" });
+  //   gsap.from(stats, {
+  //     opacity: 0,
+  //     x: index % 2 === 0 ? -30 : 30,
+  //     duration: 0.6,
+  //     stagger: 0.1,
+  //     ease: "power2.out",
+  //     scrollTrigger: {
+  //       trigger: panel,
+  //       start: "top 75%",
+  //       toggleActions: "play none none none",
+  //     },
+  //   });
+  // });
 
-          const desc = panel.querySelector(".description");
-          if (desc) gsap.from(desc, { opacity: 0, y: 20, duration: 0.8, ease: "power2.out" });
+  // // ============================================
+  // // ✅ IMAGES (ENTRÉE SIMPLE, PLUS DE SCRUB)
+  // // ============================================
+  // imagesRef.current.forEach(img => {
+  //   gsap.from(img, {
+  //     opacity: 0,
+  //     scale: 0.9,
+  //     duration: 0.7,
+  //     ease: "power2.out",
+  //     scrollTrigger: {
+  //       trigger: img,
+  //       start: "top 85%",
+  //       toggleActions: "play none none none",
+  //     },
+  //   });
+  // });
 
-          // Images mobile : fade in simple sans scrub
-          const img = imagesRef.current[index];
-          if (img) {
-            gsap.from(img, {
-              opacity: 0,
-              scale: 0.85,
-              duration: 0.8,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: img,
-                start: "top 90%",
-                toggleActions: "play none none none",
-              },
-            });
-          }
-        });
-      });
+  // // ============================================
+  // // ✅ BADGES
+  // // ============================================
+  // panelsRef.current.forEach(panel => {
+  //   const badge = panel.querySelector(".badge");
+  //   if (!badge) return;
 
-  }, [containerRef, imagesRef]);
+  //   gsap.from(badge, {
+  //     opacity: 0,
+  //     scale: 0,
+  //     rotation: -180,
+  //     duration: 0.7,
+  //     ease: "back.out(2)",
+  //     scrollTrigger: {
+  //       trigger: panel,
+  //       start: "top 80%",
+  //       toggleActions: "play none none none",
+  //     },
+  //   });
+  // });
 
+  // // ============================================
+  // // ✅ FLOATING BADGES (ANIMATION PERMANENTE)
+  // // ============================================
+  // panelsRef.current.forEach(panel => {
+  //   const floatingBadge = panel.querySelector(".floating-badge");
+  //   if (!floatingBadge) return;
+
+  //   gsap.to(floatingBadge, {
+  //     y: -15,
+  //     duration: 2,
+  //     repeat: -1,
+  //     yoyo: true,
+  //     ease: "power1.inOut",
+  //   });
+  // });
+}, []);
+
+
+
+  
 
   return (
     <div
@@ -236,7 +217,7 @@ useGSAP(() => {
         ref={(el) => {
           panelsRef.current[0] = el!;
         }}
-        className="absolute inset-0 h-screen flex items-center justify-center z-10 bg-linear-to-br from-[#FDFBF7] via-[#F9F6F0] to-[#F5F1EB] overflow-hidden"
+        className="absolute inset-0 h-screen flex items-center justify-center  z-10 bg-linear-to-br from-[#FDFBF7] via-[#F9F6F0] to-[#F5F1EB] overflow-hidden"
       >
         {/* Background decoratif complexe */}
         <div className="absolute inset-0 opacity-[0.03]">
@@ -254,7 +235,7 @@ useGSAP(() => {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Contenu gauche - 7 colonnes sur desktop */}
-            <div className="lg:col-span-7 space-y-6 lg:space-y-8">
+            <div className="lg:col-span-7 space-y-6 lg:space-y-8 pt-30 xl:pt-0">
               <div className="badge hidden xl:inline-flex items-center gap-2 bg-white/80 backdrop-blur-md px-6 py-3 rounded-full shadow-lg border border-[#7A9B8E]/20">
                 <Leaf className="w-5 h-5 text-[#7A9B8E]" />
                 <span className="text-sm font-semibold text-[#7A9B8E] tracking-wide uppercase">
@@ -262,7 +243,7 @@ useGSAP(() => {
                 </span>
               </div>
 
-              <h2 className="title-text text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extralight text-[#2C2C2C] leading-[1.1]">
+              <h2 className="title-text text-4xl sm:text-5xl lg:text-6xl xl:text-7xl  font-extralight text-[#2C2C2C] leading-[1.1]">
                 Ingrédients sains & 100% naturels
               </h2>
 
@@ -421,7 +402,7 @@ useGSAP(() => {
             </div>
 
             {/* Contenu droite - 7 colonnes sur desktop */}
-            <div className="lg:col-span-7 space-y-6 lg:space-y-8 order-1 lg:order-2">
+            <div className="lg:col-span-7 space-y-6 lg:space-y-8 order-1 lg:order-2 pt-20 xl:pt-0">
               <div className="badge hidden xl:inline-flex items-center gap-2 bg-white/80 backdrop-blur-md px-6 py-3 rounded-full shadow-lg border border-[#7A9B8E]/20">
                 <Hand className="w-5 h-5 text-[#7A9B8E]" />
                 <span className="text-sm font-semibold text-[#7A9B8E] tracking-wide uppercase">
