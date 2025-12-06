@@ -98,7 +98,7 @@ export const HeroSection = () => {
 			{/* Image de fond avec Next.js Image */}
 			<div ref={imageRef} className="absolute inset-0">
 				<Image 
-					src="/images/landing/hero1.webp"
+					src="/images/landing/hero2.webp"
 					alt="Himalaya avec bougie naturelle"
 					fill
 					priority
@@ -118,7 +118,7 @@ export const HeroSection = () => {
 
 					{/* Titre principal avec effet de découpe */}
 					<div className="overflow-hidden mb-2 py-7">
-						<h1 className="hero-title-line text-7xl md:text-9xl lg:text-9xl font-base font-ballet! text-white ">
+						<h1 className="hero-title-line text-7xl md:text-9xl lg:text-9xl font-base italic font-ballet! text-white ">
 							<em>Lumi'laya</em>
 						</h1>
 					</div>

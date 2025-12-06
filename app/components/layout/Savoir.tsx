@@ -96,7 +96,7 @@ export default function SavoirFaire() {
             end: "top 55%",
             scrub: 0.5,
           },
-          opacity: 0,
+          opacity: 1,
           y: 30,
           scale: 0.95,
           stagger: 0.1,
@@ -219,7 +219,7 @@ export default function SavoirFaire() {
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Contenu gauche - 7 colonnes sur desktop */}
             <div className="lg:col-span-7 space-y-6 lg:space-y-8">
-              <div className="badge inline-flex items-center gap-2 bg-white/80 backdrop-blur-md px-6 py-3 rounded-full shadow-lg border border-[#7A9B8E]/20">
+              <div className="badge hidden xl:inline-flex items-center gap-2 bg-white/80 backdrop-blur-md px-6 py-3 rounded-full shadow-lg border border-[#7A9B8E]/20">
                 <Leaf className="w-5 h-5 text-[#7A9B8E]" />
                 <span className="text-sm font-semibold text-[#7A9B8E] tracking-wide uppercase">
                   Qualité & Sécurité Premium
@@ -242,7 +242,7 @@ export default function SavoirFaire() {
               </p>
 
               {/* Feature cards */}
-              <div className="grid sm:grid-cols-2 gap-4 pt-4">
+              <div className="hidden xl:grid grid-cols-2 sm:grid-cols-2 gap-3 md:gap-4 pt-2 md:pt-4">
                 <div className="feature-card bg-white/60 backdrop-blur-sm rounded-2xl p-5 sm:p-6 border border-[#7A9B8E]/10 hover:border-[#7A9B8E]/30 transition-all hover:shadow-xl">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-gradient-to-br from-[#7A9B8E] to-[#5A7B6E] rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
@@ -293,7 +293,7 @@ export default function SavoirFaire() {
               </div>
 
               {/* Stats */}
-              <div className="flex flex-wrap gap-6 sm:gap-8 pt-6 border-t border-[#2C2C2C]/10">
+              <div className="hidden xl:flex flex-wrap gap-6 sm:gap-8 pt-6 border-t border-[#2C2C2C]/10">
                 <div className="stat-item">
                   <div className="text-3xl sm:text-4xl font-light text-[#7A9B8E] mb-1">100%</div>
                   <div className="text-sm text-[#2C2C2C]/60">Ingrédients naturels</div>
@@ -386,7 +386,7 @@ export default function SavoirFaire() {
 
             {/* Contenu droite - 7 colonnes sur desktop */}
             <div className="lg:col-span-7 space-y-6 lg:space-y-8 order-1 lg:order-2">
-              <div className="badge inline-flex items-center gap-2 bg-white/80 backdrop-blur-md px-6 py-3 rounded-full shadow-lg border border-[#7A9B8E]/20">
+              <div className="badge hidden xl:inline-flex items-center gap-2 bg-white/80 backdrop-blur-md px-6 py-3 rounded-full shadow-lg border border-[#7A9B8E]/20">
                 <Hand className="w-5 h-5 text-[#7A9B8E]" />
                 <span className="text-sm font-semibold text-[#7A9B8E] tracking-wide uppercase">
                   Savoir-faire d'excellence
@@ -409,7 +409,7 @@ export default function SavoirFaire() {
               </p>
 
               {/* Feature cards */}
-              <div className="grid sm:grid-cols-2 gap-4 pt-4">
+              <div className="hidden xl:grid grid-cols-2 sm:grid-cols-2 gap-3 md:gap-4 pt-2 md:pt-4">
                 <div className="feature-card bg-white/60 backdrop-blur-sm rounded-2xl p-5 sm:p-6 border border-[#7A9B8E]/10 hover:border-[#7A9B8E]/30 transition-all hover:shadow-xl">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-gradient-to-br from-[#7A9B8E] to-[#5A7B6E] rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
@@ -460,7 +460,7 @@ export default function SavoirFaire() {
               </div>
 
               {/* Stats */}
-              <div className="flex flex-wrap gap-6 sm:gap-8 pt-6 border-t border-[#2C2C2C]/10">
+              <div className="hidden xl:flex flex-wrap gap-6 sm:gap-8 pt-6 border-t border-[#2C2C2C]/10">
                 <div className="stat-item">
                   <div className="text-3xl sm:text-4xl font-light text-[#7A9B8E] mb-1">6</div>
                   <div className="text-sm text-[#2C2C2C]/60">Années d'expertise</div>
@@ -480,71 +480,141 @@ export default function SavoirFaire() {
       </div>
 
       {/* PANEL 3 — LIVRAISON */}
-      <div
-        ref={(el) => {
-          panelsRef.current[2] = el!;
-        }}
-        className="absolute inset-0 h-screen flex items-center justify-center z-30 bg-gradient-to-br from-[#ECE9E3] to-[#E5DFD3] overflow-hidden"
-      >
-        {/* Background decoratif */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-20 left-20 w-96 h-96 bg-[#7A9B8E] rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-[#5A7B6E] rounded-full blur-3xl"></div>
+      {/* PANEL 3 — PREMIUM */}
+<div
+  ref={(el) => {
+    panelsRef.current[2] = el!;
+  }}
+  className="absolute inset-0 h-screen flex items-center justify-center z-30 bg-gradient-to-br from-[#F5F1EB] via-[#F0EDE6] to-[#ECE9E3] overflow-hidden"
+>
+  {/* Background decoratif */}
+  <div className="absolute inset-0 opacity-[0.03]">
+    <div className="absolute top-20 left-20 w-64 md:w-96 h-64 md:h-96 bg-[#7A9B8E] rounded-full blur-3xl"></div>
+    <div className="absolute bottom-20 right-20 w-80 md:w-[500px] h-80 md:h-[500px] bg-[#5A7B6E] rounded-full blur-3xl"></div>
+  </div>
+
+  <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8 md:py-0">
+    <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 md:gap-8 lg:gap-12 items-center">
+      {/* Contenu - texte à gauche sur desktop */}
+      <div className="w-full lg:col-span-7 space-y-4 md:space-y-6 lg:space-y-8">
+        <div className="badge inline-flex items-center gap-2 bg-white/80 backdrop-blur-md px-4 md:px-6 py-2 md:py-3 rounded-full shadow-lg border border-[#7A9B8E]/20">
+          <Truck className="w-4 md:w-5 h-4 md:h-5 text-[#7A9B8E]" />
+          <span className="text-xs md:text-sm font-semibold text-[#7A9B8E] tracking-wide uppercase">
+            Premium
+          </span>
         </div>
 
-        <div className="relative max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
-          {/* Contenu gauche */}
-          <div className="space-y-8">
-            <div className="badge inline-flex items-center gap-2 bg-[#7A9B8E]/10 backdrop-blur-sm px-5 py-2.5 rounded-full border border-[#7A9B8E]/20">
-              <Truck className="w-5 h-5 text-[#7A9B8E]" />
-              <span className="text-sm font-medium text-[#7A9B8E] tracking-wide">
-                Expérience client
-              </span>
-            </div>
+        <h2 className="title-text text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extralight text-[#2C2C2C] leading-[1.1]">
+          Qualité Premium & Services Exclusifs
+        </h2>
 
-            <h2 className="title-text text-5xl md:text-6xl font-light text-[#2C2C2C] leading-tight">
-              Expédition rapide & soignée
-            </h2>
+        <p className="subtitle-text text-lg md:text-xl lg:text-2xl text-[#7A9B8E] font-light">
+          L’excellence dans chaque détail
+        </p>
 
-            <p className="description text-xl text-[#2C2C2C]/70 leading-relaxed max-w-xl">
-              Vos commandes sont préparées avec amour, emballées avec soin et
-              expédiées rapidement pour une expérience irréprochable.
-            </p>
+        <p className="description text-sm md:text-base lg:text-lg xl:text-xl text-[#2C2C2C]/70 leading-relaxed">
+          Nous sélectionnons les meilleurs matériaux et assurons un service client irréprochable. 
+          Livraison rapide, packaging soigné, et une expérience haut de gamme pour chaque bougie.
+        </p>
 
-            {/* Points clés */}
-            <div className="space-y-4 pt-6">
-              <div className="flex items-center gap-4">
-                <div className="w-2 h-2 bg-[#7A9B8E] rounded-full"></div>
-                <span className="text-[#2C2C2C]/60">Livraison offerte dès 50€</span>
+        {/* Feature cards */}
+        <div className="hidden xl:grid grid-cols-2 sm:grid-cols-2 gap-3 md:gap-4 pt-2 md:pt-4">
+          <div className="feature-card bg-white/60 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-5 lg:p-6 border border-[#7A9B8E]/10 hover:border-[#7A9B8E]/30 transition-all hover:shadow-xl">
+            <div className="flex items-start gap-3 md:gap-4">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-[#7A9B8E] to-[#5A7B6E] rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                <Truck className="w-5 h-5 md:w-6 md:h-6 text-white" />
               </div>
-              <div className="flex items-center gap-4">
-                <div className="w-2 h-2 bg-[#7A9B8E] rounded-full"></div>
-                <span className="text-[#2C2C2C]/60">Emballage écologique</span>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="w-2 h-2 bg-[#7A9B8E] rounded-full"></div>
-                <span className="text-[#2C2C2C]/60">Expédition sous 48h</span>
+              <div>
+                <h3 className="font-semibold text-sm md:text-base text-[#2C2C2C] mb-1">Livraison rapide</h3>
+                <p className="text-xs md:text-sm text-[#2C2C2C]/60 leading-relaxed">Chez vous en 24-48h</p>
               </div>
             </div>
           </div>
 
-          {/* Image droite */}
-          <div className="relative h-[500px] lg:h-[600px]">
-            <img
-              ref={(el) => {
-                imagesRef.current[2] = el!;
-              }}
-              src="/images/landing/savoir3.webp"
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] object-cover rounded-3xl shadow-2xl"
-              alt="Livraison soignée"
-            />
-            {/* Badge flottant */}
-            <div className="absolute top-8 right-8 bg-white/95 backdrop-blur-sm rounded-full p-6 shadow-xl icon-deco">
-              <Truck className="w-10 h-10 text-[#7A9B8E]" />
+          <div className="feature-card bg-white/60 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-5 lg:p-6 border border-[#7A9B8E]/10 hover:border-[#7A9B8E]/30 transition-all hover:shadow-xl">
+            <div className="flex items-start gap-3 md:gap-4">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-[#7A9B8E] to-[#5A7B6E] rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                <Award className="w-5 h-5 md:w-6 md:h-6 text-white" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-sm md:text-base text-[#2C2C2C] mb-1">Emballage soigné</h3>
+                <p className="text-xs md:text-sm text-[#2C2C2C]/60 leading-relaxed">Coffrets premium et élégants</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="feature-card bg-white/60 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-5 lg:p-6 border border-[#7A9B8E]/10 hover:border-[#7A9B8E]/30 transition-all hover:shadow-xl">
+            <div className="flex items-start gap-3 md:gap-4">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-[#7A9B8E] to-[#5A7B6E] rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                <Shield className="w-5 h-5 md:w-6 md:h-6 text-white" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-sm md:text-base text-[#2C2C2C] mb-1">Satisfaction garantie</h3>
+                <p className="text-xs md:text-sm text-[#2C2C2C]/60 leading-relaxed">Échange ou remboursement facile</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="feature-card bg-white/60 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-5 lg:p-6 border border-[#7A9B8E]/10 hover:border-[#7A9B8E]/30 transition-all hover:shadow-xl">
+            <div className="flex items-start gap-3 md:gap-4">
+              <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-[#7A9B8E] to-[#5A7B6E] rounded-lg md:rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                <Star className="w-5 h-5 md:w-6 md:h-6 text-white" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-sm md:text-base text-[#2C2C2C] mb-1">Évaluation 5★</h3>
+                <p className="text-xs md:text-sm text-[#2C2C2C]/60 leading-relaxed">Clients satisfaits et fidèles</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Stats */}
+        <div className="flex flex-wrap gap-4 md:gap-6 lg:gap-8 pt-4 md:pt-6 border-t border-[#2C2C2C]/10">
+          <div className="stat-item">
+            <div className="text-2xl md:text-3xl lg:text-4xl font-light text-[#7A9B8E] mb-1">24/7</div>
+            <div className="text-xs md:text-sm text-[#2C2C2C]/60">Support client</div>
+          </div>
+          <div className="stat-item">
+            <div className="text-2xl md:text-3xl lg:text-4xl font-light text-[#7A9B8E] mb-1">Livraison</div>
+            <div className="text-xs md:text-sm text-[#2C2C2C]/60">Express & soignée</div>
+          </div>
+          <div className="stat-item">
+            <div className="text-2xl md:text-3xl lg:text-4xl font-light text-[#7A9B8E] mb-1">Packaging</div>
+            <div className="text-xs md:text-sm text-[#2C2C2C]/60">Premium design</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Image à droite sur desktop */}
+      <div className="w-full lg:col-span-5 relative h-[300px] sm:h-[400px] md:h-[450px] lg:h-[550px] xl:h-[650px] lg:order-2">
+        <div className="relative w-full h-full">
+          <img
+            ref={(el) => {
+              imagesRef.current[2] = el!;
+            }}
+            src="/images/landing/savoir3.webp"
+            className="absolute inset-0 w-full h-full object-cover rounded-2xl md:rounded-3xl shadow-2xl"
+            alt="Premium service"
+          />
+          {/* Badges flottants */}
+          <div className="floating-badge absolute -top-2 -right-2 md:-top-4 md:-right-4 bg-white rounded-xl md:rounded-2xl p-3 md:p-4 lg:p-5 shadow-2xl deco-icon">
+            <div className="flex flex-col items-center gap-1 md:gap-2">
+              <Award className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 text-[#7A9B8E]" />
+              <span className="text-[10px] md:text-xs font-semibold text-[#2C2C2C]">Premium</span>
+            </div>
+          </div>
+          <div className="absolute -bottom-2 -left-2 md:-bottom-4 md:-left-4 bg-gradient-to-br from-[#7A9B8E] to-[#5A7B6E] rounded-xl md:rounded-2xl p-3 md:p-4 lg:p-5 shadow-2xl deco-icon">
+            <div className="flex flex-col items-center gap-1 md:gap-2 text-white">
+              <Star className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 fill-white" />
+              <span className="text-[10px] md:text-xs font-semibold">5★</span>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
     </div>
   );
 }

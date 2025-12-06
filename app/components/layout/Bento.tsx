@@ -76,7 +76,7 @@ function Bento() {
 
     return (
         <>
-            <section id="boutique" className="brand-section relative z-5 py-32 px-6">
+            <section id="boutique" className="brand-section relative z-5 py-32 px-6 bg-[#FDFBF7]">
                 <div ref={brandRef} className="max-w-4xl relative mx-auto text-center bg-linear-to-br from-[#7A9B8E] via-[#6A8B7E] to-[#5A7B6E] px-10 py-20 overflow-hidden rounded-lg shadow-xl">
                     <p className="brand-text relative text-2xl md:text-3xl font-light text-zinc-200 leading-relaxed z-2">
                         Chaque bougie <span className="font-ballet text-4xl md:text-5xl">Lumi'laya</span> est une invitation au voyage sensoriel,
@@ -100,7 +100,7 @@ function Bento() {
                     <div className="grid md:grid-cols-2 gap-8">
                         <Link
                             href={"/bougies-emotions"}
-                            className="category-card group relative h-[500px] rounded-lg overflow-hidden shadow-xl"
+                            className="category-card group relative aspect-square xl:aspect-auto xl:h-[500px] rounded-lg overflow-hidden shadow-xl"
                             >
                                 <Image src={"/images/produits/plaisir.webp"} fill alt='image Emotion & Plaisir' className="group-hover:scale-105 transition-transform duration-700" />
                             <div className="absolute inset-0 bg-[#2C2C2C]/20 group-hover:bg-[#2C2C2C]/10 transition-colors duration-500" />
@@ -117,7 +117,7 @@ function Bento() {
 
                         <Link
                             href={"/bougies-rituel"}
-                            className="category-card group relative h-[500px] rounded-lg overflow-hidden shadow-xl"
+                            className="category-card group relative aspect-square xl:aspect-auto xl:h-[500px] rounded-lg overflow-hidden shadow-xl"
                             >
                                 <Image src={"/images/produits/terre.webp"} fill alt='image Emotion & Plaisir' className="group-hover:scale-105 transition-transform duration-700" />
                             <div className="absolute inset-0 bg-[#2C2C2C]/20 group-hover:bg-[#2C2C2C]/10 transition-colors duration-500" />
