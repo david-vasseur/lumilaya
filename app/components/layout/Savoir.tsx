@@ -14,7 +14,6 @@ export default function SavoirFaire() {
 useGSAP(() => {
     if (!containerRef.current) return;
 
-    const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
 
       // -----------------------------
@@ -224,12 +223,7 @@ useGSAP(() => {
         });
       });
 
-      return () => mm.revert();
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, [containerRef, panelsRef, imagesRef]);
-}
+  }, [containerRef, imagesRef]);
 
 
   return (
