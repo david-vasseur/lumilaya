@@ -28,13 +28,13 @@ export async function generateMetadata({ params }: Props) {
 			description: `Découvrez nos bougies artisanales "Emotions & Plaisirs" : ${product?.name}. Fabrication française, ingrédients naturels, parfum unique.`,
 			type: "website",
 			url: "https://www.lumilaya.fr/bougies-emotions",
-			images: `https://www.lumilaya.fr/images/produits/${product?.images[0]}`
+			images: `https://www.lumilaya.fr/${product?.images[0]}`
 		},
 		twitter: {
 			card: "summary_large_image",
 			title: `Bougies Émotion - ${product?.name} | Lumilaya`,
 			description: `Nos bougies artisanales "Emotions & Plaisirs" vous offrent une expérience sensorielle unique. Découvrez "${product?.name}" dès maintenant.`,
-			images: `https://www.lumilaya.fr/images/produits/${product?.images[0]}`,
+			images: `https://www.lumilaya.fr/${product?.images[0]}`,
 		},
 	};
 }
