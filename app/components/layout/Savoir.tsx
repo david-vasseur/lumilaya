@@ -210,7 +210,7 @@ useGSAP(() => {
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-[300svh] overflow-hidden"
+      className="relative w-full h-[200svh] overflow-hidden"
     >
       {/* PANEL 1 — INGRÉDIENTS */}
       <div
