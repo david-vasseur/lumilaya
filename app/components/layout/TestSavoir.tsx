@@ -228,10 +228,12 @@ function TestSavoir() {
                         const progress = self.progress;
                         const scale = 1 - progress * 0.25;
                         const rotation = (index % 2 === 0 ? 5 : -5) * progress;
+                        const opacity = 1 - progress * 1;
 
                         gsap.set(card, {
                             scale: scale,
                             rotation: rotation,
+                            opacity: opacity
                         })
                     }
                 })

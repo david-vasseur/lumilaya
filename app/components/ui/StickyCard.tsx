@@ -165,7 +165,7 @@ function StickyCard({
                         </div>
 
                         {/* SECONDARY BADGES */}
-                        {secondaryBadge.map((badge, index) => {
+                        {/* {secondaryBadge.map((badge, index) => {
                         const Icon = secondaryIcons[badge.icon];
 
                         return (
@@ -181,7 +181,7 @@ function StickyCard({
                                 </div>
                             </div>
                         );
-                        })}
+                        })} */}
                     </div>
                 </div>
         </div>

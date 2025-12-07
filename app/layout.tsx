@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Ballet, Dynalight, Geist, Geist_Mono, Parisienne, The_Nautigal, Whisper } from "next/font/google";
+import { Ballet, Dynalight, Geist, Geist_Mono, Herr_Von_Muellerhoff, Parisienne, The_Nautigal, Whisper } from "next/font/google";
 import "./globals.css";
 import Navigation from "./components/features/Navigation";
 import Footer from "./components/layout/Footer";
@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const ballet = Parisienne({
+const ballet = Herr_Von_Muellerhoff({
   variable: "--font-ballet",
   weight: ['400']
 })
