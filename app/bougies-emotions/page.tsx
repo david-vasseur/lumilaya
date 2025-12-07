@@ -2,8 +2,6 @@ import { IProduct } from "@/type/product";
 import ProductList from "../components/actions/product.action";
 import EmotionPage from "../components/layout/pages/EmotionPage";
 
-export const revalidate = 60;
-
 export const dynamic = "force-dynamic";
 
 
