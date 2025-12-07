@@ -53,154 +53,154 @@ useGSAP(() => {
   // ============================================
   // ✅ ANIMATIONS D’ENTRÉE TEXTES (SANS SCRUB)
   // ============================================
-  // panelsRef.current.forEach(panel => {
-  //   const title = panel.querySelector(".title-text");
-  //   const subtitle = panel.querySelector(".subtitle-text");
-  //   const desc = panel.querySelector(".description");
+  panelsRef.current.forEach(panel => {
+    const title = panel.querySelector(".title-text");
+    const subtitle = panel.querySelector(".subtitle-text");
+    const desc = panel.querySelector(".description");
 
-  //   if (title) {
-  //     gsap.from(title, {
-  //       opacity: 1,
-  //       y: 30,
-  //       duration: 0.7,
-  //       ease: "power2.out",
-  //       scrollTrigger: {
-  //         trigger: panel,
-  //         start: "top 80%",
-  //         toggleActions: "play none none none",
-  //       },
-  //     });
-  //   }
+    if (title) {
+      gsap.from(title, {
+        opacity: 1,
+        y: 30,
+        duration: 0.7,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: panel,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      });
+    }
 
-  //   if (subtitle) {
-  //     gsap.from(subtitle, {
-  //       opacity: 1,
-  //       y: 20,
-  //       duration: 0.6,
-  //       delay: 0.1,
-  //       ease: "power2.out",
-  //       scrollTrigger: {
-  //         trigger: panel,
-  //         start: "top 80%",
-  //         toggleActions: "play none none none",
-  //       },
-  //     });
-  //   }
+    if (subtitle) {
+      gsap.from(subtitle, {
+        opacity: 1,
+        y: 20,
+        duration: 0.6,
+        delay: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: panel,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      });
+    }
 
-  //   if (desc) {
-  //     gsap.from(desc, {
-  //       opacity: 1,
-  //       y: 25,
-  //       duration: 0.6,
-  //       delay: 0.2,
-  //       ease: "power2.out",
-  //       scrollTrigger: {
-  //         trigger: panel,
-  //         start: "top 80%",
-  //         toggleActions: "play none none none",
-  //       },
-  //     });
-  //   }
-  // });
+    if (desc) {
+      gsap.from(desc, {
+        opacity: 1,
+        y: 25,
+        duration: 0.6,
+        delay: 0.2,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: panel,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      });
+    }
+  });
 
-  // // ============================================
-  // // ✅ FEATURE CARDS (ENTRÉE SIMPLE)
-  // // ============================================
-  // panelsRef.current.forEach(panel => {
-  //   const features = panel.querySelectorAll(".feature-card");
+  // ============================================
+  // ✅ FEATURE CARDS (ENTRÉE SIMPLE)
+  // ============================================
+  panelsRef.current.forEach(panel => {
+    const features = panel.querySelectorAll(".feature-card");
 
-  //   if (!features.length) return;
+    if (!features.length) return;
 
-  //   gsap.from(features, {
-  //     opacity: 0,
-  //     y: 30,
-  //     scale: 0.95,
-  //     duration: 0.6,
-  //     stagger: 0.1,
-  //     ease: "power2.out",
-  //     scrollTrigger: {
-  //       trigger: panel,
-  //       start: "top 75%",
-  //       toggleActions: "play none none none",
-  //     },
-  //   });
-  // });
+    gsap.from(features, {
+      opacity: 0,
+      y: 30,
+      scale: 0.95,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: panel,
+        start: "top 75%",
+        toggleActions: "play none none none",
+      },
+    });
+  });
 
-  // // ============================================
-  // // ✅ STATS (ENTRÉE SIMPLE)
-  // // ============================================
-  // panelsRef.current.forEach((panel, index) => {
-  //   const stats = panel.querySelectorAll(".stat-item");
+  // ============================================
+  // ✅ STATS (ENTRÉE SIMPLE)
+  // ============================================
+  panelsRef.current.forEach((panel, index) => {
+    const stats = panel.querySelectorAll(".stat-item");
 
-  //   if (!stats.length) return;
+    if (!stats.length) return;
 
-  //   gsap.from(stats, {
-  //     opacity: 0,
-  //     x: index % 2 === 0 ? -30 : 30,
-  //     duration: 0.6,
-  //     stagger: 0.1,
-  //     ease: "power2.out",
-  //     scrollTrigger: {
-  //       trigger: panel,
-  //       start: "top 75%",
-  //       toggleActions: "play none none none",
-  //     },
-  //   });
-  // });
+    gsap.from(stats, {
+      opacity: 0,
+      x: index % 2 === 0 ? -30 : 30,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: panel,
+        start: "top 75%",
+        toggleActions: "play none none none",
+      },
+    });
+  });
 
-  // // ============================================
-  // // ✅ IMAGES (ENTRÉE SIMPLE, PLUS DE SCRUB)
-  // // ============================================
-  // imagesRef.current.forEach(img => {
-  //   gsap.from(img, {
-  //     opacity: 0,
-  //     scale: 0.9,
-  //     duration: 0.7,
-  //     ease: "power2.out",
-  //     scrollTrigger: {
-  //       trigger: img,
-  //       start: "top 85%",
-  //       toggleActions: "play none none none",
-  //     },
-  //   });
-  // });
+  // ============================================
+  // ✅ IMAGES (ENTRÉE SIMPLE, PLUS DE SCRUB)
+  // ============================================
+  imagesRef.current.forEach(img => {
+    gsap.from(img, {
+      opacity: 0,
+      scale: 0.9,
+      duration: 0.7,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: img,
+        start: "top 85%",
+        toggleActions: "play none none none",
+      },
+    });
+  });
 
-  // // ============================================
-  // // ✅ BADGES
-  // // ============================================
-  // panelsRef.current.forEach(panel => {
-  //   const badge = panel.querySelector(".badge");
-  //   if (!badge) return;
+  // ============================================
+  // ✅ BADGES
+  // ============================================
+  panelsRef.current.forEach(panel => {
+    const badge = panel.querySelector(".badge");
+    if (!badge) return;
 
-  //   gsap.from(badge, {
-  //     opacity: 0,
-  //     scale: 0,
-  //     rotation: -180,
-  //     duration: 0.7,
-  //     ease: "back.out(2)",
-  //     scrollTrigger: {
-  //       trigger: panel,
-  //       start: "top 80%",
-  //       toggleActions: "play none none none",
-  //     },
-  //   });
-  // });
+    gsap.from(badge, {
+      opacity: 0,
+      scale: 0,
+      rotation: -180,
+      duration: 0.7,
+      ease: "back.out(2)",
+      scrollTrigger: {
+        trigger: panel,
+        start: "top 80%",
+        toggleActions: "play none none none",
+      },
+    });
+  });
 
-  // // ============================================
-  // // ✅ FLOATING BADGES (ANIMATION PERMANENTE)
-  // // ============================================
-  // panelsRef.current.forEach(panel => {
-  //   const floatingBadge = panel.querySelector(".floating-badge");
-  //   if (!floatingBadge) return;
+  // ============================================
+  // ✅ FLOATING BADGES (ANIMATION PERMANENTE)
+  // ============================================
+  panelsRef.current.forEach(panel => {
+    const floatingBadge = panel.querySelector(".floating-badge");
+    if (!floatingBadge) return;
 
-  //   gsap.to(floatingBadge, {
-  //     y: -15,
-  //     duration: 2,
-  //     repeat: -1,
-  //     yoyo: true,
-  //     ease: "power1.inOut",
-  //   });
-  // });
+    gsap.to(floatingBadge, {
+      y: -15,
+      duration: 2,
+      repeat: -1,
+      yoyo: true,
+      ease: "power1.inOut",
+    });
+  });
 }, []);
 
 
@@ -217,7 +217,7 @@ useGSAP(() => {
         ref={(el) => {
           panelsRef.current[0] = el!;
         }}
-        className="absolute inset-0 h-screen flex items-center justify-center  z-10 bg-linear-to-br from-[#FDFBF7] via-[#F9F6F0] to-[#F5F1EB] overflow-hidden"
+        className="absolute inset-0 h-screen flex items-center justify-center z-10 bg-linear-to-br from-[#FDFBF7] via-[#F9F6F0] to-[#F5F1EB] overflow-hidden"
       >
         {/* Background decoratif complexe */}
         {/* <div className="absolute inset-0 opacity-[0.03]">
@@ -236,7 +236,7 @@ useGSAP(() => {
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Contenu gauche - 7 colonnes sur desktop */}
             <div className="lg:col-span-7 space-y-6 lg:space-y-8 pt-30 xl:pt-0">
-              <div className="badge hidden xl:inline-flex items-center gap-2 bg-white/80 backdrop-blur-md px-6 py-3 rounded-full shadow-lg border border-[#7A9B8E]/20">
+              <div className="badge hidden xl:inline-flex items-center gap-2 bg-white/80 px-6 py-3 rounded-full shadow-lg border border-[#7A9B8E]/20">
                 <Leaf className="w-5 h-5 text-[#7A9B8E]" />
                 <span className="text-sm font-semibold text-[#7A9B8E] tracking-wide uppercase">
                   Qualité & Sécurité Premium
@@ -403,7 +403,7 @@ useGSAP(() => {
 
             {/* Contenu droite - 7 colonnes sur desktop */}
             <div className="lg:col-span-7 space-y-6 lg:space-y-8 order-1 lg:order-2 pt-20 xl:pt-0">
-              <div className="badge hidden xl:inline-flex items-center gap-2 bg-white/80 backdrop-blur-md px-6 py-3 rounded-full shadow-lg border border-[#7A9B8E]/20">
+              <div className="badge hidden xl:inline-flex items-center gap-2 bg-white/80 px-6 py-3 rounded-full shadow-lg border border-[#7A9B8E]/20">
                 <Hand className="w-5 h-5 text-[#7A9B8E]" />
                 <span className="text-sm font-semibold text-[#7A9B8E] tracking-wide uppercase">
                   Savoir-faire d'excellence
@@ -514,7 +514,7 @@ useGSAP(() => {
     <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 md:gap-8 lg:gap-12 items-center">
       {/* Contenu - texte à gauche sur desktop */}
       <div className="w-full lg:col-span-7 space-y-4 md:space-y-6 lg:space-y-8">
-        <div className="badge inline-flex items-center gap-2 bg-white/80 backdrop-blur-md px-4 md:px-6 py-2 md:py-3 rounded-full shadow-lg border border-[#7A9B8E]/20">
+        <div className="badge inline-flex items-center gap-2 bg-white/80 px-4 md:px-6 py-2 md:py-3 rounded-full shadow-lg border border-[#7A9B8E]/20">
           <Truck className="w-4 md:w-5 h-4 md:h-5 text-[#7A9B8E]" />
           <span className="text-xs md:text-sm font-semibold text-[#7A9B8E] tracking-wide uppercase">
             Premium
