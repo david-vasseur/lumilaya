@@ -4,6 +4,9 @@ import EmotionPage from "../components/layout/pages/EmotionPage";
 
 export const revalidate = 60;
 
+export const dynamic = "force-dynamic";
+
+
 export async function generateMetadata() {
 	const products: IProduct[] = await ProductList("Emotion");
 
