@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import { useRef } from "react"
 import StickyCard from "../ui/StickyCard";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "gsap";
 
 interface Feature {
   title: string;
@@ -215,6 +216,24 @@ function TestSavoir() {
                     scrub: 2,
                     pin: true,
                     pinSpacing: false
+                })
+            }
+
+            if (index < stickys.length -1) {
+                ScrollTrigger.create({
+                    trigger: stickys[index + 1],
+                    start: "top bottom",
+                    end: "top top",
+                    onUpdate: (self) => {
+                        const progress = self.progress;
+                        const scale = 1 - progress * 0.25;
+                        const rotation = (index % 2 === 0 ? 5 : -5) * progress;
+
+                        gsap.set(card, {
+                            scale: scale,
+                            rotation: rotation,
+                        })
+                    }
                 })
             }
         })
