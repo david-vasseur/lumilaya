@@ -28,7 +28,7 @@ useGSAP(() => {
       trigger: containerRef.current,
       start: "top top",
       end: "+=100%",
-      scrub: true,
+      scrub: 0.5,
       pin: true,
       pinSpacing: false,
     },
