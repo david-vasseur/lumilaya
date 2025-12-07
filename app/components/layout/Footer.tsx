@@ -185,7 +185,7 @@ const Footer = () => {
 
 					{/* Liens légaux - petits en bas à droite */}
 					<div className="flex items-center gap-6 text-xs text-white/50">
-						<Link href="/cgv" className="hover:text-white/80 transition-colors">
+						<Link href="/CGV" className="hover:text-white/80 transition-colors">
 							CGV
 						</Link>
 						<span>•</span>

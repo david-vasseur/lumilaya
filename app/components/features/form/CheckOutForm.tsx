@@ -4,7 +4,7 @@ import { CheckoutSchema } from "@/schema/checkoutSchema";
 import { motion } from 'framer-motion';
 import { useForm } from "@tanstack/react-form"
 import { ShoppingCart, CreditCard, MapPin, User } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ICheckout } from "@/schema/checkout";
 import { useCartStore } from "@/lib/store/cartStore";
 import { handleCheckout } from "./CheckOut.action";
@@ -39,7 +39,9 @@ const europeanCountries = [
 ];
 
 export const CheckoutForm = () => {
-    const [sameAddress, setSameAddress] = useState(true);
+
+
+    const [sameAddress, setSameAddress] = useState(false);
     const { items, total } = useCartStore();
 
     const form = useForm({
@@ -69,7 +71,7 @@ export const CheckoutForm = () => {
             onChange: CheckoutSchema,
         },
         onSubmit: async ({ value }) => {
-            // Transformer les items front vers ServerItem
+            // Transformer les items front vers ServerItem            
             const serverItems: ServerItem[] = items.map(i => ({
                 productId: i.productId,
                 variantId: i.id,
@@ -101,9 +103,24 @@ export const CheckoutForm = () => {
             if (result?.url) {
                 window.location.href = result.url; 
             }
-            }
-
+        }
     })
+
+    useEffect(() => {
+        if (sameAddress) {
+            form.setFieldValue("billingAddress", form.state.values.shippingAddress);
+            form.setFieldValue("billingPostalCode", form.state.values.shippingPostalCode);
+            form.setFieldValue("billingCity", form.state.values.shippingCity);
+            form.setFieldValue("billingCountry", form.state.values.shippingCountry);
+        }
+        }, [
+        sameAddress,
+        form.state.values.shippingAddress,
+        form.state.values.shippingPostalCode,
+        form.state.values.shippingCity,
+        form.state.values.shippingCountry,
+    ]);
+
 
     return (
         <div className="min-h-screen bg-[#FDFBF7] pt-24 pb-20">
@@ -370,7 +387,7 @@ export const CheckoutForm = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4, duration: 0.6 }}
-                        className="flex items-center gap-3 px-4"
+                        className="flex items-center gap-3 px-6"
                     >
                         <input
                             type="checkbox"
