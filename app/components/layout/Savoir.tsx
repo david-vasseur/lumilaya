@@ -220,11 +220,11 @@ useGSAP(() => {
         className="absolute inset-0 h-screen flex items-center justify-center  z-10 bg-linear-to-br from-[#FDFBF7] via-[#F9F6F0] to-[#F5F1EB] overflow-hidden"
       >
         {/* Background decoratif complexe */}
-        <div className="absolute inset-0 opacity-[0.03]">
+        {/* <div className="absolute inset-0 opacity-[0.03]">
           <div className="absolute top-10 left-10 w-96 h-96 bg-[#7A9B8E] rounded-full blur-3xl"></div>
           <div className="absolute bottom-20 right-20 w-[500px] h-[500px] bg-[#5A7B6E] rounded-full blur-3xl"></div>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#6A8B7E] rounded-full blur-3xl"></div>
-        </div>
+        </div> */}
 
         {/* Pattern décoratif */}
         <div className="absolute inset-0 opacity-[0.02]" style={{
@@ -365,11 +365,11 @@ useGSAP(() => {
         className="absolute inset-0 h-screen flex items-center justify-center z-20 bg-gradient-to-br from-[#F5F1EB] via-[#F0EDE6] to-[#ECE9E3] overflow-hidden"
       >
         {/* Background decoratif */}
-        <div className="absolute inset-0 opacity-[0.03]">
+        {/* <div className="absolute inset-0 opacity-[0.03]">
           <div className="absolute top-20 right-20 w-96 h-96 bg-[#7A9B8E] rounded-full blur-3xl"></div>
           <div className="absolute bottom-20 left-20 w-[500px] h-[500px] bg-[#5A7B6E] rounded-full blur-3xl"></div>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#6A8B7E] rounded-full blur-3xl"></div>
-        </div>
+        </div> */}
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -505,10 +505,10 @@ useGSAP(() => {
   className="absolute inset-0 h-screen flex items-center justify-center z-30 bg-gradient-to-br from-[#F5F1EB] via-[#F0EDE6] to-[#ECE9E3] overflow-hidden"
 >
   {/* Background decoratif */}
-  <div className="absolute inset-0 opacity-[0.03]">
+  {/* <div className="absolute inset-0 opacity-[0.03]">
     <div className="absolute top-20 left-20 w-64 md:w-96 h-64 md:h-96 bg-[#7A9B8E] rounded-full blur-3xl"></div>
     <div className="absolute bottom-20 right-20 w-80 md:w-[500px] h-80 md:h-[500px] bg-[#5A7B6E] rounded-full blur-3xl"></div>
-  </div>
+  </div> */}
 
   <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8 md:py-0">
     <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 md:gap-8 lg:gap-12 items-center">
