@@ -28,7 +28,7 @@ useGSAP(() => {
       trigger: containerRef.current,
       start: "top top",
       end: "+=100%",
-      scrub: 1,
+      scrub: true,
       pin: true,
       pinSpacing: false,
     },
@@ -210,7 +210,7 @@ useGSAP(() => {
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-[200vh] overflow-hidden"
+      className="relative w-full h-[300svh] overflow-hidden"
     >
       {/* PANEL 1 — INGRÉDIENTS */}
       <div
