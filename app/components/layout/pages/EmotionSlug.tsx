@@ -102,7 +102,7 @@ function EmotionSlug({ product, suggest }: EmotionSlugProps) {
           {/* Galerie images */}
           <div className="product-gallery">
             {/* Image principale avec carousel */}
-            <div className="relative rounded-2xl overflow-hidden mb-6 h-[600px] bg-white shadow-xl">
+            <div className="relative rounded-2xl overflow-hidden mb-6 w-full aspect-square lg:h-[600px] bg-white shadow-xl">
                 <Image fill src={product?.images[currentImage] || ""} alt="image d'une bougie" className="object-cover" />
 
 
@@ -145,7 +145,7 @@ function EmotionSlug({ product, suggest }: EmotionSlugProps) {
                 <button
                   key={index}
                   onClick={() => setCurrentImage(index)}
-                  className={`relative h-24 rounded-xl overflow-hidden transition-all ${
+                  className={`relative aspect-square h-15 lg:h-24 rounded-xl overflow-hidden transition-all ${
                     currentImage === index ? 'ring-2 ring-[#7A9B8E] scale-105' : 'opacity-60 hover:opacity-100'
                   }`}
                 >
