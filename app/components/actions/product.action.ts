@@ -1,6 +1,8 @@
 "use server"
 
 import { PrismaClient } from "@/lib/generated/prisma/client";
+import { transformProduct } from "@/lib/utils/utilsFunction";
+import { IProduct } from "@/type/product";
 
 const prisma = new PrismaClient();
 
@@ -12,6 +14,44 @@ interface IItem {
     image: string;
 }
 
+type Variant = { price: number };
+
+
+
+export async function GetItemBySlug(slug: string) {
+  const productRaw = await prisma.product.findUnique({
+    where: { slug }
+  });
+
+  if (!productRaw) return null;
+
+  const product = transformProduct(productRaw);
+
+
+  const rawSuggests = await prisma.product.findMany({
+  where: {
+    collection: product.collection,
+    NOT: { id: product.id }
+  }
+});
+
+const suggests = rawSuggests.map(p => {
+  const images = Array.isArray(p.images) ? p.images as string[] : [];
+
+  const variants = Array.isArray(p.variants)
+    ? p.variants as { price: number }[]
+    : [];
+
+  return {
+    name: p.name,
+    slug: p.slug,
+    image: images[0] ?? null,
+    price: variants.length > 0 ? variants[0].price : null
+  };
+});
+
+  return { product, suggests };
+}
 export default async function ProductList(collection: string) {
     const products = await prisma.product.findMany({
         where: { collection },

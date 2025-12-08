@@ -1,5 +1,5 @@
 
-import ProductList from '@/app/components/actions/product.action';
+import ProductList, { GetItemBySlug } from '@/app/components/actions/product.action';
 import EmotionSlug from '@/app/components/layout/pages/EmotionSlug';
 import { IProduct } from '@/type/product';
 
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props) {
 			title: `Bougies Émotion - ${product?.name} | Lumilaya`,
 			description: `Découvrez nos bougies artisanales "Emotions & Plaisirs" : ${product?.name}. Fabrication française, ingrédients naturels, parfum unique.`,
 			type: "website",
-			url: "https://www.lumilaya.fr/bougies-emotions",
+			url: `https://www.lumilaya.fr/bougies-emotions/${product?.slug}`,
 			images: `https://www.lumilaya.fr/${product?.images[0]}`
 		},
 		twitter: {
@@ -39,14 +39,17 @@ export async function generateMetadata({ params }: Props) {
 	};
 }
 
-async function ProductDetail() {
+async function ProductDetail({ params }: Props) {
+	
+	const { slug } = await params;
+	const result = await GetItemBySlug(slug);	
 
-	const products = await ProductList("Emotion");
+	if (!result) return
 
-	if (!products) return
+	const { product, suggests } = result;
 
 	return (
-		<EmotionSlug products={products} />
+		<EmotionSlug product={product} suggest={suggests} />
 	);
 }
 export default ProductDetail;

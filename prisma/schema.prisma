@@ -60,3 +60,12 @@ model VisitLog {
   userAgent  String?  // optionnel
   createdAt  DateTime @default(now())
 }
+
+model ShippingPrice {
+  id        String   @id @map("_id") @default(auto()) @db.ObjectId
+  name      String   // ex: "France", "Europe", "Express"
+  zone      String   // ex: "FR", "EU", "WORLD"
+  price     Float
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+}

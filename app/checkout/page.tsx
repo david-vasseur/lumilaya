@@ -5,11 +5,13 @@ import { CheckoutForm } from "../components/features/form/CheckOutForm"
 
 function page() {
     return (
-        <div className="min-h-screen">
-            <div className="pt-20 mx-auto max-w-7xl text-gray-800">
+        <div className="min-h-screen pt-14 flex">
+            <div className="pt-5 sticky top-14 w-1/3 max-w-7xl border-r border-gray-500/60 text-gray-800 h-screen">
                 <Cart />
             </div>
-            <CheckoutForm />
+            <div className="pt-5 flex-2">
+                <CheckoutForm />
+            </div>            
         </div>
     )
 }

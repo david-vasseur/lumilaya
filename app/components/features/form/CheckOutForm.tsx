@@ -2,12 +2,12 @@
 
 import { CheckoutSchema } from "@/schema/checkoutSchema";
 import { motion } from 'framer-motion';
-import { useForm } from "@tanstack/react-form"
+import { useField, useForm } from "@tanstack/react-form"
 import { ShoppingCart, CreditCard, MapPin, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ICheckout } from "@/schema/checkout";
 import { useCartStore } from "@/lib/store/cartStore";
-import { handleCheckout } from "./CheckOut.action";
+import { AddShippingPrice, handleCheckout } from "./CheckOut.action";
 import { getPricesForStripe, TotalProduct } from "../../actions/product.action";
 
 type ServerItem = {
@@ -18,6 +18,7 @@ type ServerItem = {
 };
 
 const europeanCountries = [
+    { code: "NULL", name: "Choisir" },
     { code: "FR", name: "France" },
     { code: "DE", name: "Allemagne" },
     { code: "ES", name: "Espagne" },
@@ -42,7 +43,8 @@ export const CheckoutForm = () => {
 
 
     const [sameAddress, setSameAddress] = useState(false);
-    const { items, total } = useCartStore();
+    const { items, total, setShip, ship } = useCartStore();  
+    
 
     const form = useForm({
         defaultValues: {
@@ -56,7 +58,7 @@ export const CheckoutForm = () => {
             shippingAddress: "",
             shippingCity: "",
             shippingPostalCode: "",
-            shippingCountry: "FR",
+            shippingCountry: "NULL",
             
             // Adresse de facturation
             billingAddress: "",
@@ -121,9 +123,8 @@ export const CheckoutForm = () => {
         form.state.values.shippingCountry,
     ]);
 
-
     return (
-        <div className="min-h-screen bg-[#FDFBF7] pt-24 pb-20">
+        <div className="min-h-screen bg-[#FDFBF7] pb-20">
             <div className="max-w-4xl mx-auto px-6">
                 {/* Header */}
                 <motion.div 
@@ -150,6 +151,7 @@ export const CheckoutForm = () => {
                         e.preventDefault()
                         form.handleSubmit()
                     }}
+                    onChange={() => {}}
                 >
                     {/* Informations personnelles */}
                     <motion.div
@@ -361,7 +363,7 @@ export const CheckoutForm = () => {
                                                 aria-invalid={state.meta.errors.length > 0 && state.meta.isTouched}
                                                 value={state.value}
                                                 onBlur={handleBlur}
-                                                onChange={(e) => handleChange(e.target.value)}
+                                                onChange={async (e) => {handleChange(e.target.value); const fee = await AddShippingPrice(form.state.values.shippingCountry, total()) || {shipping: false, code: "", fee: 0}; setShip({shipping: true, code: e.target.value, fee: fee?.status === "free" ? 0 : fee?.shipping?.price ?? 0})}}
                                                 className="w-full rounded-lg border-2 border-[#2C2C2C]/10 bg-[#FDFBF7] py-3 px-4 text-[#2C2C2C] focus:border-[#7A9B8E] focus:outline-none transition"
                                             >
                                                 {europeanCountries.map((country) => (

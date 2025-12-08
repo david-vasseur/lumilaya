@@ -2,12 +2,36 @@
 
 import { PrismaClient } from "@/lib/generated/prisma/client";
 import Stripe from "stripe";
+import { getPricesForStripe } from "../../actions/product.action";
 
 type PricePerProduct = {
   productId: string;
   variantId: number;
   price: number; // prix unitaire avec promo appliquée
   qty: number;
+};
+
+type CustomerInfo = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone?: string;
+  shippingAddress: string;
+  shippingCity: string;
+  shippingPostalCode: string;
+  shippingCountry: string;
+  billingAddress: string;
+  billingCity: string;
+  billingPostalCode: string;
+  billingCountry: string;
+  acceptCGV: boolean;
+};
+
+type ServerItem = {
+  productId: string;
+  variantId: number;
+  qty: number;
+  name: string;
 };
 
 const prisma = new PrismaClient();
@@ -17,51 +41,78 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 
 export async function handleCheckout(
-  pricesForStripe: PricePerProduct[],
-  customer: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone?: string;
-    shippingAddress: string;
-    shippingCity: string;
-    shippingPostalCode: string;
-    shippingCountry: string;
-    billingAddress: string;
-    billingCity: string;
-    billingPostalCode: string;
-    billingCountry: string;
-    acceptCGV: boolean;    
-  }
+  clientItems: ServerItem[],
+  customer: CustomerInfo
 ) {
-  // Préparer les items pour Stripe
+  if (!clientItems || clientItems.length === 0) {
+    throw new Error("Le panier est vide.");
+  }
 
-  const productIds = pricesForStripe.map(p => p.productId);
+  // 🔒 1️⃣ Recalculer TOUS les prix côté serveur
+  const securePrices: PricePerProduct[] = await getPricesForStripe(clientItems);
 
+  if (!securePrices.length) {
+    throw new Error("Panier invalide.");
+  }
+
+  const totalProducts = securePrices.reduce(
+    (acc, item) => acc + item.price * item.qty,
+    0
+  );
+
+  // 🔒 2️⃣ Recalculer le shipping côté serveur
+  const shippingResult = await AddShippingPrice(customer.shippingCountry, totalProducts);
+
+  let shippingLineItem = {
+    name: "",
+    price: 0
+  };
+
+  if (shippingResult.status === "free") {
+    shippingLineItem = { name: shippingResult.shipping?.name ?? "Livraison", price: 0 };
+  } else if (shippingResult.status === "not free" && shippingResult.shipping) {
+    shippingLineItem = {
+      name: shippingResult.shipping.name,
+      price: shippingResult.shipping.price
+    };
+  } else {
+    throw new Error("Impossible de calculer la livraison.");
+  }
+
+  // 🔒 3️⃣ Récupérer les produits pour Stripe
+  const productIds = securePrices.map(p => p.productId);
   const products = await prisma.product.findMany({
     where: { id: { in: productIds } },
     select: { id: true, name: true }
   });
 
-
-  const lineItems = pricesForStripe.map(p => {
-  const product = products.find(prod => prod.id === p.productId);
-  const productName = product ? `Bougie ${product.name}` : `Produit ${p.productId}`;
-
-    return {
+  const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [
+    ...securePrices.map(item => {
+      const product = products.find(p => p.id === item.productId);
+      const productName = product ? `Bougie ${product.name}` : `Produit ${item.productId}`;
+      return {
+        price_data: {
+          currency: "eur",
+          product_data: { name: productName },
+          unit_amount: Math.round(item.price * 100),
+        },
+        quantity: item.qty,
+      };
+    }),
+    // Ajouter le shipping
+    {
       price_data: {
         currency: "eur",
-        product_data: { name: productName },
-        unit_amount: Math.round(p.price * 100), // prix exact serveur
+        product_data: { name: shippingLineItem.name },
+        unit_amount: Math.round(shippingLineItem.price * 100),
       },
-      quantity: p.qty,
-    };
-  });
-
+      quantity: 1,
+    },
+  ];
 
   const orderId = `ORD-${customer.lastName}-${Date.now()}`;
 
-  // Créer la session Stripe Checkout
+  // 🔒 4️⃣ Créer la session Stripe
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     line_items: lineItems,
@@ -79,7 +130,12 @@ export async function handleCheckout(
       shippingCity: customer.shippingCity,
       shippingPostalCode: customer.shippingPostalCode,
       shippingCountry: customer.shippingCountry,
-      products: JSON.stringify(pricesForStripe),
+      billingAddress: customer.billingAddress,
+      billingCity: customer.billingCity,
+      billingPostalCode: customer.billingPostalCode,
+      billingCountry: customer.billingCountry,
+      products: JSON.stringify(securePrices),
+      shipping: JSON.stringify(shippingLineItem),
     },
   });
 
@@ -123,4 +179,26 @@ export async function clientCheckout(session_id: string) {
   };
 }
 
+
+export async function AddShippingPrice(code: string, total: number) {
+	if (code === "FR" && total >= 50) {
+		console.log("livraison free", total);
+		
+		return {status: "free", message: "Livraison Offerte"};
+
+	} else {
+
+		const shipping = await prisma.shippingPrice.findFirst({
+			where: { zone:  code }
+		});
+
+		if (!shipping) {
+			
+			return { status: "Erreur", message: "une erreur est survenue" };
+		};
+		console.log(shipping, total);
+		
+		return {status : "not free", shipping};
+	}
+}
 

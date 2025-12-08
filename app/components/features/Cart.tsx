@@ -7,16 +7,19 @@ import { useModalStore } from "@/lib/store/modalStore";
 import { usePathname } from "next/navigation";
 import { TotalProduct } from "../actions/product.action";
 import { useEffect, useState } from "react";
+import ShipItem from "../ui/ShipItem";
+import { AddShippingPrice } from "./form/CheckOut.action";
+import { ShoppingCart } from "lucide-react";
 
 function Cart() {
 
     const [total, setTotal] = useState<number>(0);
-    const { items } = useCartStore();
+    const [shippment, setShipment] = useState({name: "", price: 0});
+    const { items, ship, } = useCartStore();
     const { closeModal, isOpen } = useModalStore();
     const path = usePathname();
     
-    useEffect(() => {
-
+   useEffect(() => {
     const fetchTotal = async () => {
         const serverItems = items.map(item => ({
             productId: item.productId,
@@ -34,27 +37,48 @@ function Cart() {
     } else {
         setTotal(0);
     }
-    }, [items]);
+}, [items]);
+
+useEffect(() => {
+    const fetchShipping = async () => {
+        const result = await AddShippingPrice(ship.code, total);
+        console.log("Shipping result:", result);
+
+        setShipment({
+            name: result.shipping?.name ?? "Livraison Offerte",
+            price: result.shipping?.price ?? 0
+        });
+    };
+
+    // évite les appels inutiles ou invalides
+    if (ship.shipping && ship.code && total > 0) {
+        fetchShipping();
+    }
+}, [ship.shipping, ship.code, total]);
     
     return (
         <div className="flex flex-col gap-10 items-center">
-            <h2 className="font-semibold text-gray-600">Recapitulatif de votre panier</h2>
+            <div className="inline-flex items-center gap-2 bg-[#7A9B8E]/10 px-4 py-2 rounded-full mb-4">
+                        <span className="text-sm font-medium text-[#7A9B8E]">Récapitulatif de ma commande</span>
+                    </div>
             <div className="w-full flex flex-col gap-5">
                 <div className="grid grid-cols-[60%_10%_15%_15%] py-4 border-b border-zinc-400">
                 
-                    <p className="flex items-center justify-center">Produit</p>
+                    <p className="flex items-center justify-center text-gray-800/50">Produit</p>
                           
-                    <span className="flex items-center justify-center">Qté</span>
+                    <span className="flex items-center justify-center text-gray-800/50">Qté</span>
                    
-                    <span className="flex items-center justify-center">Prix €</span>
+                    <span className="flex items-center justify-center text-gray-800/50">Prix €</span>
                     <span></span>
                 </div>
                 {items.map((item, index) => (
                     <CartItem key={index} id={item.id} name={item.name} image={item.image} price={Number((item.price * item.qty).toFixed(2))} qty={item.qty} />
                 ))}
-                
+                {ship.shipping && (
+                    <ShipItem name={shippment.name} price={shippment.price}  />
+                )}                
             </div>
-            <span>Total de commande : {total.toFixed(2)} €</span>
+            <span className="px-6 py-3 bg-[#7A9B8E] text-white rounded-lg font-semibold shadow-2xl">Total de commande : {ship.shipping ? (shippment.price + total).toFixed(2) : total.toFixed(2)} €</span>
             {path !== "/checkout" && isOpen  && (
                 <Link 
                     href={"/checkout"}

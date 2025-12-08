@@ -11,8 +11,16 @@ import { useCartStore } from '@/lib/store/cartStore';
 import { IProduct } from '@/type/product';
 import toast from 'react-hot-toast';
 
+type Suggest = {
+    name: string;
+    slug: string;
+    image: string | null;
+    price: number | null;
+};
+
 interface EmotionSlugProps {
-  products: IProduct[];
+  product: IProduct;
+  suggest: Suggest[]
 }
 
 const productImages = [
@@ -23,17 +31,17 @@ const productImages = [
   { id: 5, color: 'from-[#5A7B6E] to-[#7A9B8E]' }
 ];
 
-function EmotionSlug({ products }: EmotionSlugProps) {
+function EmotionSlug({ product, suggest }: EmotionSlugProps) {
 
-  if (!products) return
+  // if (!products) return
 
     const [currentImage, setCurrentImage] = useState(0);
     const [quantity, setQuantity] = useState(1);
     const [selectedSize, setSelectedSize] = useState('150g');
     let variant = selectedSize === '150g' ? 0 : 1; 
     const path = usePathname().split('/').filter(Boolean).pop();      
-    const product = products.find(product => product.slug === path );
-    const suggest = products.filter(product => product.slug !== path); 
+    // const product = products.find(product => product.slug === path );
+    // const suggest = products.filter(product => product.slug !== path); 
     const { addItem, items } = useCartStore();
     const promo = Number(product?.promo || 0);
     const finalPrice = promo > 0 ? product!.variants[variant].price * (1 - promo / 100) : product?.variants[variant].price;
@@ -439,7 +447,8 @@ function EmotionSlug({ products }: EmotionSlugProps) {
                   
                   <Image
                     fill
-                    src={item.images[0]}
+                    // TODO PENSER A METTRE UNE IMAGE FALLBACK
+                    src={item.image ?? ""}
                     alt="image d'une bougie"
                     className="object-cover"
                   />
@@ -453,7 +462,7 @@ function EmotionSlug({ products }: EmotionSlugProps) {
                 <h3 className="text-lg font-light text-[#2C2C2C] mb-1">
                   {item.name}
                 </h3>
-                <p className="text-[#7A9B8E] font-medium">{item.variants[0].price} €</p>
+                <p className="text-[#7A9B8E] font-medium">{item.price} €</p>
               </Link>
             ))}
           </div>

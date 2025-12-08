@@ -1,16 +1,24 @@
 
-import ProductList from '@/app/components/actions/product.action';
+import ProductList, { GetItemBySlug } from '@/app/components/actions/product.action';
 import EmotionSlug from '@/app/components/layout/pages/EmotionSlug';
-import RituelSlug from '@/app/components/layout/pages/RituelSlug';
 
-async function ProductDetail() {
+interface Props {
+  	params: { slug: string };
+}
 
-	const products = await ProductList("Terre");
+async function ProductDetail({ params }: Props) {
+	
+	const { slug } = await params;
+	
+	const result = await GetItemBySlug(slug);	
 
-	if (!products) return
+	if (!result) return
+
+	const { product, suggests } = result;
 
 	return (
-		<EmotionSlug products={products} />
+		<EmotionSlug product={product} suggest={suggests} />
 	);
 }
+
 export default ProductDetail;

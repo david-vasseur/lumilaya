@@ -61,7 +61,7 @@ function RituelPage({ products }: RituelPageProps) {
         <div className="min-h-screen bg-[#FDFBF7]">
 			{/* Hero Section */}
 			<div className="relative h-[80vh] overflow-hidden">
-				<Image fill alt="image d'une bougie" src={"/images/produits/terre.webp"} className="object-cover object-bottom" />
+				<Image fill alt="image d'une bougie" src={"/images/produits/terre.webp"} className="object-cover object-top object-bottom" />
 				{/* Contenu Hero */}
 				<div className="relative h-full flex items-center justify-center">
 					<div className="hero-content text-center px-6 max-w-4xl">
@@ -93,6 +93,29 @@ function RituelPage({ products }: RituelPageProps) {
 					</div>
 				</div>
 			</div>
+
+			{/* Section intermédiaire */}
+			<div className="relative -mt-20 xl:-mt-32 max-w-7xl mx-auto px-6">
+				<div className="intermediate-section relative bg-linear-to-br from-[#7A9B8E]/90 to-[#5A7B6E]/90 backdrop-blur-sm rounded-3xl shadow-lg p-12 md:p-16 lg:p-20 text-zinc-100 max-w-3xl ml-auto">
+					<Image fill src={"/images/footer.webp"} alt='logo' className="object-contain opacity-40"/>
+					<p className="text-lg relative z-5 leading-relaxed mb-4">
+					Chaque bougie <span className="font-ballet text-2xl italic">Lumi'laya </span> est créée avec conscience, douceur et intention.
+					</p>
+					<p className="text-lg relative z-5 leading-relaxed mb-4">
+					Je les imagine comme des passeuses d’énergie, des intermédiaires entre la Terre et le Ciel.
+					</p>
+					<p className="text-lg relative z-5 leading-relaxed mb-4">
+					Elles portent la matière — la cire, le minéral, les plantes — et elles portent l’invisible — l’intention, la vibration, la douceur.
+					</p>
+					<p className="text-lg relative z-5 leading-relaxed mb-4">
+					Elles sont le reflet de tout ce que je propose dans mon autre activité : un accompagnement holistique, qui soutient la guérison, la présence et l’épanouissement intérieur.
+					</p>
+					<p className="text-lg leading-relaxed">
+					<span className="font-ballet text-2xl italic">Lumi'laya </span> n’est pas seulement une marque : c’est une invitation à se déposer, à se reconnecter, à retrouver du sens et de la beauté dans les gestes du quotidien.
+					</p>
+				</div>
+			</div>
+
 
 			{/* Section Produits */}
 			<div className="max-w-7xl mx-auto px-6 py-20">

@@ -119,7 +119,7 @@ function Bento() {
                             href={"/bougies-rituel"}
                             className="category-card group relative aspect-square xl:aspect-auto xl:h-[500px] rounded-lg overflow-hidden shadow-xl"
                             >
-                                <Image src={"/images/produits/terre.webp"} fill alt='image Emotion & Plaisir' className="group-hover:scale-105 transition-transform duration-700" />
+                                <Image src={"/images/produits/couverture3.webp"} fill alt='image Emotion & Plaisir' className="group-hover:scale-105 transition-transform duration-700" />
                             <div className="absolute inset-0 bg-[#2C2C2C]/20 group-hover:bg-[#2C2C2C]/10 transition-colors duration-500" />
                             <div className="relative h-full flex flex-col items-center justify-center p-8 text-[#FDFBF7]">
                                 <h3 className="text-3xl font-light mb-4 tracking-wider">Bougies Entre Terre & Ciel</h3>
