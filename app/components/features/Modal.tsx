@@ -18,7 +18,7 @@ export default function Modal() {
                 onClick={closeModal}
                 >
                 <div
-                    className="relative z-1000000 bg-linear-to-tr from-green-200/50 to-zinc-50/50 text-gray-700 cursor-default text-base xl:text-xl font-light rounded-xl pt-15 lg:pt-20 pb-5 lg:pb-20 px-5 lg:px-10 border border-gray-400 max-w-7xl mx-2 sm:mx-4 lg:mx-auto w-full lg:w-2/3 shadow-xl shadow-black/50"
+                    className="relative z-1000000 bg-linear-to-tr from-green-200/30 to-[#FDFBF7] text-gray-700 cursor-default text-base xl:text-xl font-light rounded-xl pt-15 lg:pt-20 pb-5 lg:pb-20 px-5 lg:px-10 border border-gray-400 max-w-7xl mx-2 sm:mx-4 lg:mx-auto w-full lg:w-2/3 shadow-xl shadow-black/50"
                     onClick={(e) => e.stopPropagation()}
                 >
                     <X 

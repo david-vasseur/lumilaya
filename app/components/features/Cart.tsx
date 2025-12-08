@@ -58,7 +58,7 @@ useEffect(() => {
     
     return (
         <div className="flex flex-col gap-10 items-center">
-            <div className="inline-flex items-center gap-2 bg-[#7A9B8E]/10 px-4 py-2 rounded-full mb-4">
+            <div className="hidden lg:inline-flex items-center gap-2 bg-[#7A9B8E]/10 px-4 py-2 rounded-full mb-4">
                         <span className="text-sm font-medium text-[#7A9B8E]">Récapitulatif de ma commande</span>
                     </div>
             <div className="w-full flex flex-col gap-5">

@@ -1,6 +1,7 @@
 import { useCartStore } from '@/lib/store/cartStore';
 import { Trash2 } from 'lucide-react';
 import Image from 'next/image';
+import toast from 'react-hot-toast';
 
 interface ICartItem {
     id: number,
@@ -24,7 +25,7 @@ function CartItem({ id, image, name, price, qty = 1 }: ICartItem) {
             <span className="flex items-center justify-center">{price} €</span>
             <div 
                 className="flex items-center justify-center cursor-pointer"
-                onClick={() => deleteItem(id)}
+                onClick={() => {deleteItem(id); toast.error("Produit supprimé")}}
                 >
                 <Trash2 className="text-red-400/90" />
             </div>

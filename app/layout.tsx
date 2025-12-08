@@ -80,7 +80,6 @@ export default function RootLayout({
       >
         <Navigation />
         {children}
-        <Toaster position="top-center" toastOptions={{style: {backgroundColor: "#7A9B8E"}} } />
         <Modal />
       </body>
     </html>
