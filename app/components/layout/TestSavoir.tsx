@@ -97,10 +97,10 @@ function TestSavoir() {
   // =========================
   {
     badge: "Savoir-faire d'excellence",
-    title: "Fabriqué à la main en Provence",
+    title: "Fabriqué à la main en Occitanie",
     subTitle: "L'artisanat au service de la perfection",
     description:
-      "Dans notre atelier provençal, chaque bougie est une œuvre unique. Nos artisans experts maîtrisent l'art ancestral de la coulée à la main, combiné aux techniques modernes les plus avancées. Petites séries, attention minutieuse aux détails, contrôle qualité rigoureux : nous prenons le temps nécessaire pour créer l'excellence.",
+      "Dans notre atelier occitant, chaque bougie est une œuvre unique. Nos artisans experts maîtrisent l'art ancestral de la coulée à la main, combiné aux techniques modernes les plus avancées. Petites séries, attention minutieuse aux détails, contrôle qualité rigoureux : nous prenons le temps nécessaire pour créer l'excellence.",
     image: "/images/landing/savoir2.webp",
     features: [
       {
@@ -119,7 +119,7 @@ function TestSavoir() {
         icon: "check",
       },
       {
-        title: "Made in Provence",
+        title: "Made in Occitanie",
         para: "Atelier maison dans le gard",
         icon: "heart",
       },

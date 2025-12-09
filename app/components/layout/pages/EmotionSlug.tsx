@@ -328,7 +328,7 @@ function EmotionSlug({ product, suggest }: EmotionSlugProps) {
                 Ingrédients purs
               </h3>
               <p className="text-[#2C2C2C]/60 leading-relaxed">
-                Cire de soja et de coco 100% naturelles, mèche en coton bio et frangrances de Grasse 
+                Cire de soja et de coco 100% naturelles, mèche en coton bio et fragrances de Grasse 
                 certifiées. Aucun parfum synthétique, aucun additif.
               </p>
             </div>
@@ -354,7 +354,7 @@ function EmotionSlug({ product, suggest }: EmotionSlugProps) {
                 Fait main en France
               </h3>
               <p className="text-[#2C2C2C]/60 leading-relaxed">
-                Chaque bougie est coulée à la main dans notre atelier de Provence, 
+                Chaque bougie est coulée à la main dans notre atelier occitant, 
                 avec soin et passion pour garantir une qualité irréprochable.
               </p>
             </div>

@@ -392,7 +392,7 @@ useGSAP(() => {
                   </div>
                 </div>
                 {/* Badge France */}
-                <div className="absolute -top-4 -right-4 bg-gradient-to-br from-[#002395] to-[#ED2939] rounded-2xl p-4 sm:p-5 shadow-2xl deco-icon">
+                <div className="absolute -top-4 -right-4 bg-linear-to-br from-[#002395] to-[#ED2939] rounded-2xl p-4 sm:p-5 shadow-2xl deco-icon">
                   <div className="flex flex-col items-center gap-1 text-white">
                     <span className="text-2xl">🇫🇷</span>
                     <span className="text-xs font-semibold">Made in FR</span>
@@ -411,7 +411,7 @@ useGSAP(() => {
               </div>
 
               <h2 className="title-text text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extralight text-[#2C2C2C] leading-[1.1]">
-                Fabriqué à la main en Provence
+                Fabriqué à la main en Occitanie
               </h2>
 
               <p className="subtitle-text text-xl sm:text-2xl text-[#7A9B8E] font-light">
@@ -429,7 +429,7 @@ useGSAP(() => {
               <div className="hidden xl:grid grid-cols-2 sm:grid-cols-2 gap-3 md:gap-4 pt-2 md:pt-4">
                 <div className="feature-card bg-white/60 backdrop-blur-sm rounded-2xl p-5 sm:p-6 border border-[#7A9B8E]/10 hover:border-[#7A9B8E]/30 transition-all hover:shadow-xl">
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#7A9B8E] to-[#5A7B6E] rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                    <div className="w-12 h-12 bg-linear-to-br from-[#7A9B8E] to-[#5A7B6E] rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
                       <Hand className="w-6 h-6 text-white" />
                     </div>
                     <div>

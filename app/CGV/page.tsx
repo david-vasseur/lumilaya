@@ -303,7 +303,7 @@ const CGVPage = () => {
                 </div>
 
                 {/* Contact */}
-                <div className="legal-section bg-gradient-to-br from-[#7A9B8E]/10 to-[#5A7B6E]/10 rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-10 border border-[#7A9B8E]/20">
+                <div className="legal-section bg-linear-to-br from-[#7A9B8E]/10 to-[#5A7B6E]/10 rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-10 border border-[#7A9B8E]/20">
                     <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
                         <div className="w-10 h-10 md:w-12 md:h-12 bg-[#7A9B8E] rounded-xl md:rounded-2xl flex items-center justify-center">
                             <Mail className="w-5 h-5 md:w-6 md:h-6 text-white" />

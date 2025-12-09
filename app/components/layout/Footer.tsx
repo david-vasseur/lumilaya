@@ -153,14 +153,14 @@ const Footer = () => {
 							<li className="flex items-start gap-3">
 								<MapPin className="w-5 h-5 text-white/80 shrink-0 mt-0.5" />
 								<span className="text-white/80 leading-relaxed">
-									123 Rue de la Lavande<br />
-									13100 Aix-en-Provence
+									141, rue Anne Franck<br />
+									30900 NÎMES
 								</span>
 							</li>
 							<li className="flex items-center gap-3">
 								<Phone className="w-5 h-5 text-white/80 shrink-0" />
-								<a href="tel:+33123456789" className="text-white/80 hover:text-white transition-colors">
-									+33 1 23 45 67 89
+								<a href="tel:+33618659510" className="text-white/80 hover:text-white transition-colors">
+									+33 6 18 65 95 10 
 								</a>
 							</li>
 							<li className="flex items-center gap-3">
