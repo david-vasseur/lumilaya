@@ -102,7 +102,7 @@ export const HeroSection = () => {
 			{/* Image de fond avec Next.js Image */}
 			<div ref={imageRef} className="absolute inset-0">
 				{isMobile ? (
-					<Image src={"/images/landing/mobile-hero.webp"} fill alt='' />
+					<Image src={"/images/landing/mobile-hero1.webp"} fill alt='' className="object-cover" />
 				) : (
 					<>
 						<Image 
