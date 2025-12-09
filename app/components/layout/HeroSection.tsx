@@ -183,7 +183,7 @@ export const HeroSection = () => {
 						<div className="hidden sm:block w-px h-4 bg-white/30" />
 						<div className="flex items-center gap-2">
 							<div className="w-2 h-2 bg-[#7A9B8E] rounded-full animate-pulse" />
-							<span>Huiles essentielles pures</span>
+							<span>Parfums naturels</span>
 						</div>
 					</div>
 				</div>

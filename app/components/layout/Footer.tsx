@@ -135,7 +135,7 @@ const Footer = () => {
 						<ul className="space-y-3">
 							<li>
 								<Link href="/bougies-emotions" className="text-white/80 hover:text-white transition-colors">
-									Émotions & Plaisir
+									Émotions & Plaisirs
 								</Link>
 							</li>
 							<li>
