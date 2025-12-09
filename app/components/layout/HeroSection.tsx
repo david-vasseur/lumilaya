@@ -111,7 +111,7 @@ export const HeroSection = () => {
 						fill
 						priority
 						quality={100}
-						className="object-cover object-right"
+						className="object-cover object-bottom-right"
 					/>
 					
 						{/* <Image 
