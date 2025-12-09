@@ -132,7 +132,7 @@ export const HeroSection = () => {
 				className="absolute inset-0 bg-linear-to-br from-[#2C2C2C]/60 via-[#2C2C2C]/40 to-transparent"
 			/>
 			{/* Contenu principal */}
-			<div ref={contentRef} className="relative h-full flex items-center justify-center z-10">
+			<div ref={contentRef} className={`relative h-full flex items-center justify-center z-10 ${isMobile ? "" : "-translate-x-25"}`}>
 				<div className="text-center px-6 max-w-5xl">
 
 					{/* Titre principal avec effet de découpe */}
@@ -200,7 +200,7 @@ export const HeroSection = () => {
 			</div>
 
 			{/* Vignette décorative en bas */}
-			<div className="absolute bottom-0 left-0 right-0 h-64 bg-linear-to-t from-[#FDFBF7]/60 from-[1px] to-95% to-transparent z-20" />
+			<div className="absolute bottom-0 left-0 right-0 h-64 bg-linear-to-t from-[#FDFBF7]/60 from-[1px] to-95% to-transparent z-5" />
 		</section>
 	);
 };
