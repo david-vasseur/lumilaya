@@ -22,7 +22,7 @@ const reviews: Review[] = [
     {
         id: "1",
         author: "Sophie Martin",
-        authorImage: "/images/avatars/avatar1.jpg", // Optionnel
+        // authorImage: "/images/avatars/avatar1.jpg", 
         rating: 5,
         date: "2024-11-15T10:30:00Z",
         text: "Des bougies exceptionnelles ! L'odeur de lavande est subtile et naturelle, rien à voir avec les parfums synthétiques. La combustion est propre et dure vraiment longtemps. Je recommande à 100%.",

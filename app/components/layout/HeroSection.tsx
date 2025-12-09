@@ -15,6 +15,8 @@ export const HeroSection = () => {
 	const overlayRef = useRef<HTMLDivElement>(null);
 	const ctaRefs = useRef<HTMLAnchorElement[]>([]);
 	const { isMobile } = useDeviceStore();
+	console.log(isMobile);
+	
 
 	useGSAP(() => {
 		const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });

@@ -16,7 +16,7 @@ const Template = ({ children }: { children: React.ReactNode }) => {
     const pathName = usePathname();
     const { detectDevice, isMobile } = useDeviceStore();
 
-    	useEffect(() => {
+    useEffect(() => {
 		const cleanup = detectDevice();
 		return cleanup; 
 	}, [detectDevice]);
