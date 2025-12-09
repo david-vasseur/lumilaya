@@ -354,7 +354,7 @@ function EmotionSlug({ product, suggest }: EmotionSlugProps) {
                 Fait main en France
               </h3>
               <p className="text-[#2C2C2C]/60 leading-relaxed">
-                Chaque bougie est coulée à la main dans notre atelier occitant, 
+                Chaque bougie est coulée à la main dans notre atelier occitan, 
                 avec soin et passion pour garantir une qualité irréprochable.
               </p>
             </div>

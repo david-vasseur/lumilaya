@@ -33,7 +33,7 @@ const CGVPage = () => {
     return (
         <div ref={sectionRef} className="min-h-screen bg-[#FDFBF7]">
             {/* Hero Section */}
-            <div className="relative h-[40vh] md:h-[50vh] overflow-hidden bg-gradient-to-br from-[#7A9B8E] via-[#6A8B7E] to-[#5A7B6E]">
+            <div className="relative h-[40vh] md:h-[50vh] overflow-hidden bg-linear-to-br from-[#7A9B8E] via-[#6A8B7E] to-[#5A7B6E]">
                 <div className="absolute inset-0 opacity-10">
                     <div className="absolute top-10 left-10 w-64 md:w-96 h-64 md:h-96 bg-white rounded-full blur-3xl"></div>
                     <div className="absolute bottom-10 right-10 w-64 md:w-96 h-64 md:h-96 bg-[#2C2C2C] rounded-full blur-3xl"></div>

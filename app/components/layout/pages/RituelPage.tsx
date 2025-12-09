@@ -61,7 +61,7 @@ function RituelPage({ products }: RituelPageProps) {
         <div className="min-h-screen bg-[#FDFBF7]">
 			{/* Hero Section */}
 			<div className="relative h-[80vh] overflow-hidden">
-				<Image fill alt="image d'une bougie" src={"/images/produits/terre.webp"} className="object-cover object-top object-bottom" />
+				<Image fill alt="image d'une bougie" src={"/images/produits/terre.webp"} className="object-cover object-center" />
 				{/* Contenu Hero */}
 				<div className="relative h-full flex items-center justify-center">
 					<div className="hero-content text-center px-6 max-w-4xl">
