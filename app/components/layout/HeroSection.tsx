@@ -6,23 +6,26 @@ import { useGSAP } from '@gsap/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Sparkles, ArrowDown, Leaf } from 'lucide-react';
+import { useDeviceStore } from '@/lib/store/deviceStore';
 
 export const HeroSection = () => {
 	const heroRef = useRef<HTMLDivElement>(null);
 	const contentRef = useRef<HTMLDivElement>(null);
 	const imageRef = useRef<HTMLDivElement>(null);
 	const overlayRef = useRef<HTMLDivElement>(null);
+	const ctaRefs = useRef<HTMLAnchorElement[]>([]);
+	const { isMobile } = useDeviceStore();
 
 	useGSAP(() => {
 		const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+		
+		if (!contentRef.current) return;
 
 		// Animation d'entrée
-		tl.from('.hero-badge', {
-			scale: 0,
-			opacity: 0,
-			duration: 0.8,
-			ease: 'back.out(1.7)',
-			delay: 0.3
+		tl.from(imageRef.current, {
+			scale: 1.1,
+			duration: 1.2,
+			ease: 'power3.out',
 		})
 		.from('.hero-title-line', {
 			y: 120,
@@ -33,14 +36,25 @@ export const HeroSection = () => {
 		.from('.hero-subtitle', {
 			y: 40,
 			opacity: 0,
+			stagger: 0.5,
 			duration: 1,
+			overwrite: "auto"
 		}, '-=0.8')
-		.from('.hero-cta', {
+		.from(ctaRefs.current, {
 			y: 40,
 			opacity: 0,
 			duration: 0.8,
-			stagger: 0.15
+			stagger: 0.15,
+			ease: 'back.out(1.7)',
+			overwrite: 'auto'
 		}, '-=0.6')
+		.from('.hero-confiance', {
+			y: 40,
+			opacity: 0,
+			stagger: 0.5,
+			duration: 1,
+			overwrite: "auto"
+		}, '-=0.8')
 		.from('.scroll-indicator', {
 			y: -20,
 			opacity: 0,
@@ -59,16 +73,6 @@ export const HeroSection = () => {
 			}
 		});
 
-		gsap.to(".hero-cta", {
-			yPercent: 200,
-			scale: 1.2,
-			scrollTrigger: {
-				trigger: heroRef.current,
-				start: 'top top',
-				end: 'bottom top',
-				scrub: 1.5,
-			}
-		})
 
 		gsap.to(overlayRef.current, {
 			opacity: 0.8,
@@ -91,20 +95,35 @@ export const HeroSection = () => {
 			}
 		});
 
-	}, []);
+	}, { scope: heroRef });
 
 	return (
 		<section ref={heroRef} className="relative h-screen overflow-hidden">
 			{/* Image de fond avec Next.js Image */}
 			<div ref={imageRef} className="absolute inset-0">
-				<Image 
-					src="/images/landing/hero2.webp"
-					alt="Himalaya avec bougie naturelle"
-					fill
-					priority
-					quality={100}
-					className="object-cover object-right"
-				/>
+				{isMobile ? (
+					<Image src={"/images/landing/mobile-hero.webp"} fill alt='' />
+				) : (
+					<>
+						<Image 
+						src="/images/landing/test-montagne.webp"
+						alt="Himalaya avec bougie naturelle"
+						fill
+						priority
+						quality={100}
+						className="object-cover object-right"
+					/>
+					
+						<Image 
+						src="/images/landing/rock.webp"
+						alt="Himalaya avec bougie naturelle"
+						fill
+						priority
+						quality={100}
+						className="object-cover scale-80 object-bottom translate-y-90 translate-x-90"
+					/>
+				</>
+				)}							
 			</div>
 
 			{/* Overlay gradient pour améliorer la lisibilité */}
@@ -123,12 +142,6 @@ export const HeroSection = () => {
 						</h1>
 					</div>
 
-					{/* <div className="overflow-hidden mb-8">
-						<p className="hero-title-line text-2xl md:text-3xl font-light text-white/90 tracking-widest">
-							L'ESSENCE DE L'HIMALAYA
-						</p>
-					</div> */}
-
 					{/* Sous-titre */}
 					<p className="hero-subtitle text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-12 leading-relaxed">
 						Des bougies artisanales inspirées de la pureté des sommets. 
@@ -139,7 +152,8 @@ export const HeroSection = () => {
 					<div className="hero-cta flex flex-col sm:flex-row items-center justify-center gap-4">
 						<Link 
 							href="/#boutique"
-							className=" group relative inline-flex items-center gap-3 bg-white text-[#2C2C2C] px-8 py-4 rounded-full font-medium hover:bg-white/90 transition-all shadow-2xl overflow-hidden"
+							ref={(el) => {el && ctaRefs.current.push(el)}}
+							className="cta-item group relative inline-flex items-center gap-3 bg-white text-[#2C2C2C] px-8 py-4 rounded-full font-medium hover:bg-white/90 transition-colors shadow-2xl overflow-hidden"
 						>
 							<span className="relative z-10">Découvrir la collection</span>
 							<ArrowDown className="w-5 h-5 -rotate-90 group-hover:translate-x-1 transition-transform relative z-10" />
@@ -148,14 +162,15 @@ export const HeroSection = () => {
 
 						<Link 
 							href="/notre-histoire"
-							className=" inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border-2 border-white/30 text-white px-8 py-4 rounded-full font-medium hover:bg-white/20 transition-all"
+							ref={(el) => {el && ctaRefs.current.push(el)}}
+							className="cta-item inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border-2 border-white/30 text-white px-8 py-4 rounded-full font-medium hover:bg-white/20 transition-colors"
 						>
 							<span>Notre histoire</span>
 						</Link>
 					</div>
 
 					{/* Éléments de confiance */}
-					<div className="hero-subtitle flex items-center justify-center gap-8 mt-16 text-white/70 text-sm">
+					<div className="hero-confiance flex items-center justify-center gap-8 mt-16 text-white/70 text-sm">
 						<div className="flex items-center gap-2">
 							<div className="w-2 h-2 bg-[#7A9B8E] rounded-full animate-pulse" />
 							<span>Fabrication française</span>
@@ -185,7 +200,7 @@ export const HeroSection = () => {
 			</div>
 
 			{/* Vignette décorative en bas */}
-			<div className="absolute bottom-0 left-0 right-0 h-32 bg-linear-to-t from-[#FDFBF7] to-transparent z-20" />
+			<div className="absolute bottom-0 left-0 right-0 h-64 bg-linear-to-t from-[#FDFBF7]/60 from-[1px] to-95% to-transparent z-20" />
 		</section>
 	);
 };

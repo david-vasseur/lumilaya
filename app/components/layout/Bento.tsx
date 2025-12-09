@@ -76,7 +76,7 @@ function Bento() {
 
     return (
         <>
-            <section id="boutique" className="brand-section relative z-5 py-32 px-6 bg-[#FDFBF7]">
+            <section className="brand-section relative z-5 py-32 px-6 bg-[#FDFBF7]">
                 <div ref={brandRef} className="max-w-4xl relative mx-auto text-center bg-linear-to-br from-[#7A9B8E] via-[#6A8B7E] to-[#5A7B6E] px-10 py-20 overflow-hidden rounded-lg shadow-xl">
                     <p className="brand-text relative text-2xl md:text-3xl font-light text-zinc-200 leading-relaxed z-2">
                         Chaque bougie <span className="font-ballet text-4xl md:text-5xl">Lumi'laya</span> est une invitation au voyage sensoriel,
@@ -86,7 +86,7 @@ function Bento() {
                 </div>
             </section>
 
-            <div className="max-w-7xl mx-auto">
+            <div id="boutique" className="max-w-7xl mx-auto">
                 <h2 ref={titleRef} className="text-4xl relative z-0 text-gray-600 text-center tracking-wide">
                     Nos Collections
                 </h2>
