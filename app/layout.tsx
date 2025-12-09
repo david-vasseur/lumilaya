@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Ballet, Dynalight, Geist, Geist_Mono, Herr_Von_Muellerhoff, Parisienne, The_Nautigal, Whisper } from "next/font/google";
+import { Babylonica, Ballet, Dynalight, Geist, Geist_Mono, Herr_Von_Muellerhoff, Parisienne, The_Nautigal, Whisper } from "next/font/google";
 import "./globals.css";
 import Navigation from "./components/features/Navigation";
 import Footer from "./components/layout/Footer";
@@ -73,15 +73,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${ballet.variable} antialiased overflow-x-hidden`}
-      >
-        <Navigation />
-        {children}
-        <Modal />
-      </body>
-    </html>
-  );
+	return (
+		<html lang="fr">
+			<body
+				className={`${geistSans.variable} ${geistMono.variable} ${ballet.variable} antialiased overflow-x-hidden`}
+			>
+				<Navigation />
+				{children}
+				<Modal />
+			</body>
+		</html>
+	);
 }

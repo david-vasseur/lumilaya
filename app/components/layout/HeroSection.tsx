@@ -106,7 +106,7 @@ export const HeroSection = () => {
 				) : (
 					<>
 						<Image 
-						src="/images/landing/test-montagne.webp"
+						src="/images/landing/hero3.webp"
 						alt="Himalaya avec bougie naturelle"
 						fill
 						priority
@@ -114,14 +114,14 @@ export const HeroSection = () => {
 						className="object-cover object-right"
 					/>
 					
-						<Image 
+						{/* <Image 
 						src="/images/landing/rock.webp"
 						alt="Himalaya avec bougie naturelle"
 						fill
 						priority
 						quality={100}
 						className="object-cover scale-80 object-bottom translate-y-90 translate-x-90"
-					/>
+					/> */}
 				</>
 				)}							
 			</div>
