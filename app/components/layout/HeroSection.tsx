@@ -109,7 +109,7 @@ export const HeroSection = () => {
 				) : (
 					<>
 						<Image 
-						src="/images/landing/hero6.webp"
+						src="/images/landing/hero7.webp"
 						alt="Himalaya avec bougie naturelle"
 						fill
 						priority
