@@ -63,12 +63,13 @@ export const HeroSection = () => {
 			duration: 0.8,
 		}, '-=0.4');
 
+		gsap.set(imageRef.current, { scale: 1 })
 		// Animation de sortie au scroll
 		gsap.to(imageRef.current, {
 			scale: 1.2,
 			opacity: 0.3,
 			scrollTrigger: {
-				trigger: heroRef.current,
+				trigger: contentRef.current,
 				start: 'top top',
 				end: 'bottom top',
 				scrub: 1.5,
