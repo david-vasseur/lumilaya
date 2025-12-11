@@ -149,7 +149,6 @@ export const CheckoutForm = () => {
                         e.preventDefault()
                         form.handleSubmit()
                     }}
-                    onChange={() => {}}
                 >
                     {/* Informations personnelles */}
                     <motion.div
