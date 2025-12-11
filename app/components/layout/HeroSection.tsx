@@ -15,7 +15,6 @@ export const HeroSection = () => {
 	const overlayRef = useRef<HTMLDivElement>(null);
 	const ctaRefs = useRef<HTMLAnchorElement[]>([]);
 	const { isMobile } = useDeviceStore();
-	console.log(isMobile);
 	
 
 	useGSAP(() => {
