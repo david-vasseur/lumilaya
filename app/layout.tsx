@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Herr_Von_Muellerhoff } from "next/font/google";
 import "./globals.css";
 import Navigation from "./components/features/Navigation";
 import Modal from "./components/features/Modal";
+import React from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -89,9 +90,15 @@ export default function RootLayout({
 	return (
 		<html lang="fr">
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} ${ballet.variable} antialiased overflow-x-hidden`}
+				className={`${geistSans?.variable ?? ''} ${geistMono?.variable ?? ''} ${ballet?.variable ?? ''} antialiased overflow-x-hidden`}
 			>
 				<Navigation />
+        <div>
+          {React.Children.map(children, (child) => {
+            try { return child; } 
+            catch(e) { console.error("Error rendering child:", child, e); return null; }
+          })}
+        </div>
 				{children}
 				<Modal />
 			</body>

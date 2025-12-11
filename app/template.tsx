@@ -22,16 +22,7 @@ const Template = ({ children }: { children: React.ReactNode }) => {
 	}, [detectDevice]);
 
     return (
-        <div>
-            {/* {pathName !== "/" && (
-                <>
-                    <div id="page-transition-top" className="h-1/2 w-screen bg-cyan-800 fixed z-500 top-0 left-0" />
-                    <div id="page-transition-bottom" className="h-1/2 w-screen bg-cyan-800 fixed z-500 bottom-0 left-0" />
-                    <div id="page-transition-left" className="min-h-screen w-1/2 bg-cyan-800 fixed z-500 top-0 left-0" />
-                    <div id="page-transition-right" className="min-h-screen w-1/2 bg-cyan-800 fixed z-500 top-0 right-0" />
-                </>
-            )} */}
-            
+        <div>            
             {children}
             <Toaster position="top-center" containerStyle={{ marginTop: isMobile ? "5rem" : "0rem", zIndex: 999999999, }} toastOptions={{style: {backgroundColor: "#7A9B8E"}} } />
             <Footer />

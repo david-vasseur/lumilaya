@@ -9,17 +9,17 @@ export async function generateMetadata() {
 
 	if (!products || products.length === 0) {
 		return {
-			title: "Bougies entre Ciel & Terre - Lumilaya",
+			title: "Bougies entre Terre & Ciel - Lumilaya",
 			description: "Découvrez notre collection de bougies artisanales inspirées par les émotions. Fabrication 100% française, parfum naturel, artisanat haut de gamme.",
 		};
 	}
 
 	return {
-		title: `Bougies Entre Ciel & Terre | Lumilaya`,
-		description: `Explorez notre collection de bougies artisanales "Entre Ciel & Terre". Nos bougies sont 100% naturelles, fabriquées en France et parfaites pour éveiller vos émotions.`,
+		title: `Bougies Entre Terre & Ciel | Lumilaya`,
+		description: `Explorez notre collection de bougies artisanales "Entre Terre & Ciel". Nos bougies sont 100% naturelles, fabriquées en France et parfaites pour éveiller vos émotions.`,
 		openGraph: {
-			title: `Bougies Émotion & Plaisirs | Lumilaya`,
-			description: `Découvrez nos bougies de la collection: Entre Ciel & Terre. Fabrication française, ingrédients naturels, parfum unique.`,
+			title: `Bougies Entre Terre & Ciel | Lumilaya`,
+			description: `Découvrez nos bougies de la collection: Entre Terre & Ciel. Fabrication française, ingrédients naturels, parfum unique.`,
 			type: "website",
 			url: "https://www.lumilaya.fr/bougies-rituel",
 			images: [
@@ -27,14 +27,14 @@ export async function generateMetadata() {
 					url: "https://www.lumilaya.fr/images/produits/terre.webp",
 					width: 800,
 					height: 600,
-					alt: "Bougie Émotion - Plaisir"
+					alt: "Bougie Émotion - Rituel"
 				}
 			]
 		},
 		twitter: {
 			card: "summary_large_image",
-			title: `Bougies Émotion & Plaisirs | Lumilaya`,
-			description: `Nos bougies fait main vous offrent une expérience sensorielle unique. Découvrez la collection Entre Ciel & Terre dès maintenant.`,
+			title: `Bougies Entre Terre & Ciel | Lumilaya`,
+			description: `Nos bougies fait main vous offrent une expérience sensorielle unique. Découvrez la collection Entre Terre & Ciel dès maintenant.`,
 			images: ["https://www.lumilaya.fr/images/produits/terre.webp"],
 		},
 	};
