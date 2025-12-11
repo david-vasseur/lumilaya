@@ -139,7 +139,7 @@ const Footer = () => {
 								</Link>
 							</li>
 							<li>
-								<Link href="/bougies-naturelles" className="text-white/80 hover:text-white transition-colors">
+								<Link href="/bougies-rituel" className="text-white/80 hover:text-white transition-colors">
 									Entre Terre & Ciel
 								</Link>
 							</li>
