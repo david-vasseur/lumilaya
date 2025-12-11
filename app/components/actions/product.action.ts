@@ -135,14 +135,17 @@ type ServerItem = {
 export async function TotalProduct(items: ServerItem[]): Promise<number> {
   if (!items || items.length === 0) return 0;
 
-  const productIds = items.map(item => item.productId);
+  // 🔒 Empêche l'erreur Prisma causée par un productId undefined
+  const productIds = items
+    .map(item => item.productId)
+    .filter(id => typeof id === "string");
 
   const products = await prisma.product.findMany({
     where: { id: { in: productIds } },
     select: {
       id: true,
       variants: true,
-      promo: true, // 🔥 On récupère la promo
+      promo: true,
     },
   });
 
@@ -152,15 +155,10 @@ export async function TotalProduct(items: ServerItem[]): Promise<number> {
     const product = products.find(p => p.id === item.productId);
     if (!product) continue;
 
-    const variants = product.variants as {
-      id: number;
-      price: number;
-    }[];
-
+    const variants = product.variants as { id: number; price: number }[];
     const variant = variants.find(v => v.id === item.variantId);
     if (!variant) continue;
 
-    // 🔥 Calcul du prix avec promo
     const price =
       product.promo && product.promo !== 0
         ? variant.price * (1 - product.promo / 100)
@@ -171,6 +169,7 @@ export async function TotalProduct(items: ServerItem[]): Promise<number> {
 
   return total;
 }
+
 
 // types
 
