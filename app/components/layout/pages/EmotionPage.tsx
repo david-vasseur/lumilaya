@@ -111,19 +111,23 @@ function EmotionPage({ products }: EmotionPageProps) {
 				<div className="intermediate-section relative bg-linear-to-br from-[#7A9B8E]/90 to-[#5A7B6E]/90 backdrop-blur-sm rounded-3xl shadow-lg p-12 md:p-16 lg:p-20 text-zinc-100 max-w-3xl ml-auto">
 					<Image fill src={"/images/footer.webp"} alt='logo' className="object-contain opacity-40"/>
 					<p className="text-lg relative z-5 leading-relaxed mb-4">
-					Chaque bougie <span className="font-ballet text-2xl italic">Lumi'laya </span> est créée avec conscience, douceur et intention.
+						Parce que chaque création <span className="font-ballet text-2xl italic">Lumi'laya</span> est une invitation à savourer ce qui fait du bien.
 					</p>
+
 					<p className="text-lg relative z-5 leading-relaxed mb-4">
-					Je les imagine comme des passeuses d’énergie, des intermédiaires entre la Terre et le Ciel.
+						Je les imagine comme des instants doux et sucrés, des éclats de chaleur qui rappellent la joie simple et les souvenirs tendres.
 					</p>
+
 					<p className="text-lg relative z-5 leading-relaxed mb-4">
-					Elles portent la matière — la cire, le minéral, les plantes — et elles portent l’invisible — l’intention, la vibration, la douceur.
+						Elles portent des senteurs enveloppantes qui réveillent les sens, réconfortent le cœur et déposent un sourire là où il manquait.
 					</p>
+
 					<p className="text-lg relative z-5 leading-relaxed mb-4">
-					Elles sont le reflet de tout ce que je propose dans mon autre activité : un accompagnement holistique, qui soutient la guérison, la présence et l’épanouissement intérieur.
+						Elles célèbrent le cocooning, la gourmandise, la douceur du foyer… ces petits moments qui réparent, apaisent et ramènent à soi.
 					</p>
+
 					<p className="text-lg leading-relaxed">
-					<span className="font-ballet text-2xl italic">Lumi'laya </span> n’est pas seulement une marque : c’est une invitation à se déposer, à se reconnecter, à retrouver du sens et de la beauté dans les gestes du quotidien.
+						Avec <span className="font-ballet text-2xl italic">Lumi'laya</span>, chaque bougie devient plus qu’un parfum : un refuge, une parenthèse, une manière simple et profonde de prendre soin de soi.
 					</p>
 				</div>
 			</div>

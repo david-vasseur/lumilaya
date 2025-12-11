@@ -46,7 +46,7 @@ function TestSavoir() {
     title: "Ingrédients sains & 100% naturels",
     subTitle: "La pureté au cœur de chaque création",
     description:
-      "Nous sélectionnons avec une exigence absolue chaque ingrédient qui compose nos bougies. Des cires végétales premium aux huiles essentielles certifiées, en passant par nos mèches en coton biologique : aucun compromis n'est fait sur la qualité. Votre santé, votre bien-être et celui de votre famille sont notre priorité.",
+      "Nous sélectionnons avec une exigence absolue chaque ingrédient qui compose nos bougies. Des cires végétales premium aux parfums naturels certifiés, en passant par nos mèches en coton biologique : aucun compromis n'est fait sur la qualité. Votre santé, votre bien-être et celui de votre famille sont notre priorité.",
     image: "/images/landing/savoir1.webp",
     features: [
       {
@@ -55,7 +55,7 @@ function TestSavoir() {
         icon: "leaf",
       },
       {
-        title: "Huiles essentielles pures",
+        title: "Parfums naturels",
         para: "Certifiées bio, origine contrôlée",
         icon: "heart",
       },

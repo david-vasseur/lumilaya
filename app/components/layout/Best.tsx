@@ -72,7 +72,7 @@ function Best({ products }: IBest) {
                                 <Image fill src={product.images[0]} alt='image bougie' className="object-cover group-hover:scale-105 duration-700 transition-all" />
                                 <div className="absolute bottom-4 left-4 right-4">
                                 <span className="inline-block bg-[#FDFBF7]/90 text-[#2C2C2C] text-xs px-3 py-1 rounded-full">
-                                {product.collection === "Terre" ? "Entre Terre & Ciel" : "Emotion & Plaisir"}
+                                {product.collection === "Terre" ? "Entre Terre & Ciel" : "Emotions & Plaisirs"}
                                 </span>
                                 <div className="absolute inset-0 bg-[#2C2C2C]/5 group-hover:bg-[#2C2C2C]/0 transition-colors duration-500" />
                             </div>

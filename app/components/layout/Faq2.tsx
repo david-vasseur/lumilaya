@@ -10,7 +10,7 @@ const faqs = [
     {
         id: 1,
         question: "Vos bougies sont-elles vraiment 100% naturelles ?",
-        answer: "Oui, nos bougies sont composées uniquement de cire de soja ou de coco 100% végétale, de mèches en coton bio, et d'huiles essentielles pures. Aucun parfum synthétique, aucun additif chimique."
+        answer: "Oui, nos bougies sont composées uniquement de cire de soja ou de coco 100% végétale, de mèches en coton bio, et de parfums naturels pures. Aucun parfum synthétique, aucun additif chimique."
     },
     {
         id: 2,
