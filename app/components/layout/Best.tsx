@@ -53,18 +53,6 @@ function Best({ products }: IBest) {
             }
         });
 
-        gsap.from('.ethic-item', {
-            x: -60,
-            opacity: 0,
-            duration: 0.8,
-            stagger: 0.2,
-            ease: 'power3.out',
-            scrollTrigger: {
-                trigger: '.ethic-section',
-                start: 'top 70%'
-            }
-        });
-
     }, [])
 
     return (
