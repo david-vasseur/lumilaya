@@ -9,7 +9,6 @@ import { TotalProduct } from "../actions/product.action";
 import { useEffect, useState } from "react";
 import ShipItem from "../ui/ShipItem";
 import { AddShippingPrice } from "./form/CheckOut.action";
-import { ShoppingCart } from "lucide-react";
 
 function Cart() {
 

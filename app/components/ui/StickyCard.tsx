@@ -1,3 +1,5 @@
+"use client"
+
 import { LucideIcon } from "lucide-react";
 
 export type FeatureIconKey =
@@ -163,25 +165,6 @@ function StickyCard({
                                 </span>
                             </div>
                         </div>
-
-                        {/* SECONDARY BADGES */}
-                        {/* {secondaryBadge.map((badge, index) => {
-                        const Icon = secondaryIcons[badge.icon];
-
-                        return (
-                            <div
-                                key={index}
-                                className="absolute -bottom-4 -left-4 bg-linear-to-br from-[#7A9B8E] to-[#5A7B6E] rounded-2xl p-4 sm:p-5 shadow-2xl deco-icon"
-                                >
-                                <div className="aspect-square flex flex-col items-center gap-2 text-white">
-                                    <Icon className="w-10 h-10 sm:w-12 sm:h-12 fill-white" />
-                                    <span className="text-xs font-semibold">
-                                    {badge.span}
-                                    </span>
-                                </div>
-                            </div>
-                        );
-                        })} */}
                     </div>
                 </div>
         </div>

@@ -83,9 +83,9 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
+  	children,
 }: Readonly<{
-  children: React.ReactNode;
+  	children: React.ReactNode;
 }>) {
 	return (
 		<html lang="fr">
@@ -93,12 +93,6 @@ export default function RootLayout({
 				className={`${geistSans?.variable ?? ''} ${geistMono?.variable ?? ''} ${ballet?.variable ?? ''} antialiased overflow-x-hidden`}
 			>
 				<Navigation />
-        <div>
-          {React.Children.map(children, (child) => {
-            try { return child; } 
-            catch(e) { console.error("Error rendering child:", child, e); return null; }
-          })}
-        </div>
 				{children}
 				<Modal />
 			</body>

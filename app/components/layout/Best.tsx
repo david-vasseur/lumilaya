@@ -90,4 +90,4 @@ function Best({ products }: IBest) {
     )
 }
 
-export default Best
+export default Best;

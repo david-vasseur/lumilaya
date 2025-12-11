@@ -105,8 +105,7 @@ export const HeroSection = () => {
 				{isMobile ? (
 					<Image src={"/images/landing/mobile-hero1.webp"} fill alt='' className="object-cover" />
 				) : (
-					<>
-						<Image 
+					<Image 
 						src="/images/landing/hero7.webp"
 						alt="Himalaya avec bougie naturelle"
 						fill
@@ -114,16 +113,6 @@ export const HeroSection = () => {
 						quality={100}
 						className="object-cover object-bottom-right"
 					/>
-					
-						{/* <Image 
-						src="/images/landing/rock.webp"
-						alt="Himalaya avec bougie naturelle"
-						fill
-						priority
-						quality={100}
-						className="object-cover scale-80 object-bottom translate-y-90 translate-x-90"
-					/> */}
-				</>
 				)}							
 			</div>
 

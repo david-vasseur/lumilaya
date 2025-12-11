@@ -1,10 +1,9 @@
 "use client"
 
-import { Flame, MenuIcon, ShoppingCart, X } from 'lucide-react';
+import { MenuIcon, ShoppingCart, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useModalStore } from '@/lib/store/modalStore';
-import CartItem from '../ui/CartItem';
 import Cart from './Cart';
 import { useCartStore } from '@/lib/store/cartStore';
 import Image from 'next/image';
@@ -145,6 +144,16 @@ function Navigation() {
                     >
                         Accueil
                     </Link>
+                    <Link 
+                        href={"/notre-histoire"}
+                        className={`text-sm tracking-wide transition-colors ${
+                        path === "/notre-histoire"
+                            ? 'text-[#2C2C2C] font-medium'
+                            : 'text-[#2C2C2C]/60 hover:text-[#2C2C2C]'
+                        }`}
+                    >
+                        Notre histoire
+                    </Link>
                     <Link
                         href={"/bougies-emotions"}
                         className={`text-sm tracking-wide transition-colors ${
@@ -184,9 +193,7 @@ function Navigation() {
                     <span className="text-[#7A9B8E] font-bold">{items.length}</span>
                 </div>
             </div>
-                )}
-            
-            
+            )}
         </nav>
     );
 }

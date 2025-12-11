@@ -2,13 +2,13 @@
 
 import { CheckoutSchema } from "@/schema/checkoutSchema";
 import { motion } from 'framer-motion';
-import { useField, useForm } from "@tanstack/react-form"
+import { useForm } from "@tanstack/react-form"
 import { ShoppingCart, CreditCard, MapPin, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ICheckout } from "@/schema/checkout";
 import { useCartStore } from "@/lib/store/cartStore";
 import { AddShippingPrice, handleCheckout } from "./CheckOut.action";
-import { getPricesForStripe, TotalProduct } from "../../actions/product.action";
+import { getPricesForStripe } from "../../actions/product.action";
 
 type ServerItem = {
   productId: string;
@@ -41,11 +41,9 @@ const europeanCountries = [
 
 export const CheckoutForm = () => {
 
-
     const [sameAddress, setSameAddress] = useState(false);
     const { items, total, setShip, ship } = useCartStore();  
     
-
     const form = useForm({
         defaultValues: {
             // Informations personnelles

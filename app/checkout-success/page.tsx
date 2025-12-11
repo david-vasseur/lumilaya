@@ -36,6 +36,4 @@ export default async function CheckoutSuccessPage({
         )
 
     }
-
-    
 }
