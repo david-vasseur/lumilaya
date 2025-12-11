@@ -8,6 +8,7 @@ import Footer from "./components/layout/Footer";
 import { useEffect } from "react";
 import { useDeviceStore } from "@/lib/store/deviceStore";
 import { Toaster } from "react-hot-toast";
+import { logVisit } from "./components/actions/log.action";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -20,6 +21,12 @@ const Template = ({ children }: { children: React.ReactNode }) => {
 		const cleanup = detectDevice();
 		return cleanup; 
 	}, [detectDevice]);
+
+    useEffect(() => {
+    if (!pathName) return;
+
+    logVisit(pathName, undefined, navigator.userAgent);
+  }, [pathName]);
 
     return (
         <div>            
