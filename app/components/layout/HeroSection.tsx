@@ -88,7 +88,6 @@ export const HeroSection = () => {
 		});
 
 		gsap.to(contentRef.current, {
-			y: -150,
 			opacity: 0,
 			scrollTrigger: {
 				trigger: heroRef.current,
@@ -135,20 +134,19 @@ export const HeroSection = () => {
 				className="absolute inset-0 bg-linear-to-br from-[#2C2C2C]/60 via-[#2C2C2C]/40 to-transparent"
 			/>
 			{/* Contenu principal */}
-			<div ref={contentRef} className={`relative h-full flex items-center justify-center z-10 ${isMobile ? "" : "-translate-x-25"}`}>
+			<div ref={contentRef} className={`relative h-full flex items-center justify-center z-10 ${isMobile ? "translate-x-0!" : "-translate-x-25"}`}>
 				<div className="text-center px-6 max-w-5xl">
 
 					{/* Titre principal avec effet de découpe */}
-					<div className="overflow-hidden mb-2 py-7">
-						<h1 className="hero-title-line text-7xl md:text-9xl lg:text-9xl font-base font-ballet! text-white ">
+					<div className="overflow-hidden px-5 mb-2 py-7">
+						<h1 className="hero-title-line text-[7rem] md:text-9xl lg:text-[10rem] xl:text-[12rem] font-ballet! text-white ">
 							<em>Lumi'laya</em>
 						</h1>
 					</div>
 
 					{/* Sous-titre */}
 					<p className="hero-subtitle text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-12 leading-relaxed">
-						Des bougies artisanales inspirées de la pureté des sommets. 
-						Cire végétale, essences naturelles, pour une lumière qui élève l'âme.
+						<strong className="text-xl md:text-2xl">Naturelle, enivrante et sacrée</strong> <br/> La bougie qui élève votre ambiance
 					</p>
 
 					{/* Call-to-actions */}
@@ -164,16 +162,16 @@ export const HeroSection = () => {
 						</Link>
 
 						<Link 
-							href="/notre-histoire"
+							href="/#best-seller"
 							ref={(el) => {el && ctaRefs.current.push(el)}}
 							className="cta-item inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border-2 border-white/30 text-white px-8 py-4 rounded-full font-medium hover:bg-white/20 transition-colors"
 						>
-							<span>Notre histoire</span>
+							<span>Nos meilleures ventes</span>
 						</Link>
 					</div>
 
 					{/* Éléments de confiance */}
-					<div className="hero-confiance flex items-center justify-center gap-8 mt-16 text-white/70 text-sm">
+					<div className="hero-confiance absolute bottom-5 md:relative flex items-center justify-center gap-8 mt-16 text-white/70 text-sm">
 						<div className="flex items-center gap-2">
 							<div className="w-2 h-2 bg-[#7A9B8E] rounded-full animate-pulse" />
 							<span>Fabrication française</span>
@@ -193,7 +191,7 @@ export const HeroSection = () => {
 			</div>
 
 			{/* Indicateur de scroll animé */}
-			<div className="scroll-indicator absolute bottom-12 left-1/2 -translate-x-1/2 z-20">
+			<div className="hidden 2xl:block scroll-indicator absolute bottom-12 left-1/2 -translate-x-1/2 z-20">
 				<div className="flex flex-col items-center gap-3 animate-bounce">
 					<span className="text-white/70 text-xs uppercase tracking-widest">Découvrir</span>
 					<div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">

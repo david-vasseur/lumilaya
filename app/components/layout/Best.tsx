@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRef } from 'react';
 
 interface IBest {
     products: IProduct[];
@@ -13,16 +14,32 @@ interface IBest {
 
 function Best({ products }: IBest) {
 
-    // const [isPending, startTransition] = useTransition();
-
-    // const handleClick = () => {
-    //     startTransition(async () => {
-    //   await seedProduct(); // appel côté serveur
-    //   alert("Produit Tendresse ajouté !");
-    // });
-    // };
+    const spanRef = useRef(null);
+    const titleRef = useRef(null);
 
     useGSAP(() => {
+
+        gsap.from(titleRef.current, {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            scrollTrigger: {
+                trigger: titleRef.current,
+                start: 'top 80%',
+                end: 'top 60%',
+                scrub: 1
+            }
+        })
+
+        gsap.fromTo(spanRef.current, 
+            { scaleX: 0 },
+            { scaleX: 1, scrollTrigger: {
+                    trigger: spanRef.current,
+                    start: 'top 90%',
+                    end: 'top 30%',
+                    scrub: 1
+                }  }
+        )
 
         gsap.from('.product-card', {
             y: 80,
@@ -51,14 +68,13 @@ function Best({ products }: IBest) {
     }, [])
 
     return (
-        <section className="bestsellers-section py-32 px-6 bg-linear-to-br from-[#7A9B8E] via-[#6A8B7E] to-[#5A7B6E]">
+        <section id='best-seller' className="bestsellers-section py-32 px-6 bg-linear-to-br from-[#7A9B8E] via-[#6A8B7E] to-[#5A7B6E]">
             <div className="max-w-7xl mx-auto">
-                <h2 className="text-4xl relative z-0 text-gray-600 text-center tracking-wide mb-4">
+                <h2 ref={titleRef} className="text-4xl relative z-0 text-gray-600 text-center tracking-wide">
                     Best-Sellers
                 </h2>
-                <p className="text-center text-[#2C2C2C]/60 mb-16">
-                    Les créations préférées de notre communauté
-                </p>
+                <span ref={spanRef} className="block relative z-2 w-2/4 h-1 mx-auto bg-linear-to-r from-transparent via-[#5A7B6E] to-transparent"></span>
+                <span className="block relative z-2 w-2/3 h-15 mx-auto bg-transparent "></span>
 
                 <div className="grid md:grid-cols-4 gap-8">
                     {products.map((product, index) => (
@@ -82,15 +98,6 @@ function Best({ products }: IBest) {
                     ))}
                 </div>
             </div>
-            {/* <div>
-                <button
-                    onClick={handleClick}
-                    disabled={isPending}
-                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 disabled:opacity-50"
-                    >
-                    {isPending ? "En cours..." : "Ajouter le produit Tendresse"}
-                </button>
-            </div> */}
         </section>
     )
 }
