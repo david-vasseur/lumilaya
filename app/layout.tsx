@@ -35,6 +35,21 @@ export const metadata: Metadata = {
     "LUMILAYA",
   ],
 
+  icons: {
+    icon: "/favicon-32x32.png",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+    other: [
+      {
+        rel: "mask-icon",
+        url: "/safari-pinned-tab.svg",
+        color: "#000000", 
+      },
+    ],
+  },
+
+  manifest: "/site.webmanifest",
+
   openGraph: {
     title: "LUMILAYA • Bougies naturelles artisanales",
     description:
