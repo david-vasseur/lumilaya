@@ -213,9 +213,9 @@ function RituelPage({ products }: RituelPageProps) {
 						</h2>
 
 						<p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed mb-10">
-							Nos bougies naturelles sont formulées sans parfum de synthèse.
-							Seules des huiles essentielles pures et des extraits botaniques composent nos créations,
-							pour un air intérieur sain et une combustion propre.
+							Nos bougies naturelles sont formulées sans parfum de synthèse agressif.
+							Nous utilisons exclusivement des fragrances de Grasse, reconnues pour leur qualité et leur savoir-faire artisanal, afin d’offrir des senteurs raffinées et équilibrées.
+							Elles garantissent un air intérieur respecté et une combustion propre.
 						</p>
 
 						<div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">

@@ -153,7 +153,7 @@ const NotreHistoirePage = () => {
             {/* Hero Section */}
             <section className="hero-section relative h-screen flex items-center justify-center overflow-hidden">
                 {/* Background image avec parallax */}
-                <Image src={"/images/histoire/histoire6.webp"} fill alt='' className="hero-image object-cover" />
+                <Image src={"/images/histoire/histoire7.webp"} fill alt='' className="hero-image object-cover" />
                 <div className="hero-image absolute inset-0 -z-10">
                     
                     <div className="absolute inset-0 bg-linear-to-br from-[#7A9B8E]/90 via-[#6A8B7E]/80 to-[#5A7B6E]/90 z-10" />
@@ -171,7 +171,7 @@ const NotreHistoirePage = () => {
                         </h1>
                     </div>
                     <p className="hero-subtitle text-2xl md:text-3xl text-zinc-100 font-light">
-                        Un voyage entre tradition et innovation, inspiré par la pureté des sommets
+                        Une histoire qui commence par un souffle, et continue par une flamme.
                     </p>
                 </div>
 
@@ -275,11 +275,11 @@ const NotreHistoirePage = () => {
                             {/* Stats en mini */}
                             <div className="grid grid-cols-2 gap-6 pt-8">
                                 <div className="bg-[#F5F1EB] rounded-xl p-6">
-                                    <div className="text-4xl font-light text-[#7A9B8E] mb-2 stat-number" data-value="100">0</div>
+                                    <div className="text-4xl font-light text-[#7A9B8E] mb-2 stat-number" data-value="100">150</div>
                                     <div className="text-sm text-[#2C2C2C]/60">Tests réalisés</div>
                                 </div>
                                 <div className="bg-[#F5F1EB] rounded-xl p-6">
-                                    <div className="text-4xl font-light text-[#7A9B8E] mb-2 stat-number" data-value="6">0</div>
+                                    <div className="text-4xl font-light text-[#7A9B8E] mb-2 stat-number" data-value="6">8</div>
                                     <div className="text-sm text-[#2C2C2C]/60">Mois de développement</div>
                                 </div>
                             </div>
