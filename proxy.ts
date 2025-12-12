@@ -1,5 +1,6 @@
 import { RateLimiterRedis } from 'rate-limiter-flexible';
 import Redis from 'ioredis';
+import { NextResponse } from 'next/server';
 
 const redisClient = new Redis(process.env.REDIS_URL!);
 
@@ -38,5 +39,5 @@ export default async function proxy(req: Request) {
     }
 
     // Redirige ou passe la requête au reste du processus
-    return fetch(req);
+    return NextResponse.next();
 }
