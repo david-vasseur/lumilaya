@@ -12,118 +12,7 @@ interface IItem {
     price: number;
     qty: number;
     image: string;
-}
-
-type Variant = { price: number };
-
-
-
-export async function GetItemBySlug(slug: string) {
-  const productRaw = await prisma.product.findUnique({
-    where: { slug }
-  });
-
-  if (!productRaw) return null;
-
-  const product = transformProduct(productRaw);
-
-
-  const rawSuggests = await prisma.product.findMany({
-  where: {
-    collection: product.collection,
-    NOT: { id: product.id }
-  }
-});
-
-const suggests = rawSuggests.map(p => {
-  const images = Array.isArray(p.images) ? p.images as string[] : [];
-
-  const variants = Array.isArray(p.variants)
-    ? p.variants as { price: number }[]
-    : [];
-
-  return {
-    name: p.name,
-    slug: p.slug,
-    image: images[0] ?? null,
-    price: variants.length > 0 ? variants[0].price : null
-  };
-});
-
-  return { product, suggests };
-}
-export default async function ProductList(collection: string) {
-    const products = await prisma.product.findMany({
-        where: { collection },
-    });  
-
-    return products.map((p) => ({
-        id: p.id,
-        collection: p.collection,
-        name: p.name,
-        slug: p.slug,
-        description: Array.isArray(p.description) ? (p.description as string[]) : [],
-        intro: p.intro,
-        theme: Array.isArray(p.theme) ? (p.theme as string[]) : [],
-        images: Array.isArray(p.images) ? (p.images as string[]) : [],
-        caracteristique: {
-        ...(p.caracteristique as {
-            composition: string;
-            meche: string;
-            parfum: string;
-            combustion: string;
-            poids: string;
-            contenant: string;
-            fabrication: string;
-        }),
-        },
-        variants: Array.isArray(p.variants)
-        ? (p.variants as { id: number; name: string; duration: string; price: number }[])
-        : [],
-        stock: p.stock,
-        promo: p.promo ?? 0,
-        like: p.like ?? 0,
-        createdAt: p.createdAt,
-    }));
-}
-
-export async function TopRatedProducts() {
-  const products = await prisma.product.findMany({
-    orderBy: {
-      like: "desc", // trie par nombre de likes décroissant
-    },
-    take: 4, // limite à 5 produits
-  });
-
-  return products.map((p) => ({
-    id: p.id,
-    collection: p.collection,
-    name: p.name,
-    slug: p.slug,
-    description: Array.isArray(p.description) ? (p.description as string[]) : [],
-    intro: p.intro,
-    theme: Array.isArray(p.theme) ? (p.theme as string[]) : [],
-    images: Array.isArray(p.images) ? (p.images as string[]) : [],
-    caracteristique: {
-      ...(p.caracteristique as {
-        composition: string;
-        meche: string;
-        parfum: string;
-        combustion: string;
-        poids: string;
-        contenant: string;
-        fabrication: string;
-      }),
-    },
-    variants: Array.isArray(p.variants)
-      ? (p.variants as { id: number; name: string; duration: string; price: number }[])
-      : [],
-    stock: p.stock,
-    promo: p.promo ?? 0,
-    like: p.like ?? 0,
-    createdAt: p.createdAt,
-  }));
-}
+};
 
 type ServerItem = {
   productId: string;  // ✅ ObjectId du produit
@@ -131,47 +20,6 @@ type ServerItem = {
   name: string;  // ✅ 11, 12, 21, etc.
   qty: number;
 };
-
-export async function TotalProduct(items: ServerItem[]): Promise<number> {
-  if (!items || items.length === 0) return 0;
-
-  // 🔒 Empêche l'erreur Prisma causée par un productId undefined
-  const productIds = items
-    .map(item => item.productId)
-    .filter(id => typeof id === "string");
-
-  const products = await prisma.product.findMany({
-    where: { id: { in: productIds } },
-    select: {
-      id: true,
-      variants: true,
-      promo: true,
-    },
-  });
-
-  let total = 0;
-
-  for (const item of items) {
-    const product = products.find(p => p.id === item.productId);
-    if (!product) continue;
-
-    const variants = product.variants as { id: number; price: number }[];
-    const variant = variants.find(v => v.id === item.variantId);
-    if (!variant) continue;
-
-    const price =
-      product.promo && product.promo !== 0
-        ? variant.price * (1 - product.promo / 100)
-        : variant.price;
-
-    total += price * item.qty;
-  }
-
-  return total;
-}
-
-
-// types
 
 type PricePerProduct = {
   productId: string;
@@ -181,45 +29,239 @@ type PricePerProduct = {
   qty: number;
 };
 
-// fonction serveur
-export async function getPricesForStripe(items: ServerItem[]): Promise<PricePerProduct[]> {
-  if (!items || items.length === 0) return [];
+type Variant = { price: number };
 
-  const productIds = items.map(i => i.productId);
+// -------------------------------------------------------------------------------------------------------------------
 
-  const products = await prisma.product.findMany({
-    where: { id: { in: productIds } },
-    select: {
-      id: true,
-      name: true, // <-- ajouter le name ici
-      variants: true,
-      promo: true
-    },
-  });
+export async function GetItemBySlug(slug: string) {
+	try {
+		if (!slug) return null;
 
-  const result: PricePerProduct[] = [];
+		// Récupération du produit principal
+		const productRaw = await prisma.product.findUnique({
+		where: { slug },
+		});
 
-  for (const item of items) {
-    const product = products.find(p => p.id === item.productId);
-    if (!product) continue;
+		if (!productRaw) return null;
 
-    const variants = product.variants as { id: number; price: number }[];
-    const variant = variants.find(v => v.id === item.variantId);
-    if (!variant) continue;
+		const product = transformProduct(productRaw);
 
-    const finalPrice = product.promo && product.promo !== 0
-      ? variant.price * (1 - product.promo / 100)
-      : variant.price;
+		// Suggestions
+		const rawSuggests = await prisma.product.findMany({
+		where: {
+			collection: product.collection,
+			NOT: { id: product.id },
+		},
+		});
 
-    result.push({
-      productId: item.productId,
-      variantId: item.variantId,
-      name: item.name, // <-- ajouter le name ici
-      price: finalPrice,
-      qty: item.qty
-    });
-  }
+		const suggests = rawSuggests.map((p) => {
+		const images = Array.isArray(p.images) ? (p.images as string[]) : [];
+		const variants = Array.isArray(p.variants)
+			? (p.variants as { price: number }[])
+			: [];
 
-  return result;
+		return {
+			name: p.name,
+			slug: p.slug,
+			image: images[0] ?? null,
+			price: variants.length > 0 ? variants[0].price : null,
+		};
+		});
+
+		return { product, suggests };
+	} catch (err: any) {
+		console.error("❌ Erreur dans GetItemBySlug :", err?.message ?? err);
+		return { product: null, suggests: [] }
+	}
 }
+
+//-------------------------------------------------------------------------------------
+
+export default async function ProductList(collection: string) {
+	try {
+		if (!collection) return [];
+
+		const products = await prisma.product.findMany({
+		where: { collection },
+		});
+
+		return products.map((p) => ({
+			id: p.id,
+			collection: p.collection,
+			name: p.name,
+			slug: p.slug,
+			description: Array.isArray(p.description) ? (p.description as string[]) : [],
+			intro: p.intro,
+			theme: Array.isArray(p.theme) ? (p.theme as string[]) : [],
+			images: Array.isArray(p.images) ? (p.images as string[]) : [],
+			caracteristique: {
+				...(p.caracteristique as {
+				composition: string;
+				meche: string;
+				parfum: string;
+				combustion: string;
+				poids: string;
+				contenant: string;
+				fabrication: string;
+				}),
+			},
+			variants: Array.isArray(p.variants)
+				? (p.variants as { id: number; name: string; duration: string; price: number }[])
+				: [],
+			stock: p.stock,
+			promo: p.promo ?? 0,
+			like: p.like ?? 0,
+			createdAt: p.createdAt,
+		}));
+	} catch (err: any) {
+		console.error("❌ Erreur dans ProductList :", err?.message ?? err);
+		return [];
+	}
+}
+
+//-------------------------------------------------------------------------------------
+
+export async function TopRatedProducts() {
+	try {
+		const products = await prisma.product.findMany({
+		orderBy: {
+			like: "desc", 
+		},
+		take: 4, // limite à 4 produits
+		});
+
+		return products.map((p) => ({
+		id: p.id,
+		collection: p.collection,
+		name: p.name,
+		slug: p.slug,
+		description: Array.isArray(p.description) ? (p.description as string[]) : [],
+		intro: p.intro,
+		theme: Array.isArray(p.theme) ? (p.theme as string[]) : [],
+		images: Array.isArray(p.images) ? (p.images as string[]) : [],
+		caracteristique: {
+			...(p.caracteristique as {
+			composition: string;
+			meche: string;
+			parfum: string;
+			combustion: string;
+			poids: string;
+			contenant: string;
+			fabrication: string;
+			}),
+		},
+		variants: Array.isArray(p.variants)
+			? (p.variants as { id: number; name: string; duration: string; price: number }[])
+			: [],
+		stock: p.stock,
+		promo: p.promo ?? 0,
+		like: p.like ?? 0,
+		createdAt: p.createdAt,
+		}));
+	} catch (err: any) {
+		console.error("❌ Erreur dans TopRatedProducts :", err?.message ?? err);
+		return []; 
+	}
+}
+
+//---------------------------------------------------------------------------------------------------------
+
+export async function TotalProduct(items: ServerItem[]): Promise<number> {
+	try {
+		if (!items || items.length === 0) return 0;
+
+		const productIds = items
+		.map((item) => item.productId)
+		.filter((id) => typeof id === "string");
+
+		if (productIds.length === 0) return 0;
+
+		const products = await prisma.product.findMany({
+		where: { id: { in: productIds } },
+		select: {
+			id: true,
+			variants: true,
+			promo: true,
+		},
+		});
+
+		let total = 0;
+
+		for (const item of items) {
+		const product = products.find((p) => p.id === item.productId);
+		if (!product) continue;
+
+		const variants = Array.isArray(product.variants)
+			? (product.variants as { id: number; price: number }[])
+			: [];
+		const variant = variants.find((v) => v.id === item.variantId);
+		if (!variant) continue;
+
+		const price =
+			product.promo && product.promo !== 0
+			? variant.price * (1 - product.promo / 100)
+			: variant.price;
+
+		total += price * item.qty;
+		}
+
+		return total;
+	} catch (err: any) {
+		console.error("❌ Erreur dans TotalProduct :", err?.message ?? err);
+		return 0;
+	}
+}
+
+// --------------------------------------------------------------------------------------------------------
+
+export async function getPricesForStripe(items: ServerItem[]): Promise<PricePerProduct[]> {
+	try {
+		if (!items || items.length === 0) return [];
+
+		const productIds = items.map((i) => i.productId).filter((id) => typeof id === "string");
+		if (productIds.length === 0) return [];
+
+		const products = await prisma.product.findMany({
+		where: { id: { in: productIds } },
+		select: {
+			id: true,
+			name: true,
+			variants: true,
+			promo: true,
+		},
+		});
+
+		const result: PricePerProduct[] = [];
+
+		for (const item of items) {
+		const product = products.find((p) => p.id === item.productId);
+		if (!product) continue;
+
+		const variants = Array.isArray(product.variants)
+			? (product.variants as { id: number; price: number }[])
+			: [];
+		const variant = variants.find((v) => v.id === item.variantId);
+		if (!variant) continue;
+
+		const finalPrice =
+			product.promo && product.promo !== 0
+			? variant.price * (1 - product.promo / 100)
+			: variant.price;
+
+		result.push({
+			productId: item.productId,
+			variantId: item.variantId,
+			name: item.name || product.name,
+			price: finalPrice,
+			qty: item.qty,
+		});
+		}
+
+		return result;
+	} catch (err: any) {
+		console.error("❌ Erreur dans getPricesForStripe :", err?.message ?? err);
+		return []; 
+	}
+}
+
 
