@@ -44,7 +44,7 @@ async function ProductDetail({ params }: Props) {
 	const { slug } = await params;
 	const result = await GetItemBySlug(slug);	
 
-	if (!result) return
+	if (!result || !result.product) return <p>Produit non trouvé</p>;
 
 	const { product, suggests } = result;
 
