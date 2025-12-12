@@ -55,11 +55,14 @@ model Product {
 
 model VisitLog {
   id         String   @id @map("_id") @default(auto()) @db.ObjectId
-  ipHash     String?  // hash ou partie de l'IP pour anonymisation
-  path       String   // page visitée
-  userAgent  String?  // optionnel
+  visitorId  String
+  userAgent  String?
+  pages      String[] @default([])
+  country    String?
+  city       String?
   createdAt  DateTime @default(now())
 }
+
 
 model ShippingPrice {
   id        String   @id @map("_id") @default(auto()) @db.ObjectId

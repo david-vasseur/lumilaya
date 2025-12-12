@@ -25,7 +25,7 @@ const Template = ({ children }: { children: React.ReactNode }) => {
     useEffect(() => {
     if (!pathName) return;
 
-    logVisit(pathName, undefined, navigator.userAgent);
+    logVisit(pathName, navigator.userAgent);
   }, [pathName]);
 
     return (
