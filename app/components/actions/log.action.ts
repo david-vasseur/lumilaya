@@ -3,6 +3,7 @@
 import { headers } from "next/headers";
 import { PrismaClient } from "@/lib/generated/prisma/client";
 import crypto from "crypto";
+import { rateLimiter } from "@/lib/rate-limit/rateLimit";
 
 const prisma = new PrismaClient();
 
@@ -22,6 +23,14 @@ export async function logVisit(path: string, userAgent?: string) {
         .createHash("sha256")
         .update(ipHash + (userAgent ?? ""))
         .digest("hex");
+
+        
+        try {
+            await rateLimiter.consume(visitorId); // Throws si dépasse le quota
+        } catch (rejRes) {
+            console.warn("Rate limit atteint pour", ipRaw);
+            return; // on ignore la requête si trop de hits
+        }
 
         // Appel API géoloc
         const geoData = await fetch(`https://ipwho.is/${ipRaw}`).then(r => r.json());

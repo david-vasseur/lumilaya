@@ -3,6 +3,8 @@
 import { PrismaClient } from "@/lib/generated/prisma/client";
 import Stripe from "stripe";
 import { getPricesForStripe } from "../../actions/product.action";
+import { headers } from "next/headers";
+import { rateLimiter } from "@/lib/rate-limit/rateLimit";
 
 const prisma = new PrismaClient();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -43,6 +45,18 @@ type ServerItem = {
 
 export async function handleCheckout(clientItems: ServerItem[], customer: CustomerInfo) {
 	try {
+
+		const h = await headers();
+		const ipRaw = (h.get("x-forwarded-for") || h.get("x-real-ip") || "0.0.0.0").split(",")[0].trim();
+
+		try {
+		await rateLimiter.consume(ipRaw); // Throws si dépasse le quota
+		} catch (rejRes) {
+		console.warn("Rate limit atteint pour", ipRaw);
+		return { url: null, error: "Trop de requêtes, essayez plus tard." };
+		}
+
+
 		if (!clientItems || clientItems.length === 0) {
 		throw new Error("Le panier est vide.");
 		}
