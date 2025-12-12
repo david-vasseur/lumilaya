@@ -4,6 +4,7 @@ import "./globals.css";
 import Navigation from "./components/features/Navigation";
 import Modal from "./components/features/Modal";
 import React from "react";
+import ReactLenis from "lenis/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -89,13 +90,15 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="fr">
-			<body
-				className={`${geistSans?.variable ?? ''} ${geistMono?.variable ?? ''} ${ballet?.variable ?? ''} antialiased overflow-x-hidden`}
-			>
-				<Navigation />
-				{children}
-				<Modal />
-			</body>
+      <ReactLenis root>
+        <body
+          className={`${geistSans?.variable ?? ''} ${geistMono?.variable ?? ''} ${ballet?.variable ?? ''} antialiased overflow-x-hidden`}
+        >
+          <Navigation />
+          {children}
+          <Modal />
+        </body>
+        </ReactLenis>
 		</html>
 	);
 }

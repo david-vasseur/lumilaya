@@ -202,45 +202,53 @@ function TestSavoir() {
 ];
 
 
-    useGSAP(() => {
+useGSAP(() => {
 
-        const stickys = document.querySelectorAll(".sticky-card");
+  const stickys = document.querySelectorAll(".sticky-card");
 
-        stickys.forEach((card, index) => {
-            if (index < stickys.length -1 ) {
-                ScrollTrigger.create({
-                    trigger: card,
-                    start: "top top",
-                    endTrigger: stickys[stickys.length - 1],
-                    end: "top top",
-                    scrub: 2,
-                    pin: true,
-                    pinSpacing: false
-                })
-            }
+  stickys.forEach((card, index) => {
 
-            if (index < stickys.length -1) {
-                ScrollTrigger.create({
-                    trigger: stickys[index + 1],
-                    start: "top bottom",
-                    end: "top top",
-                    onUpdate: (self) => {
-                        const progress = self.progress;
-                        const scale = 1 - progress * 0.25;
-                        const rotation = (index % 2 === 0 ? 5 : -5) * progress;
-                        const opacity = 1 - progress * 1;
+    // ---- PINNING ----
+    if (index < stickys.length - 1) {
+      ScrollTrigger.create({
+        trigger: card,
+        start: "top top",
+        endTrigger: stickys[stickys.length - 1],
+        end: "top top",
+        scrub: 2,
+        pin: true,
+        pinSpacing: false
+      });
+    }
 
-                        gsap.set(card, {
-                            scale: scale,
-                            rotation: rotation,
-                            opacity: opacity
-                        })
-                    }
-                })
-            }
-        })
+    // ---- ANIMATION ----
+    if (index < stickys.length - 1) {
 
-    }, { scope: containerRef })
+      // valeurs initiales : reset pour que l’anim soit cohérente
+      gsap.set(card, {
+        scale: 1,
+        rotation: 0,
+        opacity: 1
+      });
+
+      gsap.to(card, {
+        scale: 0.75,
+        rotation: index % 2 === 0 ? 5 : -5,
+        opacity: 0,
+        ease: "none", // optionnel mais "logique" avec scrub
+        scrollTrigger: {
+          trigger: stickys[index + 1],
+          start: "top bottom",
+          end: "top top",
+          scrub: 1.5
+        }
+      });
+
+    }
+
+  });
+
+}, { scope: containerRef });
 
     return (
         <div
