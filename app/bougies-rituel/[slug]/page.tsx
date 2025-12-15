@@ -8,7 +8,7 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-	const products = await ProductList("Emotion");
+	const products = await ProductList("Terre");
 	return products.map((product) => ({
 		slug: product.slug,
 	}));
@@ -31,14 +31,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
 
     const { product } = result;
-    const pageUrl = `/bougies-emotions/${product.slug}`;
+    const pageUrl = `/bougies-rituels/${product.slug}`;
     const mainImage = product.images[0].startsWith('http') 
         ? product.images[0] 
         : `${BASE_URL}${product.images[0].startsWith('/') ? '' : '/'}${product.images[0]}`;
 
     return {
         metadataBase: new URL(BASE_URL),
-        title: `Bougie ${product.name} | Collection Émotion | Lumilaya`,
+        title: `Bougie ${product.name} | Collection Entre Terre & Ciel | Lumilaya`,
         description: product.description 
             ? product.description[0].substring(0, 160)
             : `Découvrez la bougie artisanale ${product.name}. Fabrication française et cire naturelle.`,
@@ -85,7 +85,7 @@ async function ProductDetail({ params }: Props) {
         "brand": { "@type": "Brand", "name": "Lumilaya" },
         "offers": {
             "@type": "Offer",
-            "url": `${BASE_URL}/bougies-emotions/${product.slug}`,
+            "url": `${BASE_URL}/bougies-rituels/${product.slug}`,
             "priceCurrency": "EUR",
             "price": product.variants[0].price,
             "availability": product.stock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
@@ -98,8 +98,8 @@ async function ProductDetail({ params }: Props) {
         "@type": "BreadcrumbList",
         "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Accueil", "item": BASE_URL },
-            { "@type": "ListItem", "position": 2, "name": "Bougies Émotions", "item": `${BASE_URL}/bougies-emotions` },
-            { "@type": "ListItem", "position": 3, "name": product.name, "item": `${BASE_URL}/bougies-emotions/${product.slug}` }
+            { "@type": "ListItem", "position": 2, "name": "Bougies Émotions", "item": `${BASE_URL}/bougies-rituels` },
+            { "@type": "ListItem", "position": 3, "name": product.name, "item": `${BASE_URL}/bougies-rituels/${product.slug}` }
         ]
     };
 
