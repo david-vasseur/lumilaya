@@ -139,7 +139,9 @@ export default function RootLayout({
           className={`${geistSans?.variable ?? ''} ${geistMono?.variable ?? ''} ${ballet?.variable ?? ''} antialiased overflow-x-hidden`}
         >
           <Navigation />
-          {children}
+          <main id="main-content">
+            {children}
+          </main>
           <Modal />
         </body>
         </ReactLenis>
