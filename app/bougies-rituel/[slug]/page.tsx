@@ -9,6 +9,7 @@ interface Props {
 
 export async function generateStaticParams() {
 	const products = await ProductList("Terre");
+	console.log(products.map(p => p.slug));
 	return products.map((product) => ({
 		slug: product.slug,
 	}));

@@ -12,6 +12,7 @@ interface Props {
 // Résultat : Chargement instantané pour l'utilisateur.
 export async function generateStaticParams() {
     const products = await ProductList("Emotion");
+	console.log(products.map(p => p.slug));
     return products.map((product) => ({
         slug: product.slug,
     }));
