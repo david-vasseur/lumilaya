@@ -5,6 +5,7 @@ import { useGSAP } from '@gsap/react';
 import { Leaf, Mail, Phone, MapPin, Facebook, Instagram, Twitter } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { FaFacebook, FaInstagram, FaTiktok } from 'react-icons/fa';
 
 const Footer = () => {
 
@@ -85,19 +86,19 @@ const Footer = () => {
 								href="#" 
 								className="footer-social w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all"
 							>
-								<Facebook className="w-5 h-5" />
+								<FaFacebook className="w-5 h-5" />
 							</a>
 							<a 
 								href="#" 
 								className="footer-social w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all"
 							>
-								<Instagram className="w-5 h-5" />
+								<FaInstagram className="w-5 h-5" />
 							</a>
 							<a 
 								href="#" 
 								className="footer-social w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all"
 							>
-								<Twitter className="w-5 h-5" />
+								<FaTiktok className="w-5 h-5" />
 							</a>
 						</div>
 					</div>
