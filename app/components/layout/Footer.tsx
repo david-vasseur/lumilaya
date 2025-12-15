@@ -34,8 +34,8 @@ const Footer = () => {
 		});
 
 		gsap.from('.footer-social', {
-			scale: 0,
-			opacity: 0,
+			scale: 1,
+			opacity: 1,
 			duration: 0.6,
 			stagger: 0.1,
 			ease: 'back.out(1.7)',
