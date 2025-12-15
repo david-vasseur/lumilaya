@@ -128,7 +128,7 @@ function Navigation() {
                 ) : (
                     <div className="mx-auto px-6 py-4 flex items-center justify-between">
                 <Link href={"/"} className="flex items-center gap-2 group">
-                    <div className="h-10 w-20 relative -my-4">
+                    <div className="aspect-1137/710 w-20 relative -my-4">
                         <Image fill alt='logo lumilaya' src={"/images/logo.webp"} />
                     </div>
                 </Link>
