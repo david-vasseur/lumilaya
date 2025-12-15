@@ -21,6 +21,8 @@ const ballet = Herr_Von_Muellerhoff({
   weight: ['400']
 })
 
+const BASE_URL = "https://www.lumilaya.fr"
+
 export const metadata: Metadata = {
   title: "LUMILAYA • Bougies naturelles artisanales",
   description:
@@ -56,11 +58,11 @@ export const metadata: Metadata = {
     title: "LUMILAYA • Bougies naturelles artisanales",
     description:
       "Découvrez les bougies naturelles LUMILAYA : cire végétale, parfums authentiques, créations émotionnelles fabriquées en France.",
-    url: "https://www.lumilaya.fr",
+    url: BASE_URL,
     siteName: "LUMILAYA",
     images: [
       {
-        url: "https://www.lumilaya.fr/og-image.jpg",
+        url: "https://www.lumilaya.fr/images/landing/hero7.webp",
         width: 1200,
         height: 630,
         alt: "Bougie naturelle LUMILAYA",
@@ -75,12 +77,48 @@ export const metadata: Metadata = {
     title: "LUMILAYA • Bougies naturelles artisanales",
     description:
       "Bougies naturelles parfumées, cire végétale, fabrication artisanale française. Explorez les émotions en lumière.",
-    images: ["https://www.lumilaya.fr/og-image.jpg"],
+    images: ["https://www.lumilaya.fr/images/landing/hero7.webp"],
   },
+  robots: {
+        index: true,
+        follow: true,
+    },
 
   alternates: {
-    canonical: "https://www.lumilaya.fr",
+    canonical: BASE_URL,
   },
+};
+
+const homePageSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      // Balise Organization : Cruciale pour l'E-E-A-T (Entité, Logo, Réseaux)
+      "@type": "Organization",
+      "@id": `${BASE_URL}/#organization`,
+      "name": "LUMILAYA",
+      "url": BASE_URL,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${BASE_URL}/images/logo-lumilaya.png`, // Vérifie ce chemin
+        "width": 250,
+        "height": 100
+      },
+      "sameAs": [
+        // Remplacer ces URLs par tes liens réels
+        "https://www.instagram.com/ton_instagram_lumilaya/",
+        "https://www.facebook.com/ta_page_facebook_lumilaya"
+      ]
+    },
+    {
+      // Balise WebSite : Simple déclaration du site
+      "@type": "WebSite",
+      "@id": `${BASE_URL}/#website`,
+      "url": BASE_URL,
+      "name": "LUMILAYA",
+      "description": "Bougies naturelles parfumées artisanales françaises.",
+    }
+  ]
 };
 
 export default function RootLayout({
@@ -90,6 +128,12 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="fr">
+      <head>
+        <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(homePageSchema) }}
+        />
+      </head>
       <ReactLenis root>
         <body
           className={`${geistSans?.variable ?? ''} ${geistMono?.variable ?? ''} ${ballet?.variable ?? ''} antialiased overflow-x-hidden`}

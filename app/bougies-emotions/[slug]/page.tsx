@@ -1,55 +1,135 @@
-
 import ProductList, { GetItemBySlug } from '@/app/components/actions/product.action';
 import EmotionSlug from '@/app/components/layout/pages/EmotionSlug';
-import { IProduct } from '@/type/product';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 interface Props {
-  	params: { slug: string };
+    params: { slug: string };
 }
 
-export async function generateMetadata({ params }: Props) {
-	const products: IProduct[] = await ProductList("Emotion");
-	const { slug } = await params;
-	const product = products.find(product => product.slug === slug );
+// OPTIMISATION 1 : Génération Statique (SSG)
+// Cela permet à Next.js de construire toutes les pages produits au build
+// Résultat : Chargement instantané pour l'utilisateur.
+export async function generateStaticParams() {
+    const products = await ProductList("Emotion");
+    return products.map((product) => ({
+        slug: product.slug,
+    }));
+}
 
-	if (!products || products.length === 0) {
-		return {
-		title: "Bougies Émotion - Lumilaya",
-		description: "Découvrez notre collection de bougies artisanales inspirées par les émotions. Fabrication 100% française, parfum naturel, artisanat haut de gamme.",
-		};
-	}
+// On définit la fréquence de mise à jour (ISR) si on ajoute un produit ou change un prix
+export const revalidate = 3600; 
 
+const BASE_URL = "https://www.lumilaya.fr";
 
-	return {
-		title: `Bougies Émotion - ${product?.name} | Lumilaya`,
-		description: `Explorez notre collection de bougies artisanales "Emotions & Plaisirs". Nos bougies "${product?.name}" sont 100% naturelles, fabriquées en France et parfaites pour éveiller vos émotions.`,
-		openGraph: {
-			title: `Bougies Émotion - ${product?.name} | Lumilaya`,
-			description: `Découvrez nos bougies artisanales "Emotions & Plaisirs" : ${product?.name}. Fabrication française, ingrédients naturels, parfum unique.`,
-			type: "website",
-			url: `https://www.lumilaya.fr/bougies-emotions/${product?.slug}`,
-			images: `https://www.lumilaya.fr/${product?.images[0]}`
-		},
-		twitter: {
-			card: "summary_large_image",
-			title: `Bougies Émotion - ${product?.name} | Lumilaya`,
-			description: `Nos bougies artisanales "Emotions & Plaisirs" vous offrent une expérience sensorielle unique. Découvrez "${product?.name}" dès maintenant.`,
-			images: `https://www.lumilaya.fr/${product?.images[0]}`,
-		},
-	};
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const { slug } = params; // Pas besoin de await params dans les versions récentes, mais ok si Next 13/14
+    
+    // OPTIMISATION 2 : Fetch unique et ciblé
+    // On utilise la fonction précise plutôt que de charger toute la liste
+    const result = await GetItemBySlug(slug);
+
+    if (!result || !result.product) {
+        return {
+            title: "Produit introuvable - Lumilaya",
+            robots: { index: false, follow: true } 
+        };
+    }
+
+    const { product } = result;
+    const pageUrl = `/bougies-emotions/${product.slug}`;
+    // Image absolue sécurisée
+    const mainImage = product.images[0].startsWith('http') 
+        ? product.images[0] 
+        : `${BASE_URL}${product.images[0].startsWith('/') ? '' : '/'}${product.images[0]}`;
+
+    return {
+        metadataBase: new URL(BASE_URL),
+        title: `Bougie ${product.name} | Collection Émotion | Lumilaya`,
+        // Utilise la description courte du produit si elle existe, sinon un fallback optimisé
+        description: product.description 
+            ? product.description[0].substring(0, 160) 
+            : `Découvrez la bougie artisanale ${product.name}. Fabrication française et cire naturelle.`,
+        alternates: {
+            canonical: pageUrl,
+        },
+        openGraph: {
+            title: `Bougie ${product.name} - Artisanat Français`,
+            description: `Une expérience sensorielle unique avec la bougie ${product.name}.`,
+            type: "website", 
+            url: pageUrl,
+            images: [
+                {
+                    url: mainImage,
+                    width: 800,
+                    height: 800,
+                    alt: `Bougie artisanale ${product.name}`
+                }
+            ],
+        },
+        // Ajout de métadonnées spécifiques aux produits pour les réseaux sociaux
+        other: {
+            "product:price:amount": product.variants[0].price.toString(),
+            "product:price:currency": "EUR",
+            "product:availability": product.stock ? "in stock" : "out of stock",
+        }
+    };
 }
 
 async function ProductDetail({ params }: Props) {
-	
-	const { slug } = await params;
-	const result = await GetItemBySlug(slug);	
+    const { slug } = params;
+    const result = await GetItemBySlug(slug);   
 
-	if (!result || !result.product) return <p>Produit non trouvé</p>;
+    // Si pas de produit, on déclenche la vraie page 404 de Next.js
+    if (!result || !result.product) {
+        notFound();
+    }
 
-	const { product, suggests } = result;
+    const { product, suggests } = result;
 
-	return (
-		<EmotionSlug product={product} suggest={suggests} />
-	);
+    // OPTIMISATION 3 : Schema.org Product (JSON-LD)
+    // C'est LE point le plus important pour le e-commerce
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": product.name,
+        "image": product.images.map(img => img.startsWith('http') ? img : `${BASE_URL}${img.startsWith('/') ? '' : '/'}${img}`),
+        "description": product.description,
+        "sku": `BE-${product.variants[0].id}`, 
+        "brand": {
+            "@type": "Brand",
+            "name": "Lumilaya"
+        },
+        "offers": {
+            "@type": "Offer",
+            "url": `${BASE_URL}/bougies-emotions/${product.slug}`,
+            "priceCurrency": "EUR",
+            "price": product.variants[0].price,
+            "availability": product.stock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+            "itemCondition": "https://schema.org/NewCondition"
+        }
+    };
+
+    // Breadcrumb spécifique au produit
+    const breadcrumbLd = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Accueil", "item": BASE_URL },
+            { "@type": "ListItem", "position": 2, "name": "Bougies Émotions", "item": `${BASE_URL}/bougies-emotions` },
+            { "@type": "ListItem", "position": 3, "name": product.name, "item": `${BASE_URL}/bougies-emotions/${product.slug}` }
+        ]
+    };
+
+    return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify([jsonLd, breadcrumbLd]) }}
+            />
+            <EmotionSlug product={product} suggest={suggests} />
+        </>
+    );
 }
+
 export default ProductDetail;
