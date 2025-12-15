@@ -82,27 +82,37 @@ const Footer = () => {
 							Cire végétale pure, parfums naturels, pour une atmosphère saine et apaisante.
 						</p>
 						<div className="footer-socials flex gap-4">
-							<a 
-								href="#" 
+							<a
+								href="https://www.facebook.com/share/1G81FARnuq/?mibextid=wwXIfr"
+								aria-label="Facebook Lumilaya"
+								target="_blank"
+								rel="noopener noreferrer"
 								className="footer-social w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all"
 							>
 								<FaFacebook className="w-5 h-5" />
 							</a>
-							<a 
-								href="#" 
+
+							<a
+								href="https://www.instagram.com/bougies_lumilaya?igsh=MXBsOGdpY2gyaTI2&utm_source=qr"
+								aria-label="Instagram Lumilaya"
+								target="_blank"
+								rel="noopener noreferrer"
 								className="footer-social w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all"
 							>
 								<FaInstagram className="w-5 h-5" />
 							</a>
-							<a 
-								href="#" 
+
+							<a
+								href="https://www.tiktok.com/@bougies.lumilaya?_r=1&_t=ZN-92FCWgfpN3r"
+								aria-label="X (Twitter) Lumilaya"
+								target="_blank"
+								rel="noopener noreferrer"
 								className="footer-social w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all"
 							>
 								<FaTiktok className="w-5 h-5" />
 							</a>
 						</div>
 					</div>
-
 					{/* Navigation */}
 					<div className="footer-column col-span-1 lg:col-span-2">
 						<h3 className="text-lg font-medium mb-6">Navigation</h3>
