@@ -3,6 +3,7 @@ import EmotionSlug from '@/app/components/layout/pages/EmotionSlug';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+
 interface Props {
     params: { slug: string };
 }
@@ -25,7 +26,7 @@ const BASE_URL = "https://www.lumilaya.fr";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { slug } = params; // Pas besoin de await params dans les versions récentes, mais ok si Next 13/14
-    
+    console.log("Rendering slug page", params);
     // OPTIMISATION 2 : Fetch unique et ciblé
     // On utilise la fonction précise plutôt que de charger toute la liste
     const result = await GetItemBySlug(slug);
