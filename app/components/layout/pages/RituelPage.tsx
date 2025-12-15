@@ -159,9 +159,6 @@ function RituelPage({ products }: RituelPageProps) {
 												<Clock className="w-4 h-4" />
 												<span className="text-sm">{product.variants[0].duration}h</span>
 											</div>
-											<button className="w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-all opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0">
-												<Heart className="w-5 h-5 text-[#7A9B8E]" />
-											</button>
 										</div>
 									</div>
 
