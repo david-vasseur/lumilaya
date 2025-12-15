@@ -36,7 +36,7 @@ function Navigation() {
                                 />
                                 <span className="text-white font-bold">{items.length}</span>
                             </div>
-                            <div className="h-10 w-20 relative -my-4">
+                            <div className="aspect-1137/710 w-20 relative -my-4">
                                 <Image fill alt='logo lumilaya' src={"/images/logo.webp"} />
                             </div>
                             <div onClick={() => setIsMenuOpen(!isMenuOpen)}>
