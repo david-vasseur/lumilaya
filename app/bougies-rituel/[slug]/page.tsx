@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
 
     const { product } = result;
-    const pageUrl = `/bougies-rituels/${product.slug}`;
+    const pageUrl = `/bougies-rituel/${product.slug}`;
     const mainImage = product.images[0].startsWith('http') 
         ? product.images[0] 
         : `${BASE_URL}${product.images[0].startsWith('/') ? '' : '/'}${product.images[0]}`;
@@ -85,7 +85,7 @@ async function ProductDetail({ params }: Props) {
         "brand": { "@type": "Brand", "name": "Lumilaya" },
         "offers": {
             "@type": "Offer",
-            "url": `${BASE_URL}/bougies-rituels/${product.slug}`,
+            "url": `${BASE_URL}/bougies-rituel/${product.slug}`,
             "priceCurrency": "EUR",
             "price": product.variants[0].price,
             "availability": product.stock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
@@ -98,8 +98,8 @@ async function ProductDetail({ params }: Props) {
         "@type": "BreadcrumbList",
         "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Accueil", "item": BASE_URL },
-            { "@type": "ListItem", "position": 2, "name": "Bougies Émotions", "item": `${BASE_URL}/bougies-rituels` },
-            { "@type": "ListItem", "position": 3, "name": product.name, "item": `${BASE_URL}/bougies-rituels/${product.slug}` }
+            { "@type": "ListItem", "position": 2, "name": "Bougies Émotions", "item": `${BASE_URL}/bougies-rituel` },
+            { "@type": "ListItem", "position": 3, "name": product.name, "item": `${BASE_URL}/bougies-rituel/${product.slug}` }
         ]
     };
 
