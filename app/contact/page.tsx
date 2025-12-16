@@ -36,26 +36,7 @@ const ContactPage = async () => {
     
     const thumb = await getTikTokThumbnail("https://vm.tiktok.com/ZNRY8RgLC/");
 
-    const form = useForm({
-        defaultValues: {
-            firstName: "",
-            lastName: "",
-            email: "",
-            phone: "",
-            subject: "",
-            message: "",
-        } as ContactForm,
-        onSubmit: async ({ value }) => {
-            // Logique d'envoi du formulaire
-            console.log(value);
-            
-            // Simuler l'envoi
-            await new Promise(resolve => setTimeout(resolve, 2000));
-            
-            // Afficher un message de succès
-            alert("Votre message a bien été envoyé !");
-        },
-    });
+    
 
     useGSAP(() => {
         // gsap.from('.contact-hero', {
