@@ -156,16 +156,7 @@ const ContactPage = () => {
         <div ref={sectionRef} className="min-h-screen bg-[#FDFBF7]">
             {/* Hero Section */}
             <div className="relative h-[50vh] overflow-hidden">
-                <div className="absolute inset-0 bg-linear-to-br from-[#7A9B8E] via-[#6A8B7E] to-[#5A7B6E]">
-                    <div className="absolute inset-0 opacity-20">
-                        <div className="absolute top-10 left-10 w-64 h-64 bg-white rounded-full blur-3xl"></div>
-                        <div className="absolute bottom-10 right-10 w-80 h-80 bg-[#2C2C2C] rounded-full blur-3xl"></div>
-                    </div>
-                </div>
-
-                <div className="absolute inset-0 flex items-center justify-center">
-                    <Sparkles className="w-32 h-32 text-white/10" />
-                </div>
+                <Image fill src={"/images/montain.svg"} alt="image de fond" className="object-cover -z-1" />
 
                 <div className="contact-hero relative h-full flex items-center justify-center text-center px-6">
                     <div>
