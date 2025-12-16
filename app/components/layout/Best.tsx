@@ -207,9 +207,9 @@ function Best({ products }: IBest) {
                                         {/* Image Container */}
                                         <Link 
                                             href={product.collection === "Terre" ? `bougies-rituel/${product.slug}` : `bougies-emotions/${product.slug}`}
-                                            className="block relative aspect-square"
+                                            className="block relative h-96 aspect-square"
                                         >
-                                            <div className="relative w-full h-96 overflow-hidden">
+                                            <div className="relative w-full h-full overflow-hidden">
                                                 <Image 
                                                     fill 
                                                     src={product.images[0]} 
