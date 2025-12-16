@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import { FaTiktok } from 'react-icons/fa6';
+import { getTikTokThumbnail } from '../components/actions/social.action';
 
 // Interface pour le formulaire de contact
 interface ContactForm {
@@ -31,36 +32,12 @@ interface ContactForm {
 }
 
 // Données fictives pour les posts Instagram/TikTok
-const socialPosts = [
-    {
-        id: 1,
-        platform: 'instagram',
-        image: '/images/social/post1.jpg',
-        url: 'https://instagram.com/p/xxxxx'
-    },
-    {
-        id: 2,
-        platform: 'instagram',
-        image: '/images/social/post2.jpg',
-        url: 'https://instagram.com/p/xxxxx'
-    },
-    {
-        id: 3,
-        platform: 'instagram',
-        image: '/images/social/post3.jpg',
-        url: 'https://instagram.com/p/xxxxx'
-    },
-    {
-        id: 4,
-        platform: 'instagram',
-        image: '/images/social/post4.jpg',
-        url: 'https://instagram.com/p/xxxxx'
-    },
-];
 
-const ContactPage = () => {
+
+const ContactPage = async () => {
     const sectionRef = useRef<HTMLDivElement>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const thumb = await getTikTokThumbnail("https://vm.tiktok.com/ZNRY8RgLC/");
 
     const form = useForm({
         defaultValues: {
@@ -152,6 +129,33 @@ const ContactPage = () => {
         //     }
         // });
     }, []);
+
+    const socialPosts = [
+        {
+            id: 1,
+            platform: "tiktok",
+            url: "https://vm.tiktok.com/ZNRY8RgLC/",
+            thumbnail: "https://p16-sign.tiktokcdn.com/..."
+        },
+        {
+            id: 2,
+            platform: "tiktok",
+            url: "https://vm.tiktok.com/ZNRY8RgLC/",
+            thumbnail: "https://p16-sign.tiktokcdn.com/..."
+        },
+        {
+            id: 3,
+            platform: "tiktok",
+            url: "https://vm.tiktok.com/ZNRY8RgLC/",
+            thumbnail: "https://p16-sign.tiktokcdn.com/..."
+        },
+        {
+            id: 4,
+            platform: "tiktok",
+            url: "https://vm.tiktok.com/ZNRY8RgLC/",
+            thumbnail: "https://p16-sign.tiktokcdn.com/..."
+        }
+    ];
 
     return (
         <div ref={sectionRef} className="min-h-screen bg-[#FDFBF7]">
@@ -490,8 +494,7 @@ const ContactPage = () => {
                                     rel="noopener noreferrer"
                                     className="social-post relative aspect-square rounded-xl overflow-hidden group bg-linear-to-br from-[#7A9B8E] to-[#5A7B6E]"
                                 >
-                                    {/* Image placeholder - remplacer par vraie image */}
-                                    <div className="absolute inset-0 bg-[#2C2C2C]/10 group-hover:bg-[#2C2C2C]/5 transition-all" />
+                                    <Image fill src={thumb} alt='' className="absolute inset-0 bg-[#2C2C2C]/10 group-hover:bg-[#2C2C2C]/5 transition-all" />
                                     
                                     {/* Icône centrale */}
                                     <div className="absolute inset-0 flex items-center justify-center">
@@ -500,7 +503,7 @@ const ContactPage = () => {
 
                                     {/* Overlay au hover */}
                                     <div className="absolute inset-0 bg-linear-to-t from-[#2C2C2C]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                                        <Instagram className="w-6 h-6 text-white" />
+                                        <FaTiktok className="w-6 h-6 text-white" />
                                     </div>
                                 </a>
                             ))}
