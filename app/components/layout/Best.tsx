@@ -123,8 +123,8 @@ function Best({ products }: IBest) {
             scroll-snap-x
             scroll-snap-mandatory
             px-[10vw]
-            scrollbar-x-none
-            py-4
+            scrollbar-hide
+            py-6
           "
         >
           {products.map((product, index) => (
