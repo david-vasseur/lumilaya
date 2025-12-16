@@ -106,7 +106,7 @@ function StickyCard({
                 </p>
 
                 {/* FEATURES */}
-                <div className="hidden xl:grid grid-cols-2 gap-3 md:gap-4 pt-2 md:pt-4">
+                <div className="hidden 2xl:grid grid-cols-2 gap-3 md:gap-4 pt-2 md:pt-4">
                     {features.map((feature, index) => {
                     const Icon = featureIcons[feature.icon];
 
