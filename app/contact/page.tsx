@@ -376,23 +376,22 @@ const ContactPage = async () => {
 
                             <motion.button 
                                 type="submit" 
-                                disabled={isSubmitting}
                                 className="w-full bg-[#7A9B8E] text-white py-4 rounded-xl font-medium text-lg hover:bg-[#6A8B7E] transition-all shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: 0.7 }}
-                                whileHover={{ scale: !isSubmitting ? 1.02 : 1 }}
-                                whileTap={{ scale: !isSubmitting ? 0.98 : 1 }}    
+                                // whileHover={{ scale: !isSubmitting ? 1.02 : 1 }}
+                                // whileTap={{ scale: !isSubmitting ? 0.98 : 1 }}    
                             >
-                                {isSubmitting ? (
+                                {/* {isSubmitting ? (
                                     "Envoi en cours..."
-                                ) : (
+                                ) : ( */}
                                     <>
                                         <Send className="w-5 h-5" />
                                         Envoyer le message
                                     </>
-                                )}
+                                {/* )} */}
                             </motion.button>
                         </form>
                     </div>
