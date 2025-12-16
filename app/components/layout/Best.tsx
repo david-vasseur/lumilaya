@@ -75,10 +75,11 @@ function Best({ products }: IBest) {
 
   return (
     <section
-      id="best-seller"
-      className="relative py-20 md:py-32 overflow-hidden"
+        id="best-seller"
+        className="relative py-20 md:py-32 overflow-hidden"
+
     >
-        <span className="absolute bg-[#7A9B8E] w-[200%] h-full rotate-33" />
+        <Image fill src={"/images/wave.svg"} alt="image de fond" className="object-cover -z-1" />
       {/* ---------------- Header ---------------- */}
       <div className="max-w-7xl mx-auto text-center mb-16 px-4">
         <h2 className="text-4xl md:text-5xl font-light text-[#2C2C2C] mb-4">
