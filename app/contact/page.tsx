@@ -156,7 +156,7 @@ const ContactPage = () => {
         <div ref={sectionRef} className="min-h-screen bg-[#FDFBF7]">
             {/* Hero Section */}
             <div className="relative h-[50vh] overflow-hidden">
-                <Image fill src={"/images/montain.svg"} alt="image de fond" className="object-cover -z-1" />
+                <Image fill src={"/images/montain.svg"} alt="image de fond" className="object-cover" />
 
                 <div className="contact-hero relative h-full flex items-center justify-center text-center px-6">
                     <div>
