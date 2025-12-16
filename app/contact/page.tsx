@@ -1,6 +1,4 @@
-"use client"
 
-import { useRef, useState } from 'react';
 import { useForm } from '@tanstack/react-form';
 import { motion } from 'framer-motion';
 import { useGSAP } from '@gsap/react';
@@ -35,8 +33,7 @@ interface ContactForm {
 
 
 const ContactPage = async () => {
-    const sectionRef = useRef<HTMLDivElement>(null);
-    const [isSubmitting, setIsSubmitting] = useState(false);
+    
     const thumb = await getTikTokThumbnail("https://vm.tiktok.com/ZNRY8RgLC/");
 
     const form = useForm({
@@ -49,14 +46,12 @@ const ContactPage = async () => {
             message: "",
         } as ContactForm,
         onSubmit: async ({ value }) => {
-            setIsSubmitting(true);
             // Logique d'envoi du formulaire
             console.log(value);
             
             // Simuler l'envoi
             await new Promise(resolve => setTimeout(resolve, 2000));
             
-            setIsSubmitting(false);
             // Afficher un message de succès
             alert("Votre message a bien été envoyé !");
         },
@@ -158,7 +153,7 @@ const ContactPage = async () => {
     ];
 
     return (
-        <div ref={sectionRef} className="min-h-screen bg-[#FDFBF7]">
+        <div className="min-h-screen bg-[#FDFBF7]">
             {/* Hero Section */}
             <div className="relative h-[50vh] overflow-hidden">
                 <Image fill src={"/images/montain.svg"} alt="image de fond" className="object-cover" />
