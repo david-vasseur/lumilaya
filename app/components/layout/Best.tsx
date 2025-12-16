@@ -102,7 +102,7 @@ function Best({ products }: IBest) {
                 <div className="absolute top-0 right-0 w-1/3 h-full bg-linear-to-l from-[#7A9B8E]/5 to-transparent" />
             </div>
 
-            <div className="max-w-7xl mx-auto px-6">
+            <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <div className="text-center mb-16">
                     <h2 ref={titleRef} className="text-4xl md:text-5xl font-light text-[#2C2C2C] tracking-wide mb-4">
@@ -124,7 +124,7 @@ function Best({ products }: IBest) {
                                     href={product.collection === "Terre" ? `bougies-rituel/${product.slug}` : `bougies-emotions/${product.slug}`}
                                     className="block relative"
                                 >
-                                    <div className="relative w-full h-80 overflow-hidden">
+                                    <div className="relative aspect-square h-80 overflow-hidden">
                                         <Image 
                                             fill 
                                             src={product.images[0]} 
@@ -209,7 +209,7 @@ function Best({ products }: IBest) {
                                             href={product.collection === "Terre" ? `bougies-rituel/${product.slug}` : `bougies-emotions/${product.slug}`}
                                             className="block relative"
                                         >
-                                            <div className="relative w-full h-96 overflow-hidden">
+                                            <div className="relative aspect-square h-96 overflow-hidden">
                                                 <Image 
                                                     fill 
                                                     src={product.images[0]} 
