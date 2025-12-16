@@ -415,53 +415,52 @@ const ContactPage = () => {
                         {/* Boutons réseaux sociaux */}
                     <div className="grid md:grid-rows-3 gap-6 mb-16 w-7/8">
                         <a 
-                            href="https://instagram.com/lumilaya" 
+                            href="https://www.instagram.com/bougies_lumilaya?igsh=MXBsOGdpY2gyaTI2&utm_source=qr" 
                             target="_blank"
                             rel="noopener noreferrer"
                             className="social-card bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all group"
                         >
-                            <div className="flex items-center bg-linear-to-br from-purple-500 to-pink-500 gap-4">
+                            <div className="flex items-center bg-linear-to-br from-purple-500 to-pink-500 gap-4 rounded-xl">
                                 <div className="w-16 h-16  rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
                                     <Instagram className="w-8 h-8 text-white" />
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-medium text-[#2C2C2C] mb-1">Instagram</h3>
-                                    <p className="text-[#2C2C2C]/60 text-sm">@lumilaya</p>
+                                    <p className="text-[#2C2C2C]/60 text-sm">@bougies_lumilaya</p>
                                 </div>
                             </div>
                         </a>
 
                         <a 
-                            href="https://facebook.com/lumilaya" 
+                            href="https://www.facebook.com/share/1G81FARnuq/?mibextid=wwXIfr" 
                             target="_blank"
                             rel="noopener noreferrer"
                             className="social-card bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all group"
                         >
-                            <div className="flex items-center bg-linear-to-br from-blue-600 via-blue-500 to-indigo-500
- gap-4">
+                            <div className="flex items-center bg-linear-to-br from-blue-600 via-blue-500 to-indigo-500 gap-4 rounded-xl">
                                 <div className="w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
                                     <Facebook className="w-8 h-8 text-white" />
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-medium text-[#2C2C2C] mb-1">Facebook</h3>
-                                    <p className="text-[#2C2C2C]/60 text-sm">LUMILAYA</p>
+                                    <p className="text-[#2C2C2C]/60 text-sm">Lumi'laya</p>
                                 </div>
                             </div>
                         </a>
 
                         <a 
-                            href="https://youtube.com/@lumilaya" 
+                            href="https://www.tiktok.com/@bougies.lumilaya?_r=1&_t=ZN-92FCWgfpN3r" 
                             target="_blank"
                             rel="noopener noreferrer"
                             className="social-card bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all group"
                         >
-                            <div className="flex items-center bg-linear-to-br from-pink-500 via-fuchsia-500 to-cyan-400 shadow-lg shadow-pink-500/40 gap-4">
+                            <div className="flex items-center bg-linear-to-br from-black via-zinc-900 to-zinc-800 ring-1 ring-white/10 gap-4 rounded-xl">
                                 <div className="w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
                                     <FaTiktok className="w-8 h-8 text-white" />
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-medium text-[#2C2C2C] mb-1">YouTube</h3>
-                                    <p className="text-[#2C2C2C]/60 text-sm">LUMILAYA</p>
+                                    <h3 className="text-xl font-medium text-[#2C2C2C] mb-1">Tik Tok</h3>
+                                    <p className="text-[#2C2C2C]/60 text-sm">Bougies.lumilaya</p>
                                 </div>
                             </div>
                         </a>
