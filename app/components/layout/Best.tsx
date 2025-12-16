@@ -111,8 +111,8 @@ function Best({ products }: IBest) {
                         <FaMedal className="absolute top-0 right-0 w-8 h-8" style={{ color: '#cd7f32' }} />
                     )}
                     <div className="absolute top-4 left-4">
-                        <span className="flex items-center gap-1 bg-white/90 px-3 py-1.5 rounded-full text-xs">
-                        <Sparkles className="w-3 h-3 text-[#7A9B8E]" />
+                        <span className="flex items-center gap-1 bg-[#7A9B8E]/80 text-zinc-200 px-3 py-1.5 rounded-full text-xs">
+                        <Sparkles className="w-3 h-3 text-zinc-200" />
                         {product.collection === "Terre"
                             ? "Entre Terre & Ciel"
                             : "Émotions & Plaisirs"}
@@ -122,7 +122,7 @@ function Best({ products }: IBest) {
                 </Link>
 
                 <div className="p-6">
-                    <h3 className="text-xl font-light mb-2">{product.name}</h3>
+                    <h3 className="text-xl font-light text-gray-800 mb-2">Bougie {product.name}</h3>
                     <p className="text-2xl font-medium text-[#7A9B8E] mb-4">
                         {product.variants[0].price.toFixed(2)} €
                     </p>
@@ -192,8 +192,8 @@ function Best({ products }: IBest) {
 
                     {/* Badge */}
                     <div className="absolute top-4 left-4">
-                      <span className="flex items-center gap-1 bg-white/90 px-3 py-1.5 rounded-full text-xs">
-                        <Sparkles className="w-3 h-3 text-[#7A9B8E]" />
+                      <span className="flex items-center gap-1 bg-[#7A9B8E]/80 text-zinc-200 px-3 py-1.5 rounded-full text-xs">
+                        <Sparkles className="w-3 h-3" />
                         {product.collection === "Terre"
                           ? "Entre Terre & Ciel"
                           : "Émotions & Plaisirs"}
@@ -204,8 +204,8 @@ function Best({ products }: IBest) {
 
                 {/* Content */}
                 <div className="p-6">
-                  <h3 className="text-xl font-light mb-2">
-                    {product.name}
+                  <h3 className="text-xl font-light text-gray-800 mb-2">
+                    Bougie {product.name}
                   </h3>
 
                   <p className="text-2xl font-medium text-[#7A9B8E] mb-6">
