@@ -225,7 +225,7 @@ const ContactPage = async () => {
                                     rel="noopener noreferrer"
                                     className="social-post relative aspect-square rounded-xl overflow-hidden group bg-linear-to-br from-[#7A9B8E] to-[#5A7B6E]"
                                 >
-                                    <Image fill src={thumb} alt='' className="absolute inset-0 bg-[#2C2C2C]/10 group-hover:bg-[#2C2C2C]/5 transition-all" />
+                                    <img src={thumb} alt='' className="absolute inset-0 bg-[#2C2C2C]/10 group-hover:bg-[#2C2C2C]/5 transition-all" />
                                     
                                     {/* Icône centrale */}
                                     <div className="absolute inset-0 flex items-center justify-center">
