@@ -90,34 +90,55 @@ function Best({ products }: IBest) {
       </div>
 
       {/* ================= DESKTOP GRID ================= */}
-      <div className="hidden md:grid max-w-7xl mx-auto grid-cols-2 lg:grid-cols-4 gap-8 px-4">
+      <div className="hidden md:grid max-w-7xl mx-auto grid-cols-2 lg:grid-cols-3 gap-8 px-4">
         {products.map((product, index) => (
-          <div key={index} className="bg-white rounded-2xl shadow-lg">
-            <Link href={`/bougies-${product.collection === "Terre" ? "rituel" : "emotions"}/${product.slug}`}>
-              <div className="relative aspect-square overflow-hidden rounded-t-2xl">
-                <Image
-                  fill
-                  src={product.images[0]}
-                  alt={product.name}
-                  className="object-cover"
-                />
-                {index === 0 ? (
-                    <FaMedal className="absolute top-0 right-0 w-6 h-6" style={{ color: 'gold' }} />
-                ) : index === 1 ? (
-                    <FaMedal className="absolute top-0 right-0 w-6 h-6" style={{ color: 'silver' }} />
-                ) : (
-                    <FaMedal className="absolute top-0 right-0 w-6 h-6" style={{ color: '#cd7f32' }} />
-                )}
-              </div>
-            </Link>
+            <div key={index} className="bg-white rounded-2xl shadow-lg">
+                <Link href={`/bougies-${product.collection === "Terre" ? "rituel" : "emotions"}/${product.slug}`}>
+                <div className="relative aspect-square overflow-hidden rounded-t-2xl">
+                    <Image
+                    fill
+                    src={product.images[0]}
+                    alt={product.name}
+                    className="object-cover"
+                    />
+                    {index === 0 ? (
+                        <FaMedal className="absolute top-0 right-0 w-8 h-8" style={{ color: 'gold' }} />
+                    ) : index === 1 ? (
+                        <FaMedal className="absolute top-0 right-0 w-8 h-8" style={{ color: 'silver' }} />
+                    ) : (
+                        <FaMedal className="absolute top-0 right-0 w-8 h-8" style={{ color: '#cd7f32' }} />
+                    )}
+                    <div className="absolute top-4 left-4">
+                        <span className="flex items-center gap-1 bg-white/90 px-3 py-1.5 rounded-full text-xs">
+                        <Sparkles className="w-3 h-3 text-[#7A9B8E]" />
+                        {product.collection === "Terre"
+                            ? "Entre Terre & Ciel"
+                            : "Émotions & Plaisirs"}
+                        </span>
+                    </div>
+                </div>
+                </Link>
 
-            <div className="p-6">
-              <h3 className="text-xl font-light mb-2">{product.name}</h3>
-              <p className="text-2xl font-medium text-[#7A9B8E] mb-4">
-                {product.variants[0].price.toFixed(2)} €
-              </p>
+                <div className="p-6">
+                    <h3 className="text-xl font-light mb-2">{product.name}</h3>
+                    <p className="text-2xl font-medium text-[#7A9B8E] mb-4">
+                        {product.variants[0].price.toFixed(2)} €
+                    </p>
+                    <div className="flex gap-3">
+                        <button className="flex-1 flex items-center justify-center gap-2 bg-[#7A9B8E] text-white py-3 rounded-xl">
+                            <ShoppingCart className="w-4 h-4" />
+                            Ajouter
+                        </button>
+
+                        <Link
+                            href={`/bougies-${product.collection === "Terre" ? "rituel" : "emotions"}/${product.slug}`}
+                            className="flex-1 flex items-center justify-center border-2 border-[#7A9B8E] text-[#7A9B8E] py-3 rounded-xl"
+                        >
+                            Découvrir
+                        </Link>
+                    </div>
+                </div>
             </div>
-          </div>
         ))}
       </div>
 
@@ -159,6 +180,13 @@ function Best({ products }: IBest) {
                       alt={product.name}
                       className="object-cover"
                     />
+                    {index === 0 ? (
+                        <FaMedal className="absolute top-0 right-0 w-6 h-6" style={{ color: 'gold' }} />
+                    ) : index === 1 ? (
+                        <FaMedal className="absolute top-0 right-0 w-6 h-6" style={{ color: 'silver' }} />
+                    ) : (
+                        <FaMedal className="absolute top-0 right-0 w-6 h-6" style={{ color: '#cd7f32' }} />
+                    )}
 
                     {/* Badge */}
                     <div className="absolute top-4 left-4">
