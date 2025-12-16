@@ -420,8 +420,8 @@ const ContactPage = () => {
                             rel="noopener noreferrer"
                             className="social-card bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all group"
                         >
-                            <div className="flex items-center bg-linear-to-br from-purple-500 to-pink-500 gap-4 rounded-xl">
-                                <div className="w-16 h-16  rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <div className="flex items-center  gap-4 rounded-xl">
+                                <div className="w-16 h-16 bg-linear-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
                                     <Instagram className="w-8 h-8 text-white" />
                                 </div>
                                 <div>
@@ -437,8 +437,8 @@ const ContactPage = () => {
                             rel="noopener noreferrer"
                             className="social-card bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all group"
                         >
-                            <div className="flex items-center bg-linear-to-br from-blue-600 via-blue-500 to-indigo-500 gap-4 rounded-xl">
-                                <div className="w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <div className="flex items-center  gap-4 rounded-xl">
+                                <div className="w-16 h-16 bg-linear-to-br from-blue-600 via-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
                                     <Facebook className="w-8 h-8 text-white" />
                                 </div>
                                 <div>
@@ -454,8 +454,8 @@ const ContactPage = () => {
                             rel="noopener noreferrer"
                             className="social-card bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all group"
                         >
-                            <div className="flex items-center bg-linear-to-br from-black via-zinc-900 to-zinc-800 ring-1 ring-white/10 gap-4 rounded-xl">
-                                <div className="w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <div className="flex items-center  gap-4 rounded-xl">
+                                <div className="w-16 h-16 bg-linear-to-br from-black via-zinc-900 to-zinc-800 ring-1 ring-white/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
                                     <FaTiktok className="w-8 h-8 text-white" />
                                 </div>
                                 <div>
