@@ -51,7 +51,7 @@ function Best({ products }: IBest) {
       },
       {
         root: mobileTrackRef.current,
-        threshold: 0.6,
+        threshold: 0.5,
       }
     );
 
@@ -118,13 +118,13 @@ function Best({ products }: IBest) {
         <div
           ref={mobileTrackRef}
           className="
-            flex gap-[5vw]
+            flex
             overflow-x-auto
-            scroll-snap-x
             scroll-snap-mandatory
             px-[10vw]
             scrollbar-hide
-            py-6
+            scroll-smooth
+            py-8
           "
         >
           {products.map((product, index) => (
@@ -136,6 +136,7 @@ function Best({ products }: IBest) {
                 w-[80vw]
                 shrink-0
                 scroll-snap-center
+                mx-[2.5vw]
               "
             >
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
