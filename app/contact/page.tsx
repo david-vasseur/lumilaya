@@ -18,6 +18,7 @@ import {
     Sparkles
 } from 'lucide-react';
 import Image from 'next/image';
+import { FaTiktok } from 'react-icons/fa6';
 
 // Interface pour le formulaire de contact
 interface ContactForm {
@@ -419,8 +420,8 @@ const ContactPage = () => {
                             rel="noopener noreferrer"
                             className="social-card bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all group"
                         >
-                            <div className="flex items-center gap-4">
-                                <div className="w-16 h-16 bg-linear-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <div className="flex items-center bg-linear-to-br from-purple-500 to-pink-500 gap-4">
+                                <div className="w-16 h-16  rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
                                     <Instagram className="w-8 h-8 text-white" />
                                 </div>
                                 <div>
@@ -436,8 +437,9 @@ const ContactPage = () => {
                             rel="noopener noreferrer"
                             className="social-card bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all group"
                         >
-                            <div className="flex items-center gap-4">
-                                <div className="w-16 h-16 bg-[#1877F2] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <div className="flex items-center bg-linear-to-br from-blue-600 via-blue-500 to-indigo-500
+ gap-4">
+                                <div className="w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
                                     <Facebook className="w-8 h-8 text-white" />
                                 </div>
                                 <div>
@@ -453,9 +455,9 @@ const ContactPage = () => {
                             rel="noopener noreferrer"
                             className="social-card bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all group"
                         >
-                            <div className="flex items-center gap-4">
-                                <div className="w-16 h-16 bg-[#FF0000] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                                    <Youtube className="w-8 h-8 text-white" />
+                            <div className="flex items-center bg-linear-to-br from-pink-500 via-fuchsia-500 to-cyan-400 shadow-lg shadow-pink-500/40 gap-4">
+                                <div className="w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <FaTiktok className="w-8 h-8 text-white" />
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-medium text-[#2C2C2C] mb-1">YouTube</h3>
