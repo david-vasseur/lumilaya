@@ -1,8 +1,3 @@
-
-import { useForm } from '@tanstack/react-form';
-import { motion } from 'framer-motion';
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
 import { 
     MapPin, 
     Phone, 
@@ -29,82 +24,13 @@ interface ContactForm {
     message: string;
 }
 
-// Données fictives pour les posts Instagram/TikTok
 
 
 const ContactPage = async () => {
     
     const thumb = await getTikTokThumbnail("https://vm.tiktok.com/ZNRY8RgLC/");
 
-    
 
-    useGSAP(() => {
-        // gsap.from('.contact-hero', {
-        //     y: 100,
-        //     opacity: 0,
-        //     duration: 1.2,
-        //     ease: 'power3.out',
-        //     delay: 0.2
-        // });
-
-        // gsap.from('.contact-info-card', {
-        //     y: 80,
-        //     opacity: 0,
-        //     duration: 0.8,
-        //     stagger: 0.15,
-        //     ease: 'power3.out',
-        //     scrollTrigger: {
-        //         trigger: '.contact-info-section',
-        //         start: 'top 75%',
-        //     }
-        // });
-
-        // gsap.from('.form-section', {
-        //     x: -100,
-        //     opacity: 0,
-        //     duration: 1,
-        //     ease: 'power3.out',
-        //     scrollTrigger: {
-        //         trigger: '.contact-form-container',
-        //         start: 'top 75%',
-        //     }
-        // });
-
-        // gsap.from('.map-section', {
-        //     x: 100,
-        //     opacity: 0,
-        //     duration: 1,
-        //     ease: 'power3.out',
-        //     scrollTrigger: {
-        //         trigger: '.contact-form-container',
-        //         start: 'top 75%',
-        //     }
-        // });
-
-        // gsap.from('.social-card', {
-        //     y: 60,
-        //     opacity: 0,
-        //     duration: 0.8,
-        //     stagger: 0.1,
-        //     ease: 'power3.out',
-        //     scrollTrigger: {
-        //         trigger: '.social-section',
-        //         start: 'top 75%',
-        //     }
-        // });
-
-        // gsap.from('.social-post', {
-        //     scale: 0.8,
-        //     opacity: 0,
-        //     duration: 0.6,
-        //     stagger: 0.1,
-        //     ease: 'back.out(1.7)',
-        //     scrollTrigger: {
-        //         trigger: '.social-feed',
-        //         start: 'top 80%',
-        //     }
-        // });
-    }, []);
 
     const socialPosts = [
         {
