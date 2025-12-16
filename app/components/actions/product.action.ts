@@ -127,7 +127,7 @@ export async function TopRatedProducts() {
 		orderBy: {
 			like: "desc", 
 		},
-		take: 4, // limite à 4 produits
+		take: 3, 
 		});
 
 		return products.map((p) => ({

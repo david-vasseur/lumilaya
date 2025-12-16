@@ -7,6 +7,7 @@ import { ShoppingCart, Sparkles } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { FaMedal } from "react-icons/fa6";
 
 interface IBest {
   products: IProduct[];
@@ -100,6 +101,13 @@ function Best({ products }: IBest) {
                   alt={product.name}
                   className="object-cover"
                 />
+                {index === 0 ? (
+                    <FaMedal className="absolute top-0 right-0 w-6 h-6" style={{ color: 'gold' }} />
+                ) : index === 1 ? (
+                    <FaMedal className="absolute top-0 right-0 w-6 h-6" style={{ color: 'silver' }} />
+                ) : (
+                    <FaMedal className="absolute top-0 right-0 w-6 h-6" style={{ color: '#cd7f32' }} />
+                )}
               </div>
             </Link>
 
