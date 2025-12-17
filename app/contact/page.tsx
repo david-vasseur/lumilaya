@@ -227,10 +227,6 @@ const ContactPage = async () => {
                                 >
                                     <img src={thumb} alt='' className="absolute inset-0 bg-[#2C2C2C]/10 group-hover:bg-[#2C2C2C]/5 transition-all" />
                                     
-                                    {/* Icône centrale */}
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                        <Sparkles className="w-12 h-12 text-white/20 group-hover:text-white/40 transition-colors" />
-                                    </div>
 
                                     {/* Overlay au hover */}
                                     <div className="absolute inset-0 bg-linear-to-t from-[#2C2C2C]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">

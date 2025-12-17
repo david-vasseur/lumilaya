@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { useCartStore } from '@/lib/store/cartStore';
 import { IProduct } from '@/type/product';
 import toast from 'react-hot-toast';
+import ConseilUtilisation from '../../ui/ConseilUtilisation';
 
 type Suggest = {
     name: string;
@@ -434,6 +435,9 @@ function EmotionSlug({ product, suggest }: EmotionSlugProps) {
             </div>
           </div>
         </div>
+
+        {/* conseil utilisation */}
+            <ConseilUtilisation />
 
         {/* Produits similaires */}
         <div>
