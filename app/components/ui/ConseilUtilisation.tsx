@@ -18,7 +18,7 @@ export default function ConseilUtilisation({
   return (
     <div className="bg-[#7A9B8E] rounded-2xl p-8 my-10 shadow-lg border border-[#2C2C2C]/5">
       <div className="flex items-center justify-center gap-3 mb-6">
-        <h3 className="text-2xl md:text-4xl text-[#2C2C2C]">
+        <h3 className="text-2xl md:text-4xl text-[#2C2C2C]/90">
           {title}
         </h3>
       </div>
