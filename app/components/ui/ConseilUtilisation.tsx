@@ -16,12 +16,9 @@ export default function ConseilUtilisation({
   ],
 }: ConseilUtilisationProps) {
   return (
-    <div className="bg-[#7A9B8E] rounded-2xl p-8 shadow-lg border border-[#2C2C2C]/5">
-      <div className="flex items-center gap-3 mb-6">
-        <div className="w-10 h-10 rounded-xl bg-[#7A9B8E]/10 flex items-center justify-center">
-          <Sparkles className="w-5 h-5 text-zinc-200" />
-        </div>
-        <h3 className="text-2xl font-light text-[#2C2C2C]">
+    <div className="bg-[#7A9B8E] rounded-2xl p-8 my-10 shadow-lg border border-[#2C2C2C]/5">
+      <div className="flex items-center justify-center gap-3 mb-6">
+        <h3 className="text-2xl md:text-4xl font-light text-[#2C2C2C]">
           {title}
         </h3>
       </div>
@@ -39,8 +36,8 @@ export default function ConseilUtilisation({
         ))}
       </ul>
 
-      <div className="mt-6 flex items-start gap-3 bg-[#7A9B8E]/10 rounded-xl p-4">
-        <AlertTriangle className="w-5 h-5 text-zinc-200 mt-0.5" />
+      <div className="mt-6 flex items-center justify-center gap-3 bg-[#7A9B8E]/10 rounded-xl p-4">
+        <AlertTriangle className="w-8 h-8 text-zinc-200 mt-0.5" />
         <p className="text-sm text-[#2C2C2C]/70">
           Pour une utilisation optimale et en toute sécurité, respectez toujours
           les consignes indiquées.
