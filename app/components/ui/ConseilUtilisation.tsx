@@ -23,7 +23,7 @@ export default function ConseilUtilisation({
         </h3>
       </div>
 
-      <ul className="pl-15 md:pl-0 space-y-4">
+      <ul className="pl-0 md:pl-15 space-y-4">
         {conseils.map((conseil, index) => (
           <li key={index} className="flex gap-3">
             <div className="mt-1">
