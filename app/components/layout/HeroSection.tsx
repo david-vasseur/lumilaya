@@ -106,7 +106,7 @@ export const HeroSection = () => {
 					<Image src={"/images/landing/mobile-hero1.webp"} fill alt='' className="object-cover" />
 				) : (
 					<Image 
-						src="/images/landing/hero8.webp"
+						src="/images/landing/hero7.webp"
 						alt="Himalaya avec bougie naturelle"
 						fill
 						priority
