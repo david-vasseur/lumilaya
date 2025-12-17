@@ -155,7 +155,7 @@ function TestSavoir() {
     subTitle: "L’excellence dans chaque détail",
     description:
       "Nous sélectionnons les meilleurs matériaux et assurons un service client irréprochable. Livraison rapide, packaging soigné, et une expérience haut de gamme pour chaque bougie.",
-    image: "/images/landing/savoir3.webp",
+    image: "/images/landing/savoir4.webp",
     features: [
       {
         title: "Livraison rapide",
