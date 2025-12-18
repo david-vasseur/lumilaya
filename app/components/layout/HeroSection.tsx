@@ -122,7 +122,7 @@ export const HeroSection = () => {
 				className="absolute inset-0 bg-linear-to-br from-[#2C2C2C]/60 via-[#2C2C2C]/40 to-transparent"
 			/>
 			{/* Contenu principal */}
-			<div ref={contentRef} className={`relative h-full flex items-center justify-center z-10 ${isMobile ? "translate-x-0!" : "-translate-x-25"}`}>
+			<div ref={contentRef} className={`relative h-full flex items-center justify-items-start md:justify-center z-10 ${isMobile ? "translate-x-0!" : "-translate-x-25"}`}>
 				<div className="text-center px-6 max-w-5xl">
 
 					{/* Titre principal avec effet de découpe */}
