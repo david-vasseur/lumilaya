@@ -65,7 +65,7 @@ function RituelPage({ products }: RituelPageProps) {
 				{/* Contenu Hero */}
 				<div className="relative h-full flex items-center justify-center">
 					<div className="hero-content text-center px-6 max-w-4xl">
-						<div className="hero-badge inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-5 py-2 rounded-full mb-8">
+						<div className="hidden hero-badge md:inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-5 py-2 rounded-full mb-8">
 							<Leaf className="w-4 h-4" />
 							<span className="text-sm font-medium">Collection 100% Naturelle</span>
 						</div>
@@ -79,10 +79,10 @@ function RituelPage({ products }: RituelPageProps) {
 							Cire végétale pure, parfums naturels, pour une atmosphère saine et apaisante.
 						</p>
 
-						<button className="inline-flex items-center gap-3 bg-white text-[#7A9B8E] px-8 py-4 rounded-full hover:bg-white/90 transition-all shadow-lg hover:shadow-xl group">
+						<Link href={"/#produits"} className="inline-flex items-center gap-3 bg-white text-[#7A9B8E] px-8 py-4 rounded-full hover:bg-white/90 transition-all shadow-lg hover:shadow-xl group">
 							<span className="font-medium">Découvrir la collection</span>
 							<ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-						</button>
+						</Link>
 					</div>
 				</div>
 
@@ -118,7 +118,7 @@ function RituelPage({ products }: RituelPageProps) {
 
 
 			{/* Section Produits */}
-			<div className="max-w-7xl mx-auto px-6 py-20">
+			<div id='produits' className="max-w-7xl mx-auto px-6 py-20">
 				<div className="text-center mb-16">
 					<h2 className="text-4xl font-light text-[#2C2C2C] mb-4">
 						Notre sélection
