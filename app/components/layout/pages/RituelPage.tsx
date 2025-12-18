@@ -79,17 +79,10 @@ function RituelPage({ products }: RituelPageProps) {
 							Cire végétale pure, parfums naturels, pour une atmosphère saine et apaisante.
 						</p>
 
-						<Link href={"/#produits"} className="inline-flex items-center gap-3 bg-white text-[#7A9B8E] px-8 py-4 rounded-full hover:bg-white/90 transition-all shadow-lg hover:shadow-xl group">
+						<Link href={"/bougies-rituel/#produits"} className="inline-flex items-center gap-3 bg-white text-[#7A9B8E] px-8 py-4 rounded-full hover:bg-white/90 transition-all shadow-lg hover:shadow-xl group">
 							<span className="font-medium">Découvrir la collection</span>
 							<ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
 						</Link>
-					</div>
-				</div>
-
-				{/* Scroll indicator */}
-				<div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-					<div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
-						<div className="w-1 h-2 bg-white/50 rounded-full"></div>
 					</div>
 				</div>
 			</div>
