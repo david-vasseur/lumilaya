@@ -126,7 +126,7 @@ export const HeroSection = () => {
 				<div className="text-center px-6 max-w-5xl">
 
 					{/* Titre principal avec effet de découpe */}
-					<div className="overflow-hidden px-5 mb-2 py-7">
+					<div className="overflow-hidden px-5 mb-2 pt-20 pb-7 md:py-7">
 						<h1 className="hero-title-line text-[7rem] md:text-9xl lg:text-[10rem] xl:text-[12rem] font-ballet! text-white ">
 							<em>Lumi'laya</em>
 						</h1>
@@ -159,7 +159,7 @@ export const HeroSection = () => {
 					</div>
 
 					{/* Éléments de confiance */}
-					<div className="hero-confiance absolute bottom-5 md:relative flex items-center justify-center gap-8 mt-16 text-white/70 text-sm">
+					<div className="hero-confiance absolute bottom-10 left-1/2 -translate-x-1/2 md:relative md:translate-x-0 flex items-center justify-center gap-8 mt-16 text-white/70 text-sm">
 						<div className="flex items-center gap-2">
 							<div className="w-2 h-2 bg-[#7A9B8E] rounded-full animate-pulse" />
 							<span>Fabrication française</span>
