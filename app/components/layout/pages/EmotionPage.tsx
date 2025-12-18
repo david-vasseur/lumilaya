@@ -73,11 +73,11 @@ function EmotionPage({ products }: EmotionPageProps) {
         <div className="min-h-screen bg-[#FDFBF7]">
 			{/* Hero Section */}
 			<div className="relative h-[80vh] overflow-hidden">
-				<Image fill priority fetchPriority='high' alt="image d'une bougie" src={"/images/produits/emotions4.webp"} className="object-cover object-bottom" />
+				<Image fill priority fetchPriority='high' alt="image d'une bougie" src={"/images/produits/emotions5.webp"} className="object-cover object-bottom" />
 				{/* Contenu Hero */}
 				<div className="relative h-full flex items-center justify-center">
 					<div className="hero-content text-center px-6 max-w-4xl">
-						<div className="hero-badge inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-5 py-2 rounded-full mb-8">
+						<div className="hidden hero-badge md:inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-5 py-2 rounded-full mb-8">
 							<Leaf className="w-4 h-4" />
 							<span className="text-sm font-medium">Collection 100% Naturelle</span>
 						</div>
