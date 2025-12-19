@@ -71,14 +71,8 @@ function RituelPage({ products }: RituelPageProps) {
 						</div>
 
 						<h1 className="text-6xl md:text-7xl font-extrabold text-white mb-6 leading-tight tracking-wide">
-							Entre Terre & Ciel
+							Entre Terre <br/>& <br/>Ciel
 						</h1>
-
-						{/* <p className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed mb-10">
-							Des créations authentiques aux essences botaniques brutes.
-							Cire végétale pure, parfums naturels, pour une atmosphère saine et apaisante.
-						</p> */}
-
 						<Link href={"/bougies-rituel/#produits"} className="inline-flex items-center gap-3 bg-white text-[#7A9B8E] px-8 py-4 rounded-full hover:bg-white/90 transition-all shadow-lg hover:shadow-xl group">
 							<span className="font-medium">Découvrir la collection</span>
 							<ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
