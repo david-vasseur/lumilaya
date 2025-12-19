@@ -57,11 +57,11 @@ export default function FavoritesPage() {
 
     return (
         <div className="container min-h-svh mx-auto py-16">
-        <h1 className="text-3xl font-light text-[#2C2C2C] mb-10">
+        <h1 className="text-4xl my-10 text-center text-[#7A9B8E]">
             Mes favoris
         </h1>
 
-        <div className="products-grid grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+        <div className="products-grid grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
             {products.map((product) => (
             <Link
                 key={product.id}
@@ -107,22 +107,6 @@ export default function FavoritesPage() {
                     <p className="text-[#2C2C2C]/60 text-sm mb-4 line-clamp-2 leading-relaxed">
                     {product.intro}
                     </p>
-
-                    <div className="flex items-center justify-between pt-4 border-t border-[#2C2C2C]/5">
-                    <div>
-                        <span className="text-xs text-[#2C2C2C]/50 block mb-1">
-                        À partir de
-                        </span>
-                        <span className="text-2xl font-light text-[#2C2C2C]">
-                        {product.variants[0].price.toFixed(2)} €
-                        </span>
-                    </div>
-
-                    <div className="flex items-center gap-2 text-[#7A9B8E] text-sm font-medium group-hover:gap-3 transition-all">
-                        Découvrir
-                        <ArrowRight className="w-4 h-4" />
-                    </div>
-                    </div>
                 </div>
                 </div>
             </Link>
