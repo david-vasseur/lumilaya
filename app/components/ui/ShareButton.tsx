@@ -6,8 +6,8 @@ import toast from "react-hot-toast";
 
 export default function ShareButton({ product }: { product: IProduct }) {
 
-    const url = `${process.env.NEXT_PUBLIC_SITE_URL}/${
-        product.collection === "terre"
+    const url = `https://www.lumilaya.fr/${
+        product.collection === "Terre"
         ? "bougie-rituel"
         : "bougies-emotions"
     }/${product.slug}`;
@@ -16,8 +16,8 @@ export default function ShareButton({ product }: { product: IProduct }) {
         if (navigator.share) {
         try {
             await navigator.share({
-            title: `${product.name} - LumiLaya`,
-            text: `Découvre cette ${product.name}`,
+            title: `Bougie ${product.name} - LumiLaya`,
+            text: `Découvre cette bougie ${product.name} de la marque Lumilaya`,
             url,
             });
         } catch {

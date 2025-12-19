@@ -26,13 +26,6 @@ interface EmotionSlugProps {
   suggest: Suggest[]
 }
 
-const productImages = [
-  { id: 1, color: 'from-[#7A9B8E] to-[#5A7B6E]' },
-  { id: 2, color: 'from-[#8B9B8E] to-[#6A8B7E]' },
-  { id: 3, color: 'from-[#6A8B7E] to-[#5A7B6E]' },
-  { id: 4, color: 'from-[#7A9B8E] to-[#4A6B5E]' },
-  { id: 5, color: 'from-[#5A7B6E] to-[#7A9B8E]' }
-];
 
 function EmotionSlug({ product, suggest }: EmotionSlugProps) {
 
@@ -71,26 +64,14 @@ function EmotionSlug({ product, suggest }: EmotionSlugProps) {
                 delay: 0.2
             });
 
-            // gsap.from('.feature-card', {
-            //     y: 60,
-            //     opacity: 0,
-            //     duration: 0.8,
-            //     stagger: 0.1,
-            //     ease: 'power3.out',
-            //     scrollTrigger: {
-            //     trigger: '.features-section',
-            //     start: 'top 80%'
-            //     }
-            // });
-
     }, []);
 
   const nextImage = () => {
-    setCurrentImage((prev) => (prev + 1) % productImages.length);
+    setCurrentImage((prev) => (prev + 1) % product.images.length);
   };
 
   const prevImage = () => {
-    setCurrentImage((prev) => (prev - 1 + productImages.length) % productImages.length);
+    setCurrentImage((prev) => (prev - 1 + product.images.length) % product.images.length);
   };
 
   if (!product) return null;
@@ -274,15 +255,9 @@ function EmotionSlug({ product, suggest }: EmotionSlugProps) {
 
             {/* Actions secondaires */}
             <div className="flex gap-3 mb-10">
-              {/* <button className="flex-1 border-2 border-[#2C2C2C]/10 text-[#2C2C2C] py-3 rounded-lg hover:border-[#7A9B8E] hover:text-[#7A9B8E] transition-all flex items-center justify-center gap-2">
-                <Heart className="w-5 h-5" />
-                Favoris
-              </button> */}
+              
               <FavoriteButton product={product} />
-              {/* <button className="flex-1 border-2 border-[#2C2C2C]/10 text-[#2C2C2C] py-3 rounded-lg hover:border-[#7A9B8E] hover:text-[#7A9B8E] transition-all flex items-center justify-center gap-2">
-                <Share2 className="w-5 h-5" />
-                Partager
-              </button> */}
+              
               <ShareButton product={product} />
             </div>
 
