@@ -11,6 +11,7 @@
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@prisma/client": "6.19",
+    "@react-email/components": "^1.0.2",
     "@tanstack/react-form": "^1.27.0",
     "framer-motion": "^12.23.25",
     "gsap": "^3.13.0",
@@ -25,6 +26,7 @@
     "react-dom": "19.2.0",
     "react-hot-toast": "^2.6.0",
     "react-icons": "^5.5.0",
+    "resend": "^6.6.0",
     "stripe": "^20.0.0",
     "zustand": "^5.0.9"
   },

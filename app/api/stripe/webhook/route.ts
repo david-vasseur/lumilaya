@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { PrismaClient } from "@/lib/generated/prisma/client";
+import { sendOrderEmailToCompany } from "@/app/components/actions/order.action";
 
 const prisma = new PrismaClient();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -36,33 +37,36 @@ export async function POST(req: NextRequest) {
         const products = JSON.parse(metadata.products);
 
         // Enregistrer la commande dans la BDD
-        await prisma.order.create({
-        data: {
-            stripeSessionId: session.id,
-            firstName: metadata.firstName,
-            lastName: metadata.lastName,
-            email: metadata.email,
-            phone: metadata.phone,
-            shippingAddress: metadata.shippingAddress,
-            billingAddress: metadata.shippingAddress,
-            shippingCity: metadata.shippingCity,
-            billingCity: metadata.shippingCity,
-            shippingPostalCode: metadata.shippingPostalCode,
-            billingPostalCode: metadata.shippingPostalCode,
-            shippingCountry: metadata.shippingCountry,
-            billingCountry: metadata.shippingCountry,
-            acceptCGV: true,
-            total: session.amount_total! / 100,
-            createdAt: new Date(),
-            items: {
-            create: products.map((p: any) => ({
-                name: p.name,
-                price: p.price,
-                qty: p.qty,
-            })),
+        const order = await prisma.order.create({
+            data: {
+                stripeSessionId: session.id,
+                firstName: metadata.firstName,
+                lastName: metadata.lastName,
+                email: metadata.email,
+                phone: metadata.phone,
+                shippingAddress: metadata.shippingAddress,
+                billingAddress: metadata.shippingAddress,
+                shippingCity: metadata.shippingCity,
+                billingCity: metadata.shippingCity,
+                shippingPostalCode: metadata.shippingPostalCode,
+                billingPostalCode: metadata.shippingPostalCode,
+                shippingCountry: metadata.shippingCountry,
+                billingCountry: metadata.shippingCountry,
+                acceptCGV: true,
+                total: session.amount_total! / 100,
+                createdAt: new Date(),
+                items: {
+                create: products.map((p: any) => ({
+                    name: p.name,
+                    price: p.price,
+                    qty: p.qty,
+                })),
+                },
             },
-        },
         });
+
+        // Envoie de l'email
+        await sendOrderEmailToCompany(order, products)
     }
 
     return NextResponse.json({ received: true });
