@@ -11,6 +11,7 @@ import { useCartStore } from '@/lib/store/cartStore';
 import { IProduct } from '@/type/product';
 import toast from 'react-hot-toast';
 import ConseilUtilisation from '../../ui/ConseilUtilisation';
+import ShareButton from '../../ui/ShareButton';
 
 type Suggest = {
     name: string;
@@ -276,10 +277,11 @@ function EmotionSlug({ product, suggest }: EmotionSlugProps) {
                 <Heart className="w-5 h-5" />
                 Favoris
               </button>
-              <button className="flex-1 border-2 border-[#2C2C2C]/10 text-[#2C2C2C] py-3 rounded-lg hover:border-[#7A9B8E] hover:text-[#7A9B8E] transition-all flex items-center justify-center gap-2">
+              {/* <button className="flex-1 border-2 border-[#2C2C2C]/10 text-[#2C2C2C] py-3 rounded-lg hover:border-[#7A9B8E] hover:text-[#7A9B8E] transition-all flex items-center justify-center gap-2">
                 <Share2 className="w-5 h-5" />
                 Partager
-              </button>
+              </button> */}
+              <ShareButton product={product} />
             </div>
 
             {/* Points de réassurance */}
