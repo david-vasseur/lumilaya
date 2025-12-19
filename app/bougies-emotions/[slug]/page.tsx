@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             images: `${BASE_URL}/${product.images[0]}`, 
         },
         openGraph: {
-            title: `Bougie ${product.name} - Artisanat Français`,
+            title: `Bougie ${product.name} - Lumi'Laya`,
             description: `Une expérience sensorielle unique avec la bougie ${product.name}.`,
             type: "website", 
             url: pageUrl,
