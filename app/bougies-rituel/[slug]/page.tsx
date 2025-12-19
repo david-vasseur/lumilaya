@@ -21,7 +21,7 @@ export const revalidate = 3600;
 const BASE_URL = "https://www.lumilaya.fr";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const { slug } = params;
+    const { slug } = await params;
     const result = await GetItemBySlug(slug);
 
     if (!result || !result.product) {
@@ -33,10 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     const { product } = result;
     const pageUrl = `/bougies-rituel/${product.slug}`;
-    const mainImage = product.images[0].startsWith('http') 
-        ? product.images[0] 
-        : `${BASE_URL}${product.images[0].startsWith('/') ? '' : '/'}${product.images[0]}`;
-
+    
     return {
         metadataBase: new URL(BASE_URL),
         title: `Bougie ${product.name} | Collection Entre Terre & Ciel | Lumilaya`,
@@ -44,14 +41,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             ? product.description[0].substring(0, 160)
             : `Découvrez la bougie artisanale ${product.name}. Fabrication française et cire naturelle.`,
         alternates: { canonical: pageUrl },
+        twitter: {
+            card: "summary_large_image",
+            title: `Bougie ${product.name}`,
+            description: `Découvrez la bougie ${product.name} artisanale.`,
+            images: `${BASE_URL}/${product.images[0]}`,
+        },
         openGraph: {
-            title: `Bougie ${product.name} - Artisanat Français`,
+            title: `Bougie ${product.name} - Lumi'Laya`,
             description: `Une expérience sensorielle unique avec la bougie ${product.name}.`,
             type: "website",
             url: pageUrl,
             images: [
                 {
-                    url: mainImage,
+                    url: `${BASE_URL}/${product.images[0]}`,
                     width: 800,
                     height: 800,
                     alt: `Bougie artisanale ${product.name}`
