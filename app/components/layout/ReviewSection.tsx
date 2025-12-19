@@ -322,7 +322,7 @@ export const ReviewsSection = () => {
                         Partagez votre expérience avec LUMILAYA
                     </p>
                     <a 
-                        href="https://g.page/r/lumilaya/review" // À remplacer par votre lien Google My Business
+                        href="https://g.page/r/CQgc2Co6LkOzEAE/review/" // À remplacer par votre lien Google My Business
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 bg-[#7A9B8E] text-white px-6 py-3 rounded-full hover:bg-[#6A8B7E] transition-all shadow-lg hover:shadow-xl"
