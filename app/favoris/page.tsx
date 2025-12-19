@@ -81,8 +81,8 @@ export default function FavoritesPage() {
                     </div>
 
                     <div className="p-6">
-                        <h3 className="text-base lg:text-xl font-light text-[#2C2C2C] mb-2 group-hover:text-[#7A9B8E] transition-colors">
-                            Bougie {product.name}
+                        <h3 className="text-base lg:text-xl font-light text-center text-[#2C2C2C] mb-2 group-hover:text-[#7A9B8E] transition-colors">
+                            Bougie<br/><strong>{product.name}</strong>
                         </h3>
                     </div>
                 </div>
