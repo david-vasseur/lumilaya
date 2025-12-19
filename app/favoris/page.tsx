@@ -43,7 +43,7 @@ export default function FavoritesPage() {
 
     if (!products.length) {
         return (
-        <div className="container mx-auto py-20 text-center">
+        <div className="container min-h-svh mx-auto py-20 text-center">
             <Heart className="w-12 h-12 mx-auto mb-4 text-[#7A9B8E]" />
             <h1 className="text-2xl font-light text-[#2C2C2C] mb-2">
             Aucun favori pour le moment
@@ -56,7 +56,7 @@ export default function FavoritesPage() {
     }
 
     return (
-        <div className="container mx-auto py-16">
+        <div className="container min-h-svh mx-auto py-16">
         <h1 className="text-3xl font-light text-[#2C2C2C] mb-10">
             Mes favoris
         </h1>

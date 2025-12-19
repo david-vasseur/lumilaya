@@ -105,7 +105,7 @@ function Navigation() {
                                         animate={{ opacity: 1 }}
                                         transition={{ duration: 0.2, delay: 0.5, ease: "easeInOut" }}
                                     >
-                                        {["Accueil", "Emotions & Plaisirs", "Entre Terre & Ciel", "Notre histoire", "Nous contacter"].map((item, index) => (
+                                        {["Accueil", "Emotions & Plaisirs", "Entre Terre & Ciel", "Notre histoire", "Nous contacter", "Mes favoris"].map((item, index) => (
                                             <>
                                                 <motion.li 
                                                     onClick={() => setIsMenuOpen(false)}
@@ -119,7 +119,7 @@ function Navigation() {
                                                     ease: "easeInOut",
                                                     }}
                                                 >
-                                                    <Link href={`${item === "Accueil" ? "/" : item === "Emotions & Plaisirs" ? "/bougies-emotions" : item === "Entre Terre & Ciel" ? "/bougies-rituel" : item === "Notre histoire" ? "/notre-histoire" : "/contact"}`}>
+                                                    <Link href={`${item === "Accueil" ? "/" : item === "Emotions & Plaisirs" ? "/bougies-emotions" : item === "Entre Terre & Ciel" ? "/bougies-rituel" : item === "Notre histoire" ? "/notre-histoire" : item === "Mes favoris" ? "/favoris" : "/contact"}`}>
                                                         {item}
                                                     </Link>
                                                 </motion.li>
@@ -179,6 +179,16 @@ function Navigation() {
                         }`}
                     >
                         Bougies Entre Terre & Ciel
+                    </Link>
+                    <Link 
+                        href={"/favoris"}
+                        className={`text-sm tracking-wide transition-colors ${
+                        path === "/favoris"
+                            ? 'text-[#2C2C2C] font-medium'
+                            : 'text-[#2C2C2C]/60 hover:text-[#2C2C2C]'
+                        }`}
+                    >
+                        Mes favoris
                     </Link>
                     <Link 
                         href={"/contact"}
