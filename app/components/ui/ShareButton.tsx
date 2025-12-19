@@ -8,7 +8,7 @@ export default function ShareButton({ product }: { product: IProduct }) {
 
     const url = `https://www.lumilaya.fr/${
         product.collection === "Terre"
-        ? "bougie-rituel"
+        ? "bougies-rituel"
         : "bougies-emotions"
     }/${product.slug}`;
 
