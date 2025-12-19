@@ -25,7 +25,7 @@ export const revalidate = 3600;
 const BASE_URL = "https://www.lumilaya.fr";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const { slug } = params; // Pas besoin de await params dans les versions récentes, mais ok si Next 13/14
+    const { slug } = await params; // Pas besoin de await params dans les versions récentes, mais ok si Next 13/14
     console.log("Rendering slug page", params);
     // OPTIMISATION 2 : Fetch unique et ciblé
     // On utilise la fonction précise plutôt que de charger toute la liste
@@ -40,10 +40,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     const { product } = result;
     const pageUrl = `/bougies-emotions/${product.slug}`;
-    // Image absolue sécurisée
-    const mainImage = product.images[0].startsWith('http') 
-        ? product.images[0] 
-        : `${BASE_URL}${product.images[0].startsWith('/') ? '' : '/'}${product.images[0]}`;
 
     return {
         metadataBase: new URL(BASE_URL),
@@ -55,6 +51,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         alternates: {
             canonical: pageUrl,
         },
+            twitter: {
+            card: "summary_large_image",
+            title: `Bougie ${product.name}`,
+            description: `Découvrez la bougie ${product.name} artisanale.`,
+            images: `${BASE_URL}/images/produits/${product.images[0]}`, 
+        },
         openGraph: {
             title: `Bougie ${product.name} - Artisanat Français`,
             description: `Une expérience sensorielle unique avec la bougie ${product.name}.`,
@@ -62,7 +64,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             url: pageUrl,
             images: [
                 {
-                    url: mainImage,
+                    url: `${BASE_URL}/images/produits/${product.images[0]}`,
                     width: 800,
                     height: 800,
                     alt: `Bougie artisanale ${product.name}`
