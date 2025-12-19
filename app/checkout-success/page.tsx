@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { clientCheckout } from "../components/features/form/CheckOut.action";
+import ClearCart from "../components/features/ClearCart";
 
 export default async function CheckoutSuccessPage({
     searchParams,
@@ -21,6 +22,7 @@ export default async function CheckoutSuccessPage({
                     Le paiement de la commande <strong>{orderId}</strong> de <strong>{amountTotalEuro} €</strong> a bien été validé.
                 </p>
                 <Link href={"/"} className="bg-gray-300 px-6 py-3 rounded-lg shadow-2xl text-gray-600">Retour à l'accueil</Link>
+                <ClearCart />
             </div>
         );
     }
