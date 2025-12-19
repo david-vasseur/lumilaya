@@ -56,7 +56,7 @@ export default function FavoritesPage() {
     }
 
     return (
-        <div className="container min-h-svh mx-auto py-16">
+        <div className="container min-h-svh mx-auto py-16 px-5">
         <h1 className="text-4xl my-10 text-center text-[#7A9B8E]">
             Mes favoris
         </h1>
