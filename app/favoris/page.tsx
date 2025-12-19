@@ -61,7 +61,7 @@ export default function FavoritesPage() {
             Mes favoris
         </h1>
 
-        <div className="products-grid grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+        <div className="products-grid grid grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
             {products.map((product) => (
             <Link
                 key={product.id}
