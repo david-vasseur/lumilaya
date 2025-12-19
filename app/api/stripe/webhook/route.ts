@@ -66,7 +66,12 @@ export async function POST(req: NextRequest) {
         });
 
         // Envoie de l'email
-        await sendOrderEmailToCompany(order, products)
+        try {
+            await sendOrderEmailToCompany(order, products);
+            console.log("Email envoyé avec succès");
+        } catch (err) {
+            console.error("Erreur lors de l'envoi de l'email:", err);
+        }
     }
 
     return NextResponse.json({ received: true });
