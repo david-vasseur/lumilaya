@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             card: "summary_large_image",
             title: `Bougie ${product.name}`,
             description: `Découvrez la bougie ${product.name} artisanale.`,
-            images: `${BASE_URL}/images/produits/${product.images[0]}`, 
+            images: `${BASE_URL}/${product.images[0]}`, 
         },
         openGraph: {
             title: `Bougie ${product.name} - Artisanat Français`,
@@ -64,7 +64,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             url: pageUrl,
             images: [
                 {
-                    url: `${BASE_URL}/images/produits/${product.images[0]}`,
+                    url: `${BASE_URL}/${product.images[0]}`,
                     width: 800,
                     height: 800,
                     alt: `Bougie artisanale ${product.name}`
