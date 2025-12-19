@@ -77,6 +77,26 @@ export async function GetItemBySlug(slug: string) {
 
 //-------------------------------------------------------------------------------------
 
+export async function GetFavoriteProducts(ids: string[]) {
+	if (!ids.length) return [];
+	try {
+		const products = await prisma.product.findMany({
+			where: { 
+				id: { 
+					in: ids
+				}
+			}
+		});
+		return products
+	} catch (err) {
+		console.error("❌ Erreur dans GetFavoriteProducts :", err);
+		return [];
+	}
+}
+
+
+//-------------------------------------------------------------------------------------
+
 export default async function ProductList(collection: string) {
 	try {
 		if (!collection) return [];

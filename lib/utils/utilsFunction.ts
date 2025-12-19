@@ -1,6 +1,7 @@
 import { AddShippingPrice } from "@/app/components/features/form/CheckOut.action";
 import { IProduct } from "@/type/product";
 
+
 export function transformProduct(p: any): IProduct {
 	return {
 		...p,
@@ -21,3 +22,4 @@ export function transformProduct(p: any): IProduct {
 		like: p.like ?? null,
 	};
 }
+
