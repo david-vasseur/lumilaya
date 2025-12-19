@@ -69,45 +69,45 @@ export default function FavoritesPage() {
                 className="product-grid-card group"
             >
                 <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500">
-                <div className="relative h-80 overflow-hidden">
-                    <Image
-                    fill
-                    src={product.images[0]}
-                    alt={product.name}
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
+                    <div className="relative w-full aspect-square overflow-hidden">
+                        <Image
+                        fill
+                        src={product.images[0]}
+                        alt={product.name}
+                        className="object-cover group-hover:scale-110 transition-transform duration-700"
+                        />
 
-                    <div className="absolute inset-0 bg-linear-to-t from-[#2C2C2C]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div className="absolute inset-0 bg-linear-to-t from-[#2C2C2C]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                    {/* Badge */}
-                    <div className="absolute top-4 left-4">
-                    <span className="inline-block bg-white/95 backdrop-blur-sm text-[#7A9B8E] text-xs font-medium px-3 py-1.5 rounded-full shadow-lg">
-                        100% Naturel
-                    </span>
-                    </div>
-
-                    {/* Durée */}
-                    <div className="absolute bottom-4 left-4 right-4">
-                    <div className="flex items-center justify-between text-white">
-                        <div className="flex items-center gap-2 bg-[#2C2C2C]/50 backdrop-blur-sm px-3 py-1.5 rounded-full">
-                        <Clock className="w-4 h-4" />
-                        <span className="text-sm">
-                            {product.variants[0].duration}h
+                        {/* Badge */}
+                        <div className="absolute top-4 left-4">
+                        <span className="inline-block bg-white/95 backdrop-blur-sm text-[#7A9B8E] text-xs font-medium px-3 py-1.5 rounded-full shadow-lg">
+                            100% Naturel
                         </span>
                         </div>
-                    </div>
-                    </div>
-                </div>
 
-                <div className="p-6">
-                    <h3 className="text-xl font-light text-[#2C2C2C] mb-2 group-hover:text-[#7A9B8E] transition-colors">
-                    {product.name}
-                    </h3>
+                        {/* Durée */}
+                        <div className="absolute bottom-4 left-4 right-4">
+                        <div className="flex items-center justify-between text-white">
+                            <div className="flex items-center gap-2 bg-[#2C2C2C]/50 backdrop-blur-sm px-3 py-1.5 rounded-full">
+                            <Clock className="w-4 h-4" />
+                            <span className="text-sm">
+                                {product.variants[0].duration}h
+                            </span>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
 
-                    <p className="text-[#2C2C2C]/60 text-sm mb-4 line-clamp-2 leading-relaxed">
-                    {product.intro}
-                    </p>
-                </div>
+                    <div className="p-6">
+                        <h3 className="text-xl font-light text-[#2C2C2C] mb-2 group-hover:text-[#7A9B8E] transition-colors">
+                        {product.name}
+                        </h3>
+
+                        <p className="text-[#2C2C2C]/60 text-sm mb-4 line-clamp-2 leading-relaxed">
+                        {product.intro}
+                        </p>
+                    </div>
                 </div>
             </Link>
             ))}
