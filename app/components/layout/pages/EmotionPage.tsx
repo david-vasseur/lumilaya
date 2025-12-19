@@ -86,10 +86,10 @@ function EmotionPage({ products }: EmotionPageProps) {
 							Emotions & Plaisirs
 						</h1>
 
-						<p className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed mb-10">
+						{/* <p className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed mb-10">
 							Des créations authentiques aux essences botaniques brutes.
 							Cire végétale pure, parfums naturels, pour une atmosphère saine et apaisante.
-						</p>
+						</p> */}
 
 						<button className="inline-flex items-center gap-3 bg-white text-[#7A9B8E] px-8 py-4 rounded-full hover:bg-white/90 transition-all shadow-lg hover:shadow-xl group">
 							<span className="font-medium">Découvrir la collection</span>
