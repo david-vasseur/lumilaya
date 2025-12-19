@@ -13,6 +13,8 @@ import toast from 'react-hot-toast';
 import ConseilUtilisation from '../../ui/ConseilUtilisation';
 import ShareButton from '../../ui/ShareButton';
 import FavoriteButton from '../../ui/FavoriteButton';
+import { useModalStore } from '@/lib/store/modalStore';
+import ReviewForm from '../../features/form/ReviewForm';
 
 type Suggest = {
     name: string;
@@ -31,6 +33,7 @@ function EmotionSlug({ product, suggest }: EmotionSlugProps) {
 
   // if (!products) return
 
+    const { openModal } = useModalStore();
     const [currentImage, setCurrentImage] = useState(0);
     const [quantity, setQuantity] = useState(1);
     const [selectedSize, setSelectedSize] = useState('150g');
@@ -153,7 +156,7 @@ function EmotionSlug({ product, suggest }: EmotionSlugProps) {
               Bougie {product?.name}
             </h1>
 
-            <div className="flex items-center gap-4 mb-6">
+            <div onClick={() => {openModal(<ReviewForm productId={product.id} productName={product.name} />)}} className="flex items-center gap-4 mb-6">
               <div className="flex items-center gap-1">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-5 h-5 fill-[#7A9B8E] text-[#7A9B8E]" />
