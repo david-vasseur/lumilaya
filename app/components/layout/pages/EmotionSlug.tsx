@@ -12,6 +12,7 @@ import { IProduct } from '@/type/product';
 import toast from 'react-hot-toast';
 import ConseilUtilisation from '../../ui/ConseilUtilisation';
 import ShareButton from '../../ui/ShareButton';
+import FavoriteButton from '../../ui/FavoriteButton';
 
 type Suggest = {
     name: string;
@@ -273,10 +274,11 @@ function EmotionSlug({ product, suggest }: EmotionSlugProps) {
 
             {/* Actions secondaires */}
             <div className="flex gap-3 mb-10">
-              <button className="flex-1 border-2 border-[#2C2C2C]/10 text-[#2C2C2C] py-3 rounded-lg hover:border-[#7A9B8E] hover:text-[#7A9B8E] transition-all flex items-center justify-center gap-2">
+              {/* <button className="flex-1 border-2 border-[#2C2C2C]/10 text-[#2C2C2C] py-3 rounded-lg hover:border-[#7A9B8E] hover:text-[#7A9B8E] transition-all flex items-center justify-center gap-2">
                 <Heart className="w-5 h-5" />
                 Favoris
-              </button>
+              </button> */}
+              <FavoriteButton product={product} />
               {/* <button className="flex-1 border-2 border-[#2C2C2C]/10 text-[#2C2C2C] py-3 rounded-lg hover:border-[#7A9B8E] hover:text-[#7A9B8E] transition-all flex items-center justify-center gap-2">
                 <Share2 className="w-5 h-5" />
                 Partager

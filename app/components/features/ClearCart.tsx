@@ -11,7 +11,7 @@ function ClearCart() {
         clearCart()
     }, [clearCart])
 
-    return null
+    return null;
    
 }
 
