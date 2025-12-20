@@ -1,18 +1,15 @@
-import React from "react";
+
 import { getAverageRating, getReviewCount } from "../actions/review.action";
-import ReviewSummary from "./ReviewComponent";
+import ReviewSummaryClient from "./ReviewComponent";
 
-type Props = {
-  productId: string;
-  productName: string;
-};
+type Props = { productId: string; productName: string };
 
-const ReviewSummaryServer: React.FC<Props> = async ({ productId, productName }) => {
+const ReviewSummaryServer = async ({ productId, productName }: Props) => {
   const averageRating = await getAverageRating(productId);
   const reviewCount = await getReviewCount(productId);
 
   return (
-    <ReviewSummary
+    <ReviewSummaryClient
       productId={productId}
       productName={productName}
       averageRating={averageRating}
@@ -22,3 +19,4 @@ const ReviewSummaryServer: React.FC<Props> = async ({ productId, productName }) 
 };
 
 export default ReviewSummaryServer;
+
