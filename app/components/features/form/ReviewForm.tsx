@@ -3,6 +3,8 @@
 import { IReview, ReviewSchema } from "@/schema/reviewSchema";
 import { useForm } from "@tanstack/react-form";
 import { Star } from "lucide-react";
+import { createReview } from "../../actions/review.action";
+import toast from "react-hot-toast";
 
 function ReviewForm({
     productId,
@@ -23,7 +25,15 @@ function ReviewForm({
         onChange: ReviewSchema,
         },
         onSubmit: async ({ value }) => {
-        console.log("✅ Review envoyée :", value);
+            try {
+                const { productId, name, comment, note } = value;
+
+                await createReview({ productId, name, comment, note });
+
+                toast.success("Votre commentaire est pris en compte");
+            } catch (error) {
+                toast.error("Une erreur s'est produite");
+            }
         },
     });
 
