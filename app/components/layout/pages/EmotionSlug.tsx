@@ -15,6 +15,7 @@ import ShareButton from '../../ui/ShareButton';
 import FavoriteButton from '../../ui/FavoriteButton';
 import { useModalStore } from '@/lib/store/modalStore';
 import ReviewForm from '../../features/form/ReviewForm';
+import ReviewSummary from '../../ui/ReviewComponent';
 
 type Suggest = {
     name: string;
@@ -164,6 +165,7 @@ function EmotionSlug({ product, suggest }: EmotionSlugProps) {
               </div>
               <span className="text-[#2C2C2C]/60">4.9 (127 avis)</span>
             </div>
+                <ReviewSummary productId={product.id} productName={product.name} />
 
             <p className="text-lg text-[#2C2C2C]/70 leading-relaxed mb-8">
               {product?.intro}

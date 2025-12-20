@@ -5,6 +5,7 @@ import { useForm } from "@tanstack/react-form";
 import { Star } from "lucide-react";
 import { createReview } from "../../actions/review.action";
 import toast from "react-hot-toast";
+import { useModalStore } from "@/lib/store/modalStore";
 
 function ReviewForm({
     productId,
@@ -13,6 +14,9 @@ function ReviewForm({
     productId: string;
     productName: string;
 }) {
+
+    const { closeModal } = useModalStore();
+
     const form = useForm({
         defaultValues: {
         name: "",
@@ -31,6 +35,7 @@ function ReviewForm({
                 await createReview({ productId, name, comment, note });
 
                 toast.success("Votre commentaire est pris en compte");
+                closeModal()
             } catch (error) {
                 toast.error("Une erreur s'est produite");
             }

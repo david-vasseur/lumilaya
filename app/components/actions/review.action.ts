@@ -78,5 +78,10 @@ export async function getAverageRating(productId: string) {
   return result._avg.note ?? 0;
 }
 
+export async function getReviewCount(productId: string) {
+  return prisma.review.count({
+    where: { productId },
+  });
+}
 
 
