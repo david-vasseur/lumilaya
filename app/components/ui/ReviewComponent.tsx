@@ -19,7 +19,7 @@ export default function ReviewSummaryClient({ productId, productName, averageRat
         <span className="ml-2 text-[#2C2C2C]/60">({reviewCount} avis)</span>
       </Link>
       <div onClick={() => openModal(<ReviewForm productId={productId} productName={productName} />)} className="text-[#7A9B8E] cursor-pointer underline">
-        Laisser un commentaire
+        Laisser un avis
       </div>
     </div>
   );
