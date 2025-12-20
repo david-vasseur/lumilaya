@@ -160,14 +160,6 @@ function EmotionSlug({ product, suggest, averageRating, reviewCount }: EmotionSl
               Bougie {product?.name}
             </h1>
 
-            <div onClick={() => {openModal(<ReviewForm productId={product.id} productName={product.name} />)}} className="flex items-center gap-4 mb-6">
-              <div className="flex items-center gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-[#7A9B8E] text-[#7A9B8E]" />
-                ))}
-              </div>
-              <span className="text-[#2C2C2C]/60">4.9 (127 avis)</span>
-            </div>
                 <ReviewSummaryClient productId={product.id} productName={product.name} averageRating={averageRating} reviewCount={reviewCount} />
 
             <p className="text-lg text-[#2C2C2C]/70 leading-relaxed mb-8">
