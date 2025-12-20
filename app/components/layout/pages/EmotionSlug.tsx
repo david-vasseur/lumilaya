@@ -14,8 +14,6 @@ import ConseilUtilisation from '../../ui/ConseilUtilisation';
 import ShareButton from '../../ui/ShareButton';
 import FavoriteButton from '../../ui/FavoriteButton';
 import { useModalStore } from '@/lib/store/modalStore';
-import ReviewForm from '../../features/form/ReviewForm';
-import ReviewSummaryServer from '../../ui/ReviewServer';
 import ReviewSummaryClient from '../../ui/ReviewComponent';
 
 type Suggest = {
@@ -160,7 +158,7 @@ function EmotionSlug({ product, suggest, averageRating, reviewCount }: EmotionSl
               Bougie {product?.name}
             </h1>
 
-                <ReviewSummaryClient productId={product.id} productName={product.name} averageRating={averageRating} reviewCount={reviewCount} />
+                <ReviewSummaryClient productId={product.id} productSlug={product.slug} productName={product.name} averageRating={averageRating} reviewCount={reviewCount} />
 
             <p className="text-lg text-[#2C2C2C]/70 leading-relaxed mb-8">
               {product?.intro}
