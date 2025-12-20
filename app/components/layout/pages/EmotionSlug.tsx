@@ -16,6 +16,7 @@ import FavoriteButton from '../../ui/FavoriteButton';
 import { useModalStore } from '@/lib/store/modalStore';
 import ReviewForm from '../../features/form/ReviewForm';
 import ReviewSummaryServer from '../../ui/ReviewServer';
+import ReviewSummaryClient from '../../ui/ReviewComponent';
 
 type Suggest = {
     name: string;
@@ -26,11 +27,13 @@ type Suggest = {
 
 interface EmotionSlugProps {
   product: IProduct;
-  suggest: Suggest[]
+  suggest: Suggest[];
+  averageRating: number; 
+  reviewCount: number;
 }
 
 
-function EmotionSlug({ product, suggest }: EmotionSlugProps) {
+function EmotionSlug({ product, suggest, averageRating, reviewCount }: EmotionSlugProps) {
 
   // if (!products) return
 
@@ -165,7 +168,7 @@ function EmotionSlug({ product, suggest }: EmotionSlugProps) {
               </div>
               <span className="text-[#2C2C2C]/60">4.9 (127 avis)</span>
             </div>
-                <ReviewSummaryServer productId={product.id} productName={product.name} />
+                <ReviewSummaryClient productId={product.id} productName={product.name} averageRating={averageRating} reviewCount={reviewCount} />
 
             <p className="text-lg text-[#2C2C2C]/70 leading-relaxed mb-8">
               {product?.intro}

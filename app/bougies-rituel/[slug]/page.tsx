@@ -1,4 +1,5 @@
 import ProductList, { GetItemBySlug } from '@/app/components/actions/product.action';
+import { getAverageRating, getReviewCount } from '@/app/components/actions/review.action';
 import EmotionSlug from '@/app/components/layout/pages/EmotionSlug';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -79,6 +80,9 @@ async function ProductDetail({ params }: Props) {
 
     const { product, suggests } = result;
 
+    const reviewNote = await getAverageRating(product.id);
+        const reviewCount = await getReviewCount(product.id)
+
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "Product",
@@ -110,7 +114,7 @@ async function ProductDetail({ params }: Props) {
     return (
         <>
             <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([jsonLd, breadcrumbLd]) }} />
-            <EmotionSlug product={product} suggest={suggests} />
+            <EmotionSlug product={product} suggest={suggests} averageRating={reviewNote} reviewCount={reviewCount} />
         </>
     );
 }
