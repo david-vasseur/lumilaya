@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { Shield, FileText, Lock, Scale, Calendar, Mail } from 'lucide-react';
+import { FileText, Scale, Mail } from 'lucide-react';
 
 const CGVPage = () => {
     const sectionRef = useRef<HTMLDivElement>(null);

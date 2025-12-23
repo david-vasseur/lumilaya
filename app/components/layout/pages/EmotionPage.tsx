@@ -1,7 +1,7 @@
 "use client"
 
 import gsap from 'gsap';
-import { Leaf, Clock, Sparkles, ArrowRight, Heart } from 'lucide-react';
+import { Leaf, Clock, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useGSAP } from '@gsap/react';

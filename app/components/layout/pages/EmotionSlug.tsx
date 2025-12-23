@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from 'react';
-import { Star, Heart, Share2, ShoppingCart, Minus, Plus, Truck, Shield, Leaf, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Heart, ShoppingCart, Minus, Plus, Truck, Shield, Leaf, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { usePathname } from 'next/navigation';
@@ -13,7 +13,6 @@ import toast from 'react-hot-toast';
 import ConseilUtilisation from '../../ui/ConseilUtilisation';
 import ShareButton from '../../ui/ShareButton';
 import FavoriteButton from '../../ui/FavoriteButton';
-import { useModalStore } from '@/lib/store/modalStore';
 import ReviewSummaryClient from '../../ui/ReviewComponent';
 
 type Suggest = {
@@ -33,16 +32,11 @@ interface EmotionSlugProps {
 
 function EmotionSlug({ product, suggest, averageRating, reviewCount }: EmotionSlugProps) {
 
-  // if (!products) return
-
-    const { openModal } = useModalStore();
     const [currentImage, setCurrentImage] = useState(0);
     const [quantity, setQuantity] = useState(1);
     const [selectedSize, setSelectedSize] = useState('150g');
     let variant = selectedSize === '150g' ? 0 : 1; 
     const path = usePathname().split('/').filter(Boolean).pop();      
-    // const product = products.find(product => product.slug === path );
-    // const suggest = products.filter(product => product.slug !== path); 
     const { addItem, items } = useCartStore();
     const promo = Number(product?.promo || 0);
     const finalPrice = promo > 0 ? product!.variants[variant].price * (1 - promo / 100) : product?.variants[variant].price;
