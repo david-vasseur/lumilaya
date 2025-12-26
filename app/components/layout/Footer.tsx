@@ -68,7 +68,7 @@ const Footer = () => {
 
 			<div className="footer-container relative max-w-7xl mx-auto px-6 pt-20 pb-8">
 				{/* Contenu principal */}
-				<div className="grid grid-col-1 lg:grid-cols-12 gap-12 mb-16">
+				<div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
 					{/* Brand Section */}
 					<div className="footer-brand col-span-2 lg:col-span-4">
 						<div className="flex items-center gap-3 mb-6">
