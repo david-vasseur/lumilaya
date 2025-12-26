@@ -70,7 +70,7 @@ const Footer = () => {
 				{/* Contenu principal */}
 				<div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
 					{/* Brand Section */}
-					<div className="footer-brand col-span-2 lg:col-span-4">
+					<div className="footer-brand col-span-1 lg:col-span-4">
 						<div className="flex items-center gap-3 mb-6">
 							<div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
 								<Image width={48} height={48} src={'/images/footer.webp'} alt='logo' />
