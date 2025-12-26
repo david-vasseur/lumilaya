@@ -50,21 +50,21 @@ export async function handleCheckout(clientItems: ServerItem[], customer: Custom
 		const ipRaw = (h.get("x-forwarded-for") || h.get("x-real-ip") || "0.0.0.0").split(",")[0].trim();
 
 		try {
-		await rateLimiter.consume(ipRaw); // Throws si dépasse le quota
+			await rateLimiter.consume(ipRaw); // Throws si dépasse le quota
 		} catch (rejRes) {
-		console.warn("Rate limit atteint pour", ipRaw);
-		return { url: null, error: "Trop de requêtes, essayez plus tard." };
+			console.warn("Rate limit atteint pour", ipRaw);
+			return { url: null, error: "Trop de requêtes, essayez plus tard." };
 		}
 
 
 		if (!clientItems || clientItems.length === 0) {
-		throw new Error("Le panier est vide.");
+			throw new Error("Le panier est vide.");
 		}
 
 		// 🔒 1️⃣ Recalculer TOUS les prix côté serveur
 		const securePrices = await getPricesForStripe(clientItems);
 		if (!securePrices.length) {
-		throw new Error("Panier invalide.");
+			throw new Error("Panier invalide.");
 		}
 
 		const totalProducts = securePrices.reduce(
@@ -79,10 +79,10 @@ export async function handleCheckout(clientItems: ServerItem[], customer: Custom
 		if (shippingResult.status === "free") {
 		shippingLineItem = { name: shippingResult.shipping?.name ?? "Livraison", price: 0 };
 		} else if (shippingResult.status === "not free" && shippingResult.shipping) {
-		shippingLineItem = {
-			name: shippingResult.shipping.name,
-			price: shippingResult.shipping.price,
-		};
+			shippingLineItem = {
+				name: shippingResult.shipping.name,
+				price: shippingResult.shipping.price,
+			};
 		} else {
 		throw new Error("Impossible de calculer la livraison.");
 		}
@@ -99,12 +99,12 @@ export async function handleCheckout(clientItems: ServerItem[], customer: Custom
 			const product = products.find((p) => p.id === item.productId);
 			const productName = product ? `Bougie ${product.name}` : `Produit ${item.productId}`;
 			return {
-			price_data: {
-				currency: "eur",
-				product_data: { name: productName },
-				unit_amount: Math.round(item.price * 100),
-			},
-			quantity: item.qty,
+				price_data: {
+					currency: "eur",
+					product_data: { name: productName },
+					unit_amount: Math.round(item.price * 100),
+				},
+				quantity: item.qty,
 			};
 		}),
 		{
