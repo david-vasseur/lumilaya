@@ -157,6 +157,9 @@ function Best({ products }: IBest) {
             scroll-smooth
             py-8
           "
+          style={{
+            scrollSnapType: 'x mandatory',
+          }}
         >
           {products.map((product, index) => (
             <div
@@ -169,6 +172,10 @@ function Best({ products }: IBest) {
                 scroll-snap-center
                 mx-[2.5vw]
               "
+              style={{
+                scrollSnapAlign: 'center',
+                scrollSnapStop: 'always', 
+              }}
             >
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 {/* Image */}
