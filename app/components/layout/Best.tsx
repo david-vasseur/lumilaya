@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { FaMedal } from "react-icons/fa6";
+import Title from "../ui/Title";
 
 interface IBest {
   products: IProduct[];
@@ -18,11 +19,37 @@ function Best({ products }: IBest) {
 
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
   const mobileTrackRef = useRef<HTMLDivElement>(null);
+  const titleRefs = useRef<{ titleRef: HTMLHeadingElement | null; spanRef: HTMLSpanElement | null }>(null);
 
   /* --------------------------------
      GSAP – animation card active
   --------------------------------- */
   useGSAP(() => {
+
+    if (!titleRefs.current?.titleRef || !titleRefs.current?.spanRef) return
+
+    gsap.from(titleRefs.current?.titleRef, {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            scrollTrigger: {
+                trigger: titleRefs.current?.titleRef,
+                start: 'top 80%',
+                end: 'top 60%',
+                scrub: 1
+            }
+        })
+
+        gsap.fromTo(titleRefs.current?.spanRef, 
+            { scaleX: 0 },
+            { scaleX: 1, scrollTrigger: {
+                    trigger: titleRefs.current?.spanRef,
+                    start: 'top 90%',
+                    end: 'top 30%',
+                    scrub: 1
+                }  }
+        )
+
     cardsRef.current.forEach((card, index) => {
       if (!card) return;
 
@@ -75,17 +102,17 @@ function Best({ products }: IBest) {
 
   return (
     <section
-        id="best-seller"
         className="relative py-20 md:py-32 overflow-hidden"
 
     >
         <Image fill src={"/images/wave.svg"} alt="image de fond" className="object-cover -z-1" />
       {/* ---------------- Header ---------------- */}
       <div className="max-w-7xl mx-auto text-center mb-16 px-4">
-        <h2 className="text-4xl md:text-5xl font-light text-[#2C2C2C] mb-4">
+        {/* <h2 className="text-4xl md:text-5xl font-light text-[#2C2C2C] mb-4">
           Nos Best-Sellers
         </h2>
-        <span className="block w-24 h-0.5 mx-auto bg-[#7A9B8E]" />
+        <span className="block w-24 h-0.5 mx-auto bg-[#7A9B8E]" /> */}
+        <Title ref={titleRefs} title="Nos Best-Sellers" id="best-seller" />
         <p className="mt-6 text-[#2C2C2C]/70 max-w-2xl mx-auto">
           Les bougies préférées de notre communauté
         </p>

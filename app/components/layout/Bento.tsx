@@ -6,14 +6,16 @@ import { ChevronRight, Leaf, Sparkles } from 'lucide-react'
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRef } from 'react';
+import Title from '../ui/Title';
 
 function Bento() {
 
     const brandRef = useRef(null);
-    const spanRef = useRef(null);
-    const titleRef = useRef(null);
+    const titleRefs = useRef<{ titleRef: HTMLHeadingElement | null; spanRef: HTMLSpanElement | null }>(null);
 
     useGSAP(() => {
+
+        if (!titleRefs.current?.titleRef || !titleRefs.current?.spanRef) return
 
         gsap.to(brandRef.current, {
             y: -200,
@@ -26,22 +28,22 @@ function Bento() {
             }
         })
 
-        gsap.from(titleRef.current, {
+        gsap.from(titleRefs.current?.titleRef, {
             y: 50,
             opacity: 0,
             duration: 1,
             scrollTrigger: {
-                trigger: titleRef.current,
+                trigger: titleRefs.current?.titleRef,
                 start: 'top 80%',
                 end: 'top 60%',
                 scrub: 1
             }
         })
 
-        gsap.fromTo(spanRef.current, 
+        gsap.fromTo(titleRefs.current?.spanRef, 
             { scaleX: 0 },
             { scaleX: 1, scrollTrigger: {
-                    trigger: spanRef.current,
+                    trigger: titleRefs.current?.spanRef,
                     start: 'top 90%',
                     end: 'top 30%',
                     scrub: 1
@@ -86,13 +88,13 @@ function Bento() {
                 </div>
             </section>
 
-            <div id="boutique" className="max-w-7xl mx-auto">
+            {/* <div id="boutique" className="max-w-7xl mx-auto overflow-hidden">
                 <h2 ref={titleRef} className="text-4xl relative z-0 text-gray-600 text-center tracking-wide">
                     Nos Collections
                 </h2>
             </div>
-            <span ref={spanRef} className="block relative z-2 w-2/3 h-1 mx-auto bg-linear-to-r from-transparent via-[#5A7B6E] to-transparent"></span>
-            <span className="block relative z-2 w-2/3 h-15 mx-auto bg-[#FDFBF7]"></span>
+            <span ref={spanRef} className="block relative z-2 w-2/3 h-1 mx-auto bg-linear-to-r from-transparent via-[#5A7B6E] to-transparent"></span> */}
+            <Title ref={titleRefs} title='Nos Collections' id='boutique' />
 
             <section className="categories-section py-20 px-6">
                 
