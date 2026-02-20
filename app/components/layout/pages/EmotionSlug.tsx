@@ -190,7 +190,7 @@ function EmotionSlug({ product, suggest, averageRating, reviewCount }: EmotionSl
               </label>
               <div className="flex gap-3">
                 {product.collection === "Emotion" ? (
-                  ['150g', '200g'].map((size) => (
+                  ['150g'].map((size) => (
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
