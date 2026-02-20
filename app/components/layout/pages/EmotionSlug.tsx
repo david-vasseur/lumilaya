@@ -212,7 +212,7 @@ function EmotionSlug({ product, suggest, averageRating, reviewCount }: EmotionSl
                 )}
                 
               </div>
-              <p className="text-sm text-[#2C2C2C]/50 mt-2">≈ {product.variants[variant].duration} - {Math.round(Number(product.variants[variant].duration) + 10)}h de combustion</p>
+              <p className="text-sm text-[#2C2C2C]/50 mt-2">≈ {product.variants[variant].duration} - {Math.round(Number(product.variants[variant].duration) + 5)}h de combustion</p>
             </div>
 
             {/* Quantité et ajout panier */}
