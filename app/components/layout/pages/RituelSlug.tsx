@@ -206,7 +206,7 @@ function RituelSlug({ products }: RituelSlugProps) {
                     200g
                   </button>
               </div>
-              <p className="text-sm text-[#2C2C2C]/50 mt-2">≈ 50-60h de combustion</p>
+              <p className="text-sm text-[#2C2C2C]/50 mt-2">≈ 35-40h de combustion</p>
             </div>
 
             {/* Quantité et ajout panier */}
