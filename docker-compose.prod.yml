@@ -11,8 +11,11 @@ services:
       NODE_ENV: production
     networks:
       - nginx-network
+      - mongo-network
 
 networks:
   nginx-network:
+    external: true
+  mongo-network:
     external: true
     
