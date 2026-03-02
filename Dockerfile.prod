@@ -10,6 +10,7 @@ COPY . .
 
 # Builder le projet Next.js
 RUN npm run build
+RUN npx prisma generate
 
 # Image finale légère
 FROM node:22-alpine
