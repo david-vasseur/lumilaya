@@ -12,10 +12,13 @@ services:
     networks:
       - nginx-network
       - mongo-network
+      - redis-network
 
 networks:
   nginx-network:
     external: true
   mongo-network:
+    external: true
+  redis-network:
     external: true
     
