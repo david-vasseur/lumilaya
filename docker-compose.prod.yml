@@ -13,10 +13,14 @@ services:
       - 8.8.8.8
       - 1.1.1.1
     networks:
+      - prod-network
       - nginx-network
       - mongo-network
       - redis-network
+    ports:
+      - "4004:4004"  # expose uniquement le port de ton app
 
+# Réseaux externes existants
 networks:
   nginx-network:
     external: true
@@ -24,4 +28,12 @@ networks:
     external: true
   redis-network:
     external: true
-    
+
+  # Réseau interne pour le container web avec sortie Internet
+  prod-network:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.enable_ip_masquerade: "true"
+    ipam:
+      config:
+        - subnet: 172.25.0.0/16
