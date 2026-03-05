@@ -18,6 +18,7 @@ export async function generateStaticParams() {
 
 // ISR : page régénérée toutes les heures
 export const revalidate = 3600;
+export const dynamicParams = true;
 
 const BASE_URL = "https://www.lumilaya.fr";
 
