@@ -9,14 +9,11 @@ services:
       - .env
     environment:
       NODE_ENV: production
-    dns:
-      - 8.8.8.8
-      - 1.1.1.1
-    dns_search: ""
     networks:
       - nginx-network
       - mongo-network
       - redis-network
+      - internet-bridge
 
 # Réseaux externes existants
 networks:
@@ -26,4 +23,6 @@ networks:
     external: true
   redis-network:
     external: true
+  internet-bridge:
+    driver: bridge
 
