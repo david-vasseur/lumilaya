@@ -9,10 +9,20 @@ interface Props {
     params: { slug: string };
 }
 
+export const revalidate = 3600; 
+export const dynamicParams = true;
+
+const BASE_URL = "https://www.lumilaya.fr";
+
 // OPTIMISATION 1 : Génération Statique (SSG)
 // Cela permet à Next.js de construire toutes les pages produits au build
 // Résultat : Chargement instantané pour l'utilisateur.
 export async function generateStaticParams() {
+
+    if (process.env.SKIP_BUILD_STATIC_GENERATION) {
+        return [];
+    }
+
     const products = await ProductList("Emotion");
 	console.log(products.map(p => p.slug));
     return products.map((product) => ({
@@ -20,14 +30,15 @@ export async function generateStaticParams() {
     }));
 }
 
-// On définit la fréquence de mise à jour (ISR) si on ajoute un produit ou change un prix
-export const dynamic = "force-dynamic";
-export const revalidate = 3600; 
-export const dynamicParams = true;
-
-const BASE_URL = "https://www.lumilaya.fr";
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+
+    if (process.env.SKIP_BUILD_STATIC_GENERATION) {
+        return {
+            title: "Lumilaya",
+            description: "Bougies artisanales françaises"
+        };
+    }
+
     const { slug } = await params; // Pas besoin de await params dans les versions récentes, mais ok si Next 13/14
     console.log("Rendering slug page", params);
     // OPTIMISATION 2 : Fetch unique et ciblé
