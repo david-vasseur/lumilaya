@@ -7,7 +7,7 @@ import { notFound } from "next/navigation";
 // OPTIMISATION 1 : On remplace force-dynamic par ISR. 
 // La page est régénérée au maximum toutes les heures (3600s), 
 // ce qui la rend instantanée pour l'utilisateur et Google.
-export const revalidate = 3600; 
+export const dynamic = "force-dynamic"; 
 
 // Définir la base URL pour éviter les soucis de liens relatifs
 const BASE_URL = "https://www.lumilaya.fr";

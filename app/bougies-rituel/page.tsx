@@ -5,7 +5,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 
-export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 const BASE_URL = "https://www.lumilaya.fr";
 
