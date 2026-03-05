@@ -55,17 +55,17 @@ export async function GetItemBySlug(slug: string) {
 		});
 
 		const suggests = rawSuggests.map((p) => {
-		const images = Array.isArray(p.images) ? (p.images as string[]) : [];
-		const variants = Array.isArray(p.variants)
-			? (p.variants as { price: number }[])
-			: [];
+			const images = Array.isArray(p.images) ? (p.images as string[]) : [];
+			const variants = Array.isArray(p.variants)
+				? (p.variants as { price: number }[])
+				: [];
 
-		return {
-			name: p.name,
-			slug: p.slug,
-			image: images[0] ?? null,
-			price: variants.length > 0 ? variants[0].price : null,
-		};
+			return {
+				name: p.name,
+				slug: p.slug,
+				image: images[0] ?? null,
+				price: variants.length > 0 ? variants[0].price : null,
+			};
 		});
 
 		return { product, suggests };

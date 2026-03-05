@@ -5,6 +5,8 @@ import { ReviewsSection } from "./components/layout/ReviewSection";
 import BestProducts from "./components/layout/BestProducts";
 import TestSavoir from "./components/layout/TestSavoir";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
 
 	return (

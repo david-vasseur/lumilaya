@@ -75,6 +75,13 @@ export async function generateMetadata(): Promise<Metadata> {
 
 async function BougiesEmotions() {
     const products = await ProductList("Emotion");
+    if (products) {
+        console.log("les produits", products);
+    } else {
+        console.log("les produits ne sont pas récupéré");
+    }
+    
+    
 
     if (!products) return null;
 

@@ -19,7 +19,9 @@ services:
       - mongo-network
       - redis-network
     ports:
-      - "4004:4004"  # expose uniquement le port de ton app
+      - "4004:4004"
+    depends_on:
+      - mongo
 
 # Réseaux externes existants
 networks:
