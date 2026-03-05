@@ -17,6 +17,7 @@ export async function generateStaticParams() {
 }
 
 // ISR : page régénérée toutes les heures
+export const dynamic = "force-dynamic";
 export const revalidate = 3600;
 export const dynamicParams = true;
 

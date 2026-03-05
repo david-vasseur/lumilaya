@@ -21,6 +21,7 @@ export async function generateStaticParams() {
 }
 
 // On définit la fréquence de mise à jour (ISR) si on ajoute un produit ou change un prix
+export const dynamic = "force-dynamic";
 export const revalidate = 3600; 
 export const dynamicParams = true;
 
