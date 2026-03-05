@@ -8,7 +8,17 @@ interface Props {
     params: { slug: string };
 }
 
+export const revalidate = 3600;
+export const dynamicParams = true;
+
+const BASE_URL = "https://www.lumilaya.fr";
+
 export async function generateStaticParams() {
+
+    if (process.env.SKIP_BUILD_STATIC_GENERATION) {
+        return [];
+    }
+
 	const products = await ProductList("Terre");
 	console.log(products.map(p => p.slug));
 	return products.map((product) => ({
@@ -16,14 +26,16 @@ export async function generateStaticParams() {
 	}));
 }
 
-// ISR : page régénérée toutes les heures
-export const dynamic = "force-dynamic";
-export const revalidate = 3600;
-export const dynamicParams = true;
-
-const BASE_URL = "https://www.lumilaya.fr";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+
+    if (process.env.SKIP_BUILD_STATIC_GENERATION) {
+        return {
+        title: "Lumilaya",
+        description: "Bougies artisanales françaises"
+        };
+    }
+
     const { slug } = await params;
     const result = await GetItemBySlug(slug);
 
