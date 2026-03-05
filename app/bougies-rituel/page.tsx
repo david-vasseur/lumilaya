@@ -10,6 +10,14 @@ export const revalidate = 3600;
 const BASE_URL = "https://www.lumilaya.fr";
 
 export async function generateMetadata(): Promise<Metadata> {
+
+  if (process.env.SKIP_BUILD_STATIC_GENERATION) {
+        return {
+            title: "Bougies Rituel - Lumilaya",
+            description: "Collection de bougies artisanales françaises.",
+        };
+    }
+
   const products: IProduct[] = await ProductList("Terre");
 
   const pageUrl = "/bougies-rituel";
@@ -65,8 +73,13 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+async function getProducts(): Promise<IProduct[]> {
+  if (process.env.SKIP_BUILD_STATIC_GENERATION) return [];
+  return await ProductList("Terre");
+}
+
 async function BougiesRituels() {
-  const products: IProduct[] = await ProductList("Terre");
+  const products: IProduct[] = await getProducts();
   
   if (!products || products.length === 0) {
       notFound();

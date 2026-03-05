@@ -13,6 +13,14 @@ export const revalidate = 3600;
 const BASE_URL = "https://www.lumilaya.fr";
 
 export async function generateMetadata(): Promise<Metadata> {
+
+    if (process.env.SKIP_BUILD_STATIC_GENERATION) {
+        return {
+            title: "Bougies Émotions - Lumilaya",
+            description: "Collection de bougies artisanales françaises.",
+        };
+    }
+
     const products: IProduct[] = await ProductList("Emotion");
     
     // Définition de base pour éviter la duplication de code
@@ -74,16 +82,15 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-async function BougiesEmotions() {
-    const products = await ProductList("Emotion");
-    if (products) {
-        console.log("les produits", products);
-    } else {
-        console.log("les produits ne sont pas récupéré");
-    }
-    
-    
+async function getProducts() {
+  if (process.env.SKIP_BUILD_STATIC_GENERATION) return [];
+  return await ProductList("Emotion");
+}
 
+async function BougiesEmotions() {
+   
+    const products = await getProducts();
+   
     if (!products || products.length === 0) {
         notFound();
     }
