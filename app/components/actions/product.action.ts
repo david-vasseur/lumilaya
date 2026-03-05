@@ -135,7 +135,7 @@ export default async function ProductList(collection: string) {
 		}));
 	} catch (err: any) {
 		console.error("❌ Erreur dans ProductList :", err?.message ?? err);
-		return [];
+		throw err;
 	}
 }
 

@@ -2,6 +2,7 @@ import { IProduct } from "@/type/product";
 import ProductList from "../components/actions/product.action";
 import EmotionPage from "../components/layout/pages/EmotionPage";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 // OPTIMISATION 1 : On remplace force-dynamic par ISR. 
 // La page est régénérée au maximum toutes les heures (3600s), 
@@ -83,7 +84,9 @@ async function BougiesEmotions() {
     
     
 
-    if (!products) return null;
+    if (!products || products.length === 0) {
+        notFound();
+    }
 
     // OPTIMISATION 4 : Données Structurées (JSON-LD)
     // Cela aide Google à comprendre qu'il s'agit d'une liste de produits

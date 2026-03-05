@@ -2,6 +2,7 @@ import { IProduct } from "@/type/product";
 import ProductList from "../components/actions/product.action";
 import RituelPage from "../components/layout/pages/RituelPage";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 
 export const revalidate = 3600;
@@ -66,7 +67,10 @@ export async function generateMetadata(): Promise<Metadata> {
 
 async function BougiesRituels() {
   const products: IProduct[] = await ProductList("Terre");
-  if (!products) return null;
+  
+  if (!products || products.length === 0) {
+      notFound();
+  }
 
   const jsonLd = {
     "@context": "https://schema.org",
