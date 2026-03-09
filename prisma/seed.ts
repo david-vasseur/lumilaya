@@ -35,7 +35,7 @@ async function main() {
                 fabrication: "France",
                 }),
                 variants: JSON.stringify([
-                    { id: 1, name: "Bougie", duration: 40, price: 29 }
+                    { id: 1, name: "Bougie", duration: "30 - 35", price: 29 }
                 ]),
                 stock: true,
                 promo: 0,

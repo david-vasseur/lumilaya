@@ -1,23 +1,14 @@
 "use server"
 
 import { PrismaClient } from "@/lib/generated/prisma/client";
-import { transformProduct } from "@/lib/utils/utilsFunction";
 import { IProduct } from "@/type/product";
 
 const prisma = new PrismaClient();
 
-interface IItem {
-    id: number;
-    name: string;
-    price: number;
-    qty: number;
-    image: string;
-};
-
 type ServerItem = {
-  productId: number;  // ✅ ObjectId du produit
+  productId: number;
   variantId: number;
-  name: string;  // ✅ 11, 12, 21, etc.
+  name: string;
   qty: number;
 };
 
@@ -25,263 +16,218 @@ type PricePerProduct = {
   productId: number;
   variantId: number;
   name: string;
-  price: number; // prix unitaire avec promo appliquée
+  price: number;
   qty: number;
 };
 
-type Variant = { price: number };
+// ------------------------------------------------------------
 
-// -------------------------------------------------------------------------------------------------------------------
+function parseJsonArray<T>(json: any): T[] {
+  if (!json) return [];
+  if (Array.isArray(json)) return json as T[];
+  try {
+    return JSON.parse(json) as T[];
+  } catch {
+    return [];
+  }
+}
 
+function parseJsonObject<T>(json: any): T {
+  if (!json) return {} as T;
+  if (typeof json === "object") return json as T;
+  try {
+    return JSON.parse(json) as T;
+  } catch {
+    return {} as T;
+  }
+}
+
+// ---------- Get Item By Slug ----------
 export async function GetItemBySlug(slug: string) {
-	try {
-		if (!slug) return null;
+  if (!slug) return null;
 
-		// Récupération du produit principal
-		const productRaw = await prisma.product.findUnique({
-		where: { slug },
-		});
+  const productRaw = await prisma.product.findUnique({ where: { slug } });
+  if (!productRaw) return null;
 
-		if (!productRaw) return null;
+  const product: IProduct = {
+    id: productRaw.id,
+    collection: productRaw.collection,
+    name: productRaw.name,
+    slug: productRaw.slug,
+    description: parseJsonArray<string>(productRaw.description),
+    intro: productRaw.intro,
+    theme: parseJsonArray<string>(productRaw.theme),
+    images: parseJsonArray<string>(productRaw.images),
+    caracteristique: parseJsonObject(productRaw.caracteristique),
+    variants: parseJsonArray<{ id: number; name: string; duration: any; price: number }>(productRaw.variants)
+      .map(v => ({
+        ...v,
+        duration: String(v.duration), // ⚡ force string
+      })),
+    stock: productRaw.stock,
+    promo: productRaw.promo ?? 0,
+    like: productRaw.like ?? 0,
+    createdAt: productRaw.createdAt,
+  };
 
-		const product = transformProduct(productRaw);
+  // Suggestions
+  const rawSuggests = await prisma.product.findMany({
+    where: { collection: product.collection, NOT: { id: product.id } },
+  });
 
-		// Suggestions
-		const rawSuggests = await prisma.product.findMany({
-		where: {
-			collection: product.collection,
-			NOT: { id: product.id },
-		},
-		});
+  const suggests = rawSuggests.map(p => {
+    const images = parseJsonArray<string>(p.images);
+    const variants = parseJsonArray<{ id: number; name: string; duration: any; price: number }>(p.variants)
+      .map(v => ({ ...v, duration: String(v.duration) }));
+    return {
+      name: p.name,
+      slug: p.slug,
+      image: images[0] ?? null,
+      price: variants.length > 0 ? variants[0].price : null,
+    };
+  });
 
-		const suggests = rawSuggests.map((p) => {
-			const images = Array.isArray(p.images) ? (p.images as string[]) : [];
-			const variants = Array.isArray(p.variants)
-				? (p.variants as { price: number }[])
-				: [];
-
-			return {
-				name: p.name,
-				slug: p.slug,
-				image: images[0] ?? null,
-				price: variants.length > 0 ? variants[0].price : null,
-			};
-		});
-
-		return { product, suggests };
-	} catch (err: any) {
-		console.error("❌ Erreur dans GetItemBySlug :", err?.message ?? err);
-		return { product: null, suggests: [] }
-	}
+  return { product, suggests };
 }
 
-//-------------------------------------------------------------------------------------
-
+// ---------- Get Favorite Products ----------
 export async function GetFavoriteProducts(ids: number[]) {
-	if (!ids.length) return [];
-	try {
-		const products = await prisma.product.findMany({
-			where: { 
-				id: { 
-					in: ids
-				}
-			}
-		});
-		return products
-	} catch (err) {
-		console.error("❌ Erreur dans GetFavoriteProducts :", err);
-		return [];
-	}
+  if (!ids.length) return [];
+
+  const productsRaw = await prisma.product.findMany({ where: { id: { in: ids } } });
+  return productsRaw.map(p => ({
+    id: p.id,
+    collection: p.collection,
+    name: p.name,
+    slug: p.slug,
+    description: parseJsonArray<string>(p.description),
+    intro: p.intro,
+    theme: parseJsonArray<string>(p.theme),
+    images: parseJsonArray<string>(p.images),
+    caracteristique: parseJsonObject(p.caracteristique),
+    variants: parseJsonArray<{ id: number; name: string; duration: any; price: number }>(p.variants)
+      .map(v => ({ ...v, duration: String(v.duration) })),
+    stock: p.stock,
+    promo: p.promo ?? 0,
+    like: p.like ?? 0,
+    createdAt: p.createdAt,
+  }));
 }
 
+// ---------- Product List by Collection ----------
+export default async function ProductList(collection: string): Promise<IProduct[]> {
+  if (!collection) return [];
 
-//-------------------------------------------------------------------------------------
-
-export default async function ProductList(collection: string) {
-	try {
-		if (!collection) return [];
-
-		const products = await prisma.product.findMany({
-		where: { collection },
-		});
-
-		return products.map((p) => ({
-			id: p.id,
-			collection: p.collection,
-			name: p.name,
-			slug: p.slug,
-			description: Array.isArray(p.description) ? (p.description as string[]) : [],
-			intro: p.intro,
-			theme: Array.isArray(p.theme) ? (p.theme as string[]) : [],
-			images: Array.isArray(p.images) ? (p.images as string[]) : [],
-			caracteristique: {
-				...(p.caracteristique as {
-				composition: string;
-				meche: string;
-				parfum: string;
-				combustion: string;
-				poids: string;
-				contenant: string;
-				fabrication: string;
-				}),
-			},
-			variants: Array.isArray(p.variants)
-				? (p.variants as { id: number; name: string; duration: string; price: number }[])
-				: [],
-			stock: p.stock,
-			promo: p.promo ?? 0,
-			like: p.like ?? 0,
-			createdAt: p.createdAt,
-		}));
-	} catch (err: any) {
-		console.error("❌ Erreur dans ProductList :", err?.message ?? err);
-		throw err;
-	}
+  const productsRaw = await prisma.product.findMany({ where: { collection } });
+  return productsRaw.map(p => ({
+    id: p.id,
+    collection: p.collection,
+    name: p.name,
+    slug: p.slug,
+    description: parseJsonArray<string>(p.description),
+    intro: p.intro,
+    theme: parseJsonArray<string>(p.theme),
+    images: parseJsonArray<string>(p.images),
+    caracteristique: parseJsonObject(p.caracteristique),
+    variants: parseJsonArray<{ id: number; name: string; duration: any; price: number }>(p.variants)
+      .map(v => ({ ...v, duration: String(v.duration) })),
+    stock: p.stock,
+    promo: p.promo ?? 0,
+    like: p.like ?? 0,
+    createdAt: p.createdAt,
+  }));
 }
 
-//-------------------------------------------------------------------------------------
+// ---------- Top Rated Products ----------
+export async function TopRatedProducts(): Promise<IProduct[]> {
+  const productsRaw = await prisma.product.findMany({
+    orderBy: { like: "desc" },
+    take: 3,
+  });
 
-export async function TopRatedProducts() {
-	try {
-		const products = await prisma.product.findMany({
-		orderBy: {
-			like: "desc", 
-		},
-		take: 3, 
-		});
-
-		return products.map((p) => ({
-		id: p.id,
-		collection: p.collection,
-		name: p.name,
-		slug: p.slug,
-		description: Array.isArray(p.description) ? (p.description as string[]) : [],
-		intro: p.intro,
-		theme: Array.isArray(p.theme) ? (p.theme as string[]) : [],
-		images: Array.isArray(p.images) ? (p.images as string[]) : [],
-		caracteristique: {
-			...(p.caracteristique as {
-			composition: string;
-			meche: string;
-			parfum: string;
-			combustion: string;
-			poids: string;
-			contenant: string;
-			fabrication: string;
-			}),
-		},
-		variants: Array.isArray(p.variants)
-			? (p.variants as { id: number; name: string; duration: string; price: number }[])
-			: [],
-		stock: p.stock,
-		promo: p.promo ?? 0,
-		like: p.like ?? 0,
-		createdAt: p.createdAt,
-		}));
-	} catch (err: any) {
-		console.error("❌ Erreur dans TopRatedProducts :", err?.message ?? err);
-		return []; 
-	}
+  return productsRaw.map(p => ({
+    id: p.id,
+    collection: p.collection,
+    name: p.name,
+    slug: p.slug,
+    description: parseJsonArray<string>(p.description),
+    intro: p.intro,
+    theme: parseJsonArray<string>(p.theme),
+    images: parseJsonArray<string>(p.images),
+    caracteristique: parseJsonObject(p.caracteristique),
+    variants: parseJsonArray<{ id: number; name: string; duration: any; price: number }>(p.variants)
+      .map(v => ({ ...v, duration: String(v.duration) })),
+    stock: p.stock,
+    promo: p.promo ?? 0,
+    like: p.like ?? 0,
+    createdAt: p.createdAt,
+  }));
 }
 
-//---------------------------------------------------------------------------------------------------------
-
+// ---------- Total Price Calculation ----------
 export async function TotalProduct(items: ServerItem[]): Promise<number> {
-	try {
-		if (!items || items.length === 0) return 0;
+  if (!items?.length) return 0;
 
-		const productIds = items
-		.map((item) => item.productId)
-		.filter((id) => typeof id === "string");
+  const productIds = items.map(i => i.productId);
+  if (!productIds.length) return 0;
 
-		if (productIds.length === 0) return 0;
+  const productsRaw = await prisma.product.findMany({
+    where: { id: { in: productIds } },
+    select: { id: true, variants: true, promo: true },
+  });
 
-		const products = await prisma.product.findMany({
-		where: { id: { in: productIds } },
-		select: {
-			id: true,
-			variants: true,
-			promo: true,
-		},
-		});
+  let total = 0;
+  for (const item of items) {
+    const product = productsRaw.find(p => p.id === item.productId);
+    if (!product) continue;
 
-		let total = 0;
+    const variants = parseJsonArray<{ id: number; price: number }>(product.variants);
+    const variant = variants.find(v => v.id === item.variantId);
+    if (!variant) continue;
 
-		for (const item of items) {
-		const product = products.find((p) => p.id === item.productId);
-		if (!product) continue;
+    const price = product.promo && product.promo !== 0
+      ? variant.price * (1 - product.promo / 100)
+      : variant.price;
 
-		const variants = Array.isArray(product.variants)
-			? (product.variants as { id: number; price: number }[])
-			: [];
-		const variant = variants.find((v) => v.id === item.variantId);
-		if (!variant) continue;
+    total += price * item.qty;
+  }
 
-		const price =
-			product.promo && product.promo !== 0
-			? variant.price * (1 - product.promo / 100)
-			: variant.price;
-
-		total += price * item.qty;
-		}
-
-		return total;
-	} catch (err: any) {
-		console.error("❌ Erreur dans TotalProduct :", err?.message ?? err);
-		return 0;
-	}
+  return total;
 }
 
-// --------------------------------------------------------------------------------------------------------
-
+// ---------- Prices for Stripe ----------
 export async function getPricesForStripe(items: ServerItem[]): Promise<PricePerProduct[]> {
-	try {
-		if (!items || items.length === 0) return [];
+  if (!items?.length) return [];
 
-		const productIds = items.map((i) => i.productId).filter((id) => typeof id === "string");
-		if (productIds.length === 0) return [];
+  const productIds = items.map(i => i.productId);
+  if (!productIds.length) return [];
 
-		const products = await prisma.product.findMany({
-		where: { id: { in: productIds } },
-		select: {
-			id: true,
-			name: true,
-			variants: true,
-			promo: true,
-		},
-		});
+  const productsRaw = await prisma.product.findMany({
+    where: { id: { in: productIds } },
+    select: { id: true, name: true, variants: true, promo: true },
+  });
 
-		const result: PricePerProduct[] = [];
+  const result: PricePerProduct[] = [];
+  for (const item of items) {
+    const product = productsRaw.find(p => p.id === item.productId);
+    if (!product) continue;
 
-		for (const item of items) {
-		const product = products.find((p) => p.id === item.productId);
-		if (!product) continue;
+    const variants = parseJsonArray<{ id: number; price: number }>(product.variants);
+    const variant = variants.find(v => v.id === item.variantId);
+    if (!variant) continue;
 
-		const variants = Array.isArray(product.variants)
-			? (product.variants as { id: number; price: number }[])
-			: [];
-		const variant = variants.find((v) => v.id === item.variantId);
-		if (!variant) continue;
+    const finalPrice = product.promo && product.promo !== 0
+      ? variant.price * (1 - product.promo / 100)
+      : variant.price;
 
-		const finalPrice =
-			product.promo && product.promo !== 0
-			? variant.price * (1 - product.promo / 100)
-			: variant.price;
+    result.push({
+      productId: item.productId,
+      variantId: item.variantId,
+      name: item.name || product.name,
+      price: finalPrice,
+      qty: item.qty,
+    });
+  }
 
-		result.push({
-			productId: item.productId,
-			variantId: item.variantId,
-			name: item.name || product.name,
-			price: finalPrice,
-			qty: item.qty,
-		});
-		}
-
-		return result;
-	} catch (err: any) {
-		console.error("❌ Erreur dans getPricesForStripe :", err?.message ?? err);
-		return []; 
-	}
+  return result;
 }
-
-
