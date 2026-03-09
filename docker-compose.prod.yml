@@ -11,18 +11,15 @@ services:
       NODE_ENV: production
     networks:
       - nginx-network
-      - mongo-network
+      - mysql-network
       - redis-network
-      - internet-bridge
 
 # Réseaux externes existants
 networks:
   nginx-network:
     external: true
-  mongo-network:
+  mysql-network:
     external: true
   redis-network:
     external: true
-  internet-bridge:
-    driver: bridge
 
