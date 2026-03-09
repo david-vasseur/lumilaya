@@ -12,7 +12,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 });
 
 type PricePerProduct = {
-	productId: string;
+	productId: number;
 	variantId: number;
 	price: number; // prix unitaire avec promo appliquée
 	qty: number;
@@ -35,7 +35,7 @@ type CustomerInfo = {
 };
 
 type ServerItem = {
-	productId: string;
+	productId: number;
 	variantId: number;
 	qty: number;
 	name: string;

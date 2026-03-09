@@ -11,7 +11,7 @@ export const ReviewSchema = z.object({
     .min(1, "Le nom du produit est requis"),
 
   productId: z
-    .string()
+    .number()
     .min(1, "L'id du produit est requis"),
 
   comment: z

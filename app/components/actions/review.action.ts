@@ -13,7 +13,7 @@ export async function createReview({
   comment,
   note,
 }: {
-  productId: string;
+  productId: number;
   name: string;
   comment: string;
   note: number;
@@ -39,7 +39,7 @@ export async function createReview({
 /**
  * 2️⃣ Récupérer tous les commentaires d’un produit
  */
-export async function getReviewsByProduct(productId: string) {
+export async function getReviewsByProduct(productId: number) {
   if (!productId) {
     throw new Error("productId requis");
   }
@@ -57,7 +57,7 @@ export async function getReviewsByProduct(productId: string) {
 /**
  * 3️⃣ Récupérer un commentaire par son id
  */
-export async function getReviewById(reviewId: string) {
+export async function getReviewById(reviewId: number) {
   if (!reviewId) {
     throw new Error("reviewId requis");
   }
@@ -69,7 +69,7 @@ export async function getReviewById(reviewId: string) {
   });
 }
 
-export async function getAverageRating(productId: string) {
+export async function getAverageRating(productId: number) {
   const result = await prisma.review.aggregate({
     where: { productId },
     _avg: { note: true },
@@ -78,7 +78,7 @@ export async function getAverageRating(productId: string) {
   return result._avg.note ?? 0;
 }
 
-export async function getReviewCount(productId: string) {
+export async function getReviewCount(productId: number) {
   return prisma.review.count({
     where: { productId },
   });

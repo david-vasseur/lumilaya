@@ -19,7 +19,7 @@ type OrderItem = {
 };
 
 type OrderEmailProps = {
-  orderId: string;
+  orderId: number;
   firstName: string;
   lastName: string;
   email: string;

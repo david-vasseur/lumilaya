@@ -11,7 +11,7 @@ import { AddShippingPrice, handleCheckout } from "./CheckOut.action";
 import { getPricesForStripe } from "../../actions/product.action";
 
 type ServerItem = {
-  productId: string;
+  productId: number;
   variantId: number;
   name: string;
   qty: number;

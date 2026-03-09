@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Star } from "lucide-react";
 import ReviewForm from "../features/form/ReviewForm";
 
-type Props = { productId: string; productName: string; productSlug: string; averageRating: number; reviewCount: number; };
+type Props = { productId: number; productName: string; productSlug: string; averageRating: number; reviewCount: number; };
 
 export default function ReviewSummaryClient({ productId, productSlug, productName, averageRating, reviewCount }: Props) {
   const { openModal } = useModalStore();

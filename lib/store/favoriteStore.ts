@@ -5,7 +5,7 @@ import { IProduct } from "@/type/product";
 type FavoritesStore = {
   favorites: IProduct[];
   toggleFavorite: (product: IProduct) => void;
-  isFavorite: (productId: string) => boolean;
+  isFavorite: (productId: number) => boolean;
 };
 
 export const useFavoritesStore = create<FavoritesStore>()(

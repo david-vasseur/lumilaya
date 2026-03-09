@@ -15,14 +15,14 @@ interface IItem {
 };
 
 type ServerItem = {
-  productId: string;  // ✅ ObjectId du produit
+  productId: number;  // ✅ ObjectId du produit
   variantId: number;
   name: string;  // ✅ 11, 12, 21, etc.
   qty: number;
 };
 
 type PricePerProduct = {
-  productId: string;
+  productId: number;
   variantId: number;
   name: string;
   price: number; // prix unitaire avec promo appliquée
@@ -77,7 +77,7 @@ export async function GetItemBySlug(slug: string) {
 
 //-------------------------------------------------------------------------------------
 
-export async function GetFavoriteProducts(ids: string[]) {
+export async function GetFavoriteProducts(ids: number[]) {
 	if (!ids.length) return [];
 	try {
 		const products = await prisma.product.findMany({

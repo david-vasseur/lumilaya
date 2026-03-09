@@ -8,7 +8,7 @@ import Image from 'next/image';
 
 // Interface pour typage (compatible avec Google My Business API)
 interface Review {
-    id: string;
+    id: number;
     author: string;
     authorImage?: string; // URL de l'image de profil
     rating: number; // 1 à 5
@@ -20,7 +20,7 @@ interface Review {
 // Reviews fictives (à remplacer par les données de l'API Google My Business)
 const reviews: Review[] = [
     {
-        id: "1",
+        id: 1,
         author: "Sophie Martin",
         // authorImage: "/images/avatars/avatar1.jpg", 
         rating: 5,
@@ -29,7 +29,7 @@ const reviews: Review[] = [
         source: "google"
     },
     {
-        id: "2",
+        id: 2,
         author: "Thomas Dubois",
         rating: 5,
         date: "2024-11-10T14:20:00Z",
@@ -37,7 +37,7 @@ const reviews: Review[] = [
         source: "google"
     },
     {
-        id: "3",
+        id: 3,
         author: "Marie Lefebvre",
         rating: 5,
         date: "2024-11-05T16:45:00Z",
@@ -45,7 +45,7 @@ const reviews: Review[] = [
         source: "google"
     },
     {
-        id: "4",
+        id: 4,
         author: "Laurent Petit",
         rating: 4,
         date: "2024-10-28T09:15:00Z",
@@ -53,7 +53,7 @@ const reviews: Review[] = [
         source: "google"
     },
     {
-        id: "5",
+        id: 5,
         author: "Céline Rousseau",
         rating: 5,
         date: "2024-10-20T11:00:00Z",

@@ -56,12 +56,11 @@ export async function logVisit(path: string, userAgent?: string) {
             });
         } else {
             // Mise à jour des pages visitées
-            if (!existing.pages.includes(path)) {
+            const pages = (existing.pages as string[]) ?? [];
+            if (!pages.includes(path)) {
                 await prisma.visitLog.update({
                 where: { id: existing.id },
-                data: {
-                    pages: [...existing.pages, path],
-                },
+                data: { pages: [...pages, path] },
                 });
             }
         }

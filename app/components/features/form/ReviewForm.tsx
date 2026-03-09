@@ -11,7 +11,7 @@ function ReviewForm({
     productId,
     productName,
 }: {
-    productId: string;
+    productId: number;
     productName: string;
 }) {
 

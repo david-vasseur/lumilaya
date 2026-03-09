@@ -1,7 +1,7 @@
 export interface IReview {
     name: String,
     product: String,
-    productId: String,
+    productId: Number,
     comment: String,
     note: Number
 }
