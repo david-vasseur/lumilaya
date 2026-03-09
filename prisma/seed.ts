@@ -8,7 +8,7 @@ async function main() {
         data: [
             {
                 collection: "Emotion",
-                name: "Bougie tendresse",
+                name: "Tendresse",
                 slug: "bougie-tendresse",
                 description: JSON.stringify([
                     "Decription 1", 
@@ -43,7 +43,7 @@ async function main() {
                 like: 0,
             },{
                 collection: "Emotion",
-                name: "Bougie vitalité",
+                name: "Vitalité",
                 slug: "bougie-vitalite",
                 description: JSON.stringify([
                     "Decription 1", 
@@ -79,7 +79,7 @@ async function main() {
             },
             {
                 collection: "Emotion",
-                name: "Bougie douceur",
+                name: "Douceur",
                 slug: "bougie-douceur",
                 description: JSON.stringify([
                     "Decription 1", 
@@ -115,7 +115,7 @@ async function main() {
             },
             {
                 collection: "Emotion",
-                name: "Bougie magie",
+                name: "Magie",
                 slug: "bougie-magie",
                 description: JSON.stringify([
                     "Decription 1", 
@@ -151,7 +151,7 @@ async function main() {
             },
             {
                 collection: "Emotion",
-                name: "Bougie harmonie",
+                name: "Harmonie",
                 slug: "bougie-harmonie",
                 description: JSON.stringify([
                     "Decription 1", 
@@ -187,8 +187,8 @@ async function main() {
             },
             {
                 collection: "Terre",
-                name: "Bougie anchrage",
-                slug: "bougie-anchrage",
+                name: "Ancrage",
+                slug: "bougie-ancrage",
                 description: JSON.stringify([
                     "Decription 1", 
                     "Description 2"
@@ -216,7 +216,7 @@ async function main() {
                 fabrication: "France",
                 }),
                 variants: JSON.stringify([
-                    { id: 1, name: "Bougie Anchrage 200g", duration: "30", price: 32 } // sera affiché 25 -30h
+                    { id: 1, name: "Bougie Ancrage 200g", duration: "30", price: 32 } // sera affiché 25 -30h
                 ]),
                 stock: true,
                 promo: 0,
@@ -224,7 +224,7 @@ async function main() {
             },
             {
                 collection: "Terre",
-                name: "Bougie introspection",
+                name: "Introspection",
                 slug: "bougie-introspection",
                 description: JSON.stringify([
                     "Decription 1", 
@@ -261,7 +261,7 @@ async function main() {
             },
             {
                 collection: "Terre",
-                name: "Bougie libération",
+                name: "Libération",
                 slug: "bougie-liberation",
                 description: JSON.stringify([
                     "Decription 1", 
@@ -298,7 +298,7 @@ async function main() {
             },
             {
                 collection: "Terre",
-                name: "Bougie protection",
+                name: "Protection",
                 slug: "bougie-protection",
                 description: JSON.stringify([
                     "Decription 1", 
