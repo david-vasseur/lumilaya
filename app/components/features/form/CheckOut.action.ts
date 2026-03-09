@@ -221,7 +221,7 @@ export async function AddShippingPrice(code: string, total: number) {
 			return { status: "Erreur", message: "Une erreur est survenue" };
 		}
 
-		console.log("📦 Shipping calculé :", shipping, "Total :", total);
+	
 		return { status: "not free", shipping };
 	} catch (err: any) {
 		console.error("❌ Erreur dans AddShippingPrice :", err?.message ?? err);

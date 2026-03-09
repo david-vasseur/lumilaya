@@ -41,7 +41,6 @@ function Cart() {
 useEffect(() => {
     const fetchShipping = async () => {
         const result = await AddShippingPrice(ship.code, total);
-        console.log("Shipping result:", result);
 
         setShipment({
             name: result.shipping?.name ?? "Livraison Offerte",

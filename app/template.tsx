@@ -21,7 +21,6 @@ const Template = ({ children }: { children: React.ReactNode }) => {
     useEffect(() => {
         const check = () => {
             const mobile = window.matchMedia("(max-width: 768px)").matches;
-            console.log("isMobile detected:", mobile);
             setIsMobile(mobile);
         };
 

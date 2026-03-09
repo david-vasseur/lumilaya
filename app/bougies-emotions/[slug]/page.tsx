@@ -24,7 +24,6 @@ export async function generateStaticParams() {
     }
 
     const products = await ProductList("Emotion");
-	console.log(products.map(p => p.slug));
     return products.map((product) => ({
         slug: product.slug,
     }));
@@ -39,8 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         };
     }
 
-    const { slug } = await params; // Pas besoin de await params dans les versions récentes, mais ok si Next 13/14
-    console.log("Rendering slug page", params);
+    const { slug } = await params; 
     // OPTIMISATION 2 : Fetch unique et ciblé
     // On utilise la fonction précise plutôt que de charger toute la liste
     const result = await GetItemBySlug(slug);
