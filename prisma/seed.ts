@@ -14,10 +14,11 @@ async function main() {
                     "Decription 1", 
                     "Description 2"
                 ]),
-                intro: "Intro 1",
+                intro: "Intro",
                 theme: JSON.stringify([
-                    "Theme 1", 
-                    "Theme 2"
+                    "Theme 1", // tête
+                    "Theme 2", // Coeur
+                    "Theme 3" // fond
                 ]),
                 images: JSON.stringify([
                     "/images/produits/tendresse.webp",
@@ -26,16 +27,16 @@ async function main() {
                     "/images/produits/tendresse4.webp"
                 ]),
                 caracteristique: JSON.stringify({
-                composition: "Composition",
-                meche: "Meche",
-                parfum: "Parfum",
+                composition: "Cire de coco et de soja 100% naturelle",
+                meche: "Mèche en coton bio",
+                parfum: "Fragrance de Grasse",
                 combustion: "Combustion",
-                poids: "Poids",
-                contenant: "Contenant",
+                poids: "150",
+                contenant: "Pot en bêton fait main",
                 fabrication: "France",
                 }),
                 variants: JSON.stringify([
-                    { id: 1, name: "Bougie", duration: "30 - 35", price: 29 }
+                    { id: 1, name: "Bougie Tendresse 150g", duration: "25", price: 19.90 } // sera affiché 25 -30h
                 ]),
                 stock: true,
                 promo: 0,
@@ -43,15 +44,6 @@ async function main() {
             },
         ],
     });
-
-  // --- ShippingPrices ---
-  await prisma.shippingPrice.createMany({
-    data: [
-      { name: "France", zone: "FR", price: 5.5, active: true },
-      { name: "Europe", zone: "EU", price: 12, active: true },
-      { name: "Express", zone: "WORLD", price: 25, active: true },
-    ],
-  });
 
   console.log("✅ Seed terminé !");
 }
