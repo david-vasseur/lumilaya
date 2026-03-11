@@ -163,15 +163,8 @@ export async function TopRatedProducts(): Promise<IProduct[]> {
 		images: Array.isArray(p.images)
 		? (p.images.filter((img): img is string => typeof img === "string"))
 		: [],
-		variants: (Array.isArray(p.variants)
-			? (p.variants as { id?: number; name?: string; duration?: string | number; price: number }[])
-			: []
-			).map(v => ({
-				id: v.id ?? 0,
-				name: v.name ?? "",
-				duration: String(v.duration ?? ""),
-				price: Number(v.price),
-			})),
+		variants: parseJsonArray<{ id: number; name: string; duration: any; price: number }>(p.variants)
+      .map(v => ({ ...v, duration: String(v.duration) })),
 		createdAt: p.createdAt,
 		// Pour les champs manquants dans IProduct, on peut mettre des valeurs par défaut
 		description: [],

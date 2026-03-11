@@ -14,7 +14,9 @@ async function BestProducts() {
             name: "Produit test",
             slug: "produit-test",
             images: [],
-            variants: [],
+            variants: [
+                { id: 0, name: "Variant test", duration: "0", price: 0 }
+            ],
             description: [],
             intro: "",
             theme: [],
