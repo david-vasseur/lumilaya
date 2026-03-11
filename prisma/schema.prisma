@@ -35,7 +35,7 @@ model Product {
   name            String
   slug            String   @unique
   description     Json
-  intro           String
+  intro           String   @db.Text
   theme           Json
   images          Json
   caracteristique Json

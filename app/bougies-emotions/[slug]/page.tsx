@@ -11,7 +11,6 @@ interface Props {
 }
 
 export const revalidate = 3600; 
-export const dynamicParams = true;
 
 const BASE_URL = "https://www.lumilaya.fr";
 
@@ -30,68 +29,68 @@ const BASE_URL = "https://www.lumilaya.fr";
 //    }));
 //}
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+// export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
-    if (process.env.SKIP_BUILD_STATIC_GENERATION) {
-        return {
-            title: "Lumilaya",
-            description: "Bougies artisanales françaises"
-        };
-    }
+//     if (process.env.SKIP_BUILD_STATIC_GENERATION) {
+//         return {
+//             title: "Lumilaya",
+//             description: "Bougies artisanales françaises"
+//         };
+//     }
 
-    const { slug } = await params; 
-    // OPTIMISATION 2 : Fetch unique et ciblé
-    // On utilise la fonction précise plutôt que de charger toute la liste
-    const result = await GetItemBySlug(slug);
+//     const { slug } = await params; 
+//     // OPTIMISATION 2 : Fetch unique et ciblé
+//     // On utilise la fonction précise plutôt que de charger toute la liste
+//     const result = await GetItemBySlug(slug);
 
-    if (!result || !result.product) {
-        return {
-            title: "Produit introuvable - Lumilaya",
-            robots: { index: false, follow: true } 
-        };
-    }
+//     if (!result || !result.product) {
+//         return {
+//             title: "Produit introuvable - Lumilaya",
+//             robots: { index: false, follow: true } 
+//         };
+//     }
 
-    const { product } = result;
-    const pageUrl = `/bougies-emotions/${product.slug}`;
+//     const { product } = result;
+//     const pageUrl = `/bougies-emotions/${product.slug}`;
 
-    return {
-        metadataBase: new URL(BASE_URL),
-        title: `Bougie ${product.name} | Collection Émotion | Lumilaya`,
-        // Utilise la description courte du produit si elle existe, sinon un fallback optimisé
-        description: product.description 
-            ? product.description[0].substring(0, 160) 
-            : `Découvrez la bougie artisanale ${product.name}. Fabrication française et cire naturelle.`,
-        alternates: {
-            canonical: pageUrl,
-        },
-            twitter: {
-            card: "summary_large_image",
-            title: `Bougie ${product.name}`,
-            description: `Découvrez la bougie ${product.name} artisanale.`,
-            images: `${BASE_URL}/${product.images[0]}`, 
-        },
-        openGraph: {
-            title: `Bougie ${product.name} - Lumi'Laya`,
-            description: `Une expérience sensorielle unique avec la bougie ${product.name}.`,
-            type: "website", 
-            url: pageUrl,
-            images: [
-                {
-                    url: `${BASE_URL}/${product.images[0]}`,
-                    width: 800,
-                    height: 800,
-                    alt: `Bougie artisanale ${product.name}`
-                }
-            ],
-        },
-        // Ajout de métadonnées spécifiques aux produits pour les réseaux sociaux
-        other: {
-            "product:price:amount": product.variants[0].price.toString(),
-            "product:price:currency": "EUR",
-            "product:availability": product.stock ? "in stock" : "out of stock",
-        }
-    };
-}
+//     return {
+//         metadataBase: new URL(BASE_URL),
+//         title: `Bougie ${product.name} | Collection Émotion | Lumilaya`,
+//         // Utilise la description courte du produit si elle existe, sinon un fallback optimisé
+//         description: product.description 
+//             ? product.description[0].substring(0, 160) 
+//             : `Découvrez la bougie artisanale ${product.name}. Fabrication française et cire naturelle.`,
+//         alternates: {
+//             canonical: pageUrl,
+//         },
+//             twitter: {
+//             card: "summary_large_image",
+//             title: `Bougie ${product.name}`,
+//             description: `Découvrez la bougie ${product.name} artisanale.`,
+//             images: `${BASE_URL}/${product.images[0]}`, 
+//         },
+//         openGraph: {
+//             title: `Bougie ${product.name} - Lumi'Laya`,
+//             description: `Une expérience sensorielle unique avec la bougie ${product.name}.`,
+//             type: "website", 
+//             url: pageUrl,
+//             images: [
+//                 {
+//                     url: `${BASE_URL}/${product.images[0]}`,
+//                     width: 800,
+//                     height: 800,
+//                     alt: `Bougie artisanale ${product.name}`
+//                 }
+//             ],
+//         },
+//         // Ajout de métadonnées spécifiques aux produits pour les réseaux sociaux
+//         other: {
+//             "product:price:amount": product.variants[0].price.toString(),
+//             "product:price:currency": "EUR",
+//             "product:availability": product.stock ? "in stock" : "out of stock",
+//         }
+//     };
+// }
 
 async function ProductDetail({ params }: Props) {
     const { slug } = await params;
