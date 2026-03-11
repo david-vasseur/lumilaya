@@ -10,12 +10,12 @@ export default async function Home() {
 
 	return (
 		<>
-			<HeroSection />
-			<TestSavoir />
+			{/* <HeroSection />
+			<TestSavoir /> */}
 			<Bento />
-			<BestProducts />
+			{/* <BestProducts />
 			<ReviewsSection />
-			<FAQSection />
+			<FAQSection /> */}
 		</>
 	);
 }
