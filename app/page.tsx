@@ -5,7 +5,6 @@ import { ReviewsSection } from "./components/layout/ReviewSection";
 import BestProducts from "./components/layout/BestProducts";
 import TestSavoir from "./components/layout/TestSavoir";
 
-export const revalidate = 3600;
 
 export default async function Home() {
 
