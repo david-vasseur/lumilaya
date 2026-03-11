@@ -5,8 +5,7 @@ import { ReviewsSection } from "./components/layout/ReviewSection";
 import BestProducts from "./components/layout/BestProducts";
 import TestSavoir from "./components/layout/TestSavoir";
 
-const dynamic = 'force-dynamic';
-const revalidate = 3600;
+export const revalidate = 3600;
 
 export default async function Home() {
 
