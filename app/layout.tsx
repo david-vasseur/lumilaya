@@ -134,7 +134,6 @@ export default function RootLayout({
             dangerouslySetInnerHTML={{ __html: JSON.stringify(homePageSchema) }}
         />
       </head>
-      <ReactLenis root>
         <body
           className={`${geistSans?.variable ?? ''} ${geistMono?.variable ?? ''} ${ballet?.variable ?? ''} antialiased overflow-x-hidden`}
         >
@@ -144,7 +143,6 @@ export default function RootLayout({
           </main>
           <Modal />
         </body>
-        </ReactLenis>
 		</html>
 	);
 }
