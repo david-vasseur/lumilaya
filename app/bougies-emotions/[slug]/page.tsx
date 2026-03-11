@@ -2,6 +2,7 @@ import ProductList, { GetItemBySlug } from '@/app/components/actions/product.act
 import { getAverageRating, getReviewCount } from '@/app/components/actions/review.action';
 import EmotionSlug from '@/app/components/layout/pages/EmotionSlug';
 import { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
 
@@ -146,7 +147,12 @@ async function ProductDetail({ params }: Props) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify([jsonLd, breadcrumbLd]) }}
             />
-            <EmotionSlug product={product} suggest={suggests} averageRating={reviewNote} reviewCount={reviewCount} />
+            <div>
+                <h1>Produit {product.slug}</h1>
+                <p>{product.description![0]}</p>
+                <p>{product.intro}</p>
+                <Image src={product.images![0]} alt='image' width={600} height={600} />
+            </div>
         </>
     );
 }
