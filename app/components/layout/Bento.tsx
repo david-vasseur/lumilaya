@@ -84,7 +84,13 @@ function Bento() {
                         Chaque bougie <span className="font-ballet text-4xl md:text-5xl">Lumi'laya</span> est une invitation au voyage sensoriel,
                         fabriquée à la main avec des ingrédients 100% naturels et des mèches en coton bio.
                     </p>
-                    <Image src={"/images/footer.webp"} fill alt='logo' className="z-0 object-contain" />
+                    <Image 
+                        src="/images/footer.webp" 
+                        width={800} 
+                        height={200} 
+                        alt="logo" 
+                        className="z-0 object-contain" 
+                    />
                 </div>
             </section>
 
