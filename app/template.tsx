@@ -8,7 +8,6 @@ import Footer from "./components/layout/Footer";
 import { useEffect } from "react";
 import { useDeviceStore } from "@/lib/store/deviceStore";
 import { Toaster } from "react-hot-toast";
-import { logVisit } from "./components/actions/log.action";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -30,11 +29,11 @@ const Template = ({ children }: { children: React.ReactNode }) => {
         return () => window.removeEventListener("resize", check);
     }, [setIsMobile]);
 
-    useEffect(() => {
-    if (!pathName) return;
+//     useEffect(() => {
+//     if (!pathName) return;
 
-    logVisit(pathName, navigator.userAgent);
-  }, [pathName]);
+//     logVisit(pathName, navigator.userAgent);
+//   }, [pathName]);
 
     return (
         <div>            
