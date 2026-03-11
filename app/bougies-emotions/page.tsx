@@ -12,57 +12,57 @@ export const dynamic = "force-dynamic";
 // Définir la base URL pour éviter les soucis de liens relatifs
 const BASE_URL = "https://www.lumilaya.fr";
 
-export async function generateMetadata(): Promise<Metadata> {
+// export async function generateMetadata(): Promise<Metadata> {
     
-    // Définition de base pour éviter la duplication de code
-    const metaTitle = "Bougies Émotions & Plaisirs | Collection Artisanale | Lumilaya";
-    const metaDesc = "Découvrez notre collection de bougies artisanales 'Emotions & Plaisirs'. Cire 100% naturelle, parfums de Grasse, fabriquées en France.";
-    const pageUrl = "/bougies-emotions";
+//     // Définition de base pour éviter la duplication de code
+//     const metaTitle = "Bougies Émotions & Plaisirs | Collection Artisanale | Lumilaya";
+//     const metaDesc = "Découvrez notre collection de bougies artisanales 'Emotions & Plaisirs'. Cire 100% naturelle, parfums de Grasse, fabriquées en France.";
+//     const pageUrl = "/bougies-emotions";
 
-    return {
-        metadataBase: new URL(BASE_URL),
-        title: metaTitle,
-        description: metaDesc,
-        // OPTIMISATION 2 : Le Canonical manquant
-        alternates: {
-            canonical: pageUrl,
-        },
-        // OPTIMISATION 3 : Contrôle explicite des robots
-        robots: {
-            index: true,
-            follow: true,
-            googleBot: {
-                index: true,
-                follow: true,
-                "max-video-preview": -1,
-                "max-image-preview": "large",
-                "max-snippet": -1,
-            },
-        },
-        openGraph: {
-            title: metaTitle,
-            description: metaDesc,
-            type: "website",
-            url: pageUrl,
-            siteName: "Lumilaya",
-            locale: "fr_FR",
-            images: [
-                {
-                    url: "/images/produits/plaisir.webp",
-                    width: 800,
-                    height: 600,
-                    alt: "Bougies artisanales collection émotions"
-                }
-            ]
-        },
-        twitter: {
-            card: "summary_large_image",
-            title: metaTitle,
-            description: metaDesc,
-            images: ["/images/produits/plaisir.webp"],
-        },
-    };
-}
+//     return {
+//         metadataBase: new URL(BASE_URL),
+//         title: metaTitle,
+//         description: metaDesc,
+//         // OPTIMISATION 2 : Le Canonical manquant
+//         alternates: {
+//             canonical: pageUrl,
+//         },
+//         // OPTIMISATION 3 : Contrôle explicite des robots
+//         robots: {
+//             index: true,
+//             follow: true,
+//             googleBot: {
+//                 index: true,
+//                 follow: true,
+//                 "max-video-preview": -1,
+//                 "max-image-preview": "large",
+//                 "max-snippet": -1,
+//             },
+//         },
+//         openGraph: {
+//             title: metaTitle,
+//             description: metaDesc,
+//             type: "website",
+//             url: pageUrl,
+//             siteName: "Lumilaya",
+//             locale: "fr_FR",
+//             images: [
+//                 {
+//                     url: "/images/produits/plaisir.webp",
+//                     width: 800,
+//                     height: 600,
+//                     alt: "Bougies artisanales collection émotions"
+//                 }
+//             ]
+//         },
+//         twitter: {
+//             card: "summary_large_image",
+//             title: metaTitle,
+//             description: metaDesc,
+//             images: ["/images/produits/plaisir.webp"],
+//         },
+//     };
+// }
 
 async function getProducts() {
   if (process.env.SKIP_BUILD_STATIC_GENERATION) return [];

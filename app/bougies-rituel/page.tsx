@@ -9,52 +9,52 @@ export const dynamic = "force-dynamic";
 
 const BASE_URL = "https://www.lumilaya.fr";
 
-export async function generateMetadata(): Promise<Metadata> {
+// export async function generateMetadata(): Promise<Metadata> {
   
-  const pageUrl = "/bougies-rituel";
-  const metaTitle = "Bougies Entre Terre & Ciel | Collection Artisanale | Lumilaya";
-  const metaDesc = "Explorez notre collection de bougies artisanales 'Entre Terre & Ciel'. Fabrication 100% française, ingrédients naturels, parfum unique.";
+//   const pageUrl = "/bougies-rituel";
+//   const metaTitle = "Bougies Entre Terre & Ciel | Collection Artisanale | Lumilaya";
+//   const metaDesc = "Explorez notre collection de bougies artisanales 'Entre Terre & Ciel'. Fabrication 100% française, ingrédients naturels, parfum unique.";
 
-  return {
-    metadataBase: new URL(BASE_URL),
-    title: metaTitle,
-    description: metaDesc,
-    alternates: { canonical: pageUrl },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-video-preview": -1,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-      },
-    },
-    openGraph: {
-      title: metaTitle,
-      description: metaDesc,
-      type: "website",
-      url: pageUrl,
-      siteName: "Lumilaya",
-      locale: "fr_FR",
-      images: [
-        {
-          url: "/images/produits/terre.webp",
-          width: 800,
-          height: 600,
-          alt: "Bougies artisanales collection Rituel"
-        }
-      ]
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: metaTitle,
-      description: metaDesc,
-      images: ["/images/produits/terre.webp"],
-    },
-  };
-}
+//   return {
+//     metadataBase: new URL(BASE_URL),
+//     title: metaTitle,
+//     description: metaDesc,
+//     alternates: { canonical: pageUrl },
+//     robots: {
+//       index: true,
+//       follow: true,
+//       googleBot: {
+//         index: true,
+//         follow: true,
+//         "max-video-preview": -1,
+//         "max-image-preview": "large",
+//         "max-snippet": -1,
+//       },
+//     },
+//     openGraph: {
+//       title: metaTitle,
+//       description: metaDesc,
+//       type: "website",
+//       url: pageUrl,
+//       siteName: "Lumilaya",
+//       locale: "fr_FR",
+//       images: [
+//         {
+//           url: "/images/produits/terre.webp",
+//           width: 800,
+//           height: 600,
+//           alt: "Bougies artisanales collection Rituel"
+//         }
+//       ]
+//     },
+//     twitter: {
+//       card: "summary_large_image",
+//       title: metaTitle,
+//       description: metaDesc,
+//       images: ["/images/produits/terre.webp"],
+//     },
+//   };
+// }
 
 async function getProducts(): Promise<IProduct[]> {
   if (process.env.SKIP_BUILD_STATIC_GENERATION) return [];
