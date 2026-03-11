@@ -84,13 +84,7 @@ function Bento() {
                         Chaque bougie <span className="font-ballet text-4xl md:text-5xl">Lumi'laya</span> est une invitation au voyage sensoriel,
                         fabriquée à la main avec des ingrédients 100% naturels et des mèches en coton bio.
                     </p>
-                    <Image 
-                        src="/images/footer.webp" 
-                        width={800} 
-                        height={200} 
-                        alt="logo" 
-                        className="z-0 object-contain" 
-                    />
+                    <Image src={"/images/footer.webp"} fill alt='logo' className="z-0 object-contain" />
                 </div>
             </section>
 
@@ -110,13 +104,7 @@ function Bento() {
                             href={"/bougies-emotions"}
                             className="category-card group relative aspect-square xl:aspect-auto xl:h-[500px] rounded-lg overflow-hidden shadow-xl"
                             >
-                                <Image
-                                    src="/images/produits/emotions2.webp"
-                                    width={400} 
-                                    height={400}
-                                    alt="image Emotion & Plaisir"
-                                    className="group-hover:scale-105 transition-transform duration-700 object-cover"
-                                />
+                                <Image src={"/images/produits/emotions2.webp"} fill alt='image Emotion & Plaisir' className="group-hover:scale-105 transition-transform duration-700 object-cover" />
                                 <div className="absolute inset-0 bg-[#2C2C2C]/20 group-hover:bg-[#2C2C2C]/10 transition-colors duration-500" />
                                 <div className="relative h-full flex flex-col items-center justify-center p-8 text-[#FDFBF7]">
                                 <h3 className="text-3xl font-light mb-4 tracking-wider">Bougies Emotions & Plaisirs</h3>
@@ -133,13 +121,7 @@ function Bento() {
                             href={"/bougies-rituel"}
                             className="category-card group relative aspect-square xl:aspect-auto xl:h-[500px] rounded-lg overflow-hidden shadow-xl"
                             >
-                                <Image
-                                    src="/images/produits/couverture3.webp"
-                                    width={400} 
-                                    height={400}
-                                    alt="image Emotion & Plaisir"
-                                    className="group-hover:scale-105 transition-transform duration-700 object-cover"
-                                />
+                                <Image src={"/images/produits/couverture3.webp"} fill alt='image Emotion & Plaisir' className="group-hover:scale-105 transition-transform duration-700" />
                             <div className="absolute inset-0 bg-[#2C2C2C]/20 group-hover:bg-[#2C2C2C]/10 transition-colors duration-500" />
                             <div className="relative h-full flex flex-col items-center justify-center p-8 text-[#FDFBF7]">
                                 <h3 className="text-3xl font-light mb-4 tracking-wider">Bougies Entre Terre & Ciel</h3>

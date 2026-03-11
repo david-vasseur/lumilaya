@@ -138,7 +138,7 @@ export default function RootLayout({
         <body
           className={`${geistSans?.variable ?? ''} ${geistMono?.variable ?? ''} ${ballet?.variable ?? ''} antialiased overflow-x-hidden`}
         >
-          <Navigation />
+          {/* <Navigation /> */}
           <main id="main-content">
             {children}
           </main>
