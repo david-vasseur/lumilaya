@@ -1,8 +1,7 @@
 "use server"
 
-import { PrismaClient } from "@/lib/generated/prisma/client";
+import { prisma } from "@/lib/prisma/prisma";
 
-const prisma = new PrismaClient();
 
 /**
  * 1️⃣ Créer un commentaire avec note

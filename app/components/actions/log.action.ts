@@ -1,11 +1,10 @@
 "use server";
 
 import { headers } from "next/headers";
-import { PrismaClient } from "@/lib/generated/prisma/client";
 import crypto from "crypto";
 import { rateLimiter } from "@/lib/rate-limit/rateLimit";
+import { prisma } from "@/lib/prisma/prisma";
 
-const prisma = new PrismaClient();
 
 export async function logVisit(path: string, userAgent?: string) {
     try {

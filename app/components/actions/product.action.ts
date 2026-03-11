@@ -1,9 +1,8 @@
 "use server"
 
-import { PrismaClient } from "@/lib/generated/prisma/client";
+import { prisma } from "@/lib/prisma/prisma";
 import { IProduct } from "@/type/product";
 
-const prisma = new PrismaClient();
 
 type ServerItem = {
   productId: number;

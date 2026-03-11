@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
-import { PrismaClient } from "@/lib/generated/prisma/client";
 import { sendOrderEmailToCompany } from "@/app/components/actions/order.action";
+import { prisma } from "@/lib/prisma/prisma";
 
-const prisma = new PrismaClient();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2025-11-17.clover",
 });

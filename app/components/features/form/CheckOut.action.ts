@@ -1,12 +1,11 @@
 "use server";
 
-import { PrismaClient } from "@/lib/generated/prisma/client";
 import Stripe from "stripe";
 import { getPricesForStripe } from "../../actions/product.action";
 import { headers } from "next/headers";
 import { rateLimiter } from "@/lib/rate-limit/rateLimit";
+import { prisma } from "@/lib/prisma/prisma";
 
-const prisma = new PrismaClient();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
     apiVersion: "2025-11-17.clover",
 });
