@@ -13,17 +13,17 @@ export const dynamicParams = true;
 
 const BASE_URL = "https://www.lumilaya.fr";
 
-export async function generateStaticParams() {
-
-    if (process.env.SKIP_BUILD_STATIC_GENERATION) {
-        return [];
-    }
-
-	const products = await ProductList("Terre");
-	return products.map((product) => ({
-		slug: product.slug,
-	}));
-}
+//export async function generateStaticParams() {
+//
+//    if (process.env.SKIP_BUILD_STATIC_GENERATION) {
+//        return [];
+//    }
+//
+//	const products = await ProductList("Terre");
+//	return products.map((product) => ({
+//		slug: product.slug,
+//	}));
+//}
 
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

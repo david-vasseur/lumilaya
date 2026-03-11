@@ -10,27 +10,10 @@ export const dynamic = "force-dynamic";
 const BASE_URL = "https://www.lumilaya.fr";
 
 export async function generateMetadata(): Promise<Metadata> {
-
-  if (process.env.SKIP_BUILD_STATIC_GENERATION) {
-        return {
-            title: "Bougies Rituel - Lumilaya",
-            description: "Collection de bougies artisanales françaises.",
-        };
-    }
-
-  const products: IProduct[] = await ProductList("Terre");
-
+  
   const pageUrl = "/bougies-rituel";
   const metaTitle = "Bougies Entre Terre & Ciel | Collection Artisanale | Lumilaya";
   const metaDesc = "Explorez notre collection de bougies artisanales 'Entre Terre & Ciel'. Fabrication 100% française, ingrédients naturels, parfum unique.";
-
-  if (!products || products.length === 0) {
-    return {
-      title: "Bougies Entre Terre & Ciel - Lumilaya",
-      description: "Collection bientôt disponible.",
-      robots: { index: false, follow: true }, 
-    };
-  }
 
   return {
     metadataBase: new URL(BASE_URL),

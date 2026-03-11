@@ -13,29 +13,11 @@ export const dynamic = "force-dynamic";
 const BASE_URL = "https://www.lumilaya.fr";
 
 export async function generateMetadata(): Promise<Metadata> {
-
-    if (process.env.SKIP_BUILD_STATIC_GENERATION) {
-        return {
-            title: "Bougies Émotions - Lumilaya",
-            description: "Collection de bougies artisanales françaises.",
-        };
-    }
-
-    const products: IProduct[] = await ProductList("Emotion");
     
     // Définition de base pour éviter la duplication de code
     const metaTitle = "Bougies Émotions & Plaisirs | Collection Artisanale | Lumilaya";
     const metaDesc = "Découvrez notre collection de bougies artisanales 'Emotions & Plaisirs'. Cire 100% naturelle, parfums de Grasse, fabriquées en France.";
     const pageUrl = "/bougies-emotions";
-
-    // Gestion du cas vide (Soft 404 UX)
-    if (!products || products.length === 0) {
-        return {
-            title: "Bougies Émotion - Lumilaya",
-            description: "Collection bientôt disponible.",
-            robots: { index: false, follow: true } 
-        };
-    }
 
     return {
         metadataBase: new URL(BASE_URL),

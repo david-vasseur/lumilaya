@@ -17,17 +17,17 @@ const BASE_URL = "https://www.lumilaya.fr";
 // OPTIMISATION 1 : Génération Statique (SSG)
 // Cela permet à Next.js de construire toutes les pages produits au build
 // Résultat : Chargement instantané pour l'utilisateur.
-export async function generateStaticParams() {
+// * export async function generateStaticParams() {
+//
+  //  if (process.env.SKIP_BUILD_STATIC_GENERATION) {
+ //       return [];
+ //   }
 
-    if (process.env.SKIP_BUILD_STATIC_GENERATION) {
-        return [];
-    }
-
-    const products = await ProductList("Emotion");
-    return products.map((product) => ({
-        slug: product.slug,
-    }));
-}
+//    const products = await ProductList("Emotion");
+//    return products.map((product) => ({
+//        slug: product.slug,
+//    }));
+//}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
