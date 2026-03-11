@@ -139,28 +139,57 @@ export default async function ProductList(collection: string): Promise<IProduct[
 
 // ---------- Top Rated Products ----------
 export async function TopRatedProducts(): Promise<IProduct[]> {
-  const productsRaw = await prisma.product.findMany({
-    orderBy: { like: "desc" },
-    take: 3,
-  });
+	// Récupérer uniquement ce qu'on utilise dans le composant
+	const productsRaw = await prisma.product.findMany({
+		orderBy: { like: "desc" },
+		take: 3,
+		select: {
+		id: true,
+		collection: true,
+		name: true,
+		slug: true,
+		images: true,       // on récupère l'array complet mais on n'utilisera que [0]
+		variants: true,
+		createdAt: true,
+		},
+	});
 
-  return productsRaw.map(p => ({
-    id: p.id,
-    collection: p.collection,
-    name: p.name,
-    slug: p.slug,
-    description: parseJsonArray<string>(p.description),
-    intro: p.intro,
-    theme: parseJsonArray<string>(p.theme),
-    images: parseJsonArray<string>(p.images),
-    caracteristique: parseJsonObject(p.caracteristique),
-    variants: parseJsonArray<{ id: number; name: string; duration: any; price: number }>(p.variants)
-      .map(v => ({ ...v, duration: String(v.duration) })),
-    stock: p.stock,
-    promo: p.promo ?? 0,
-    like: p.like ?? 0,
-    createdAt: p.createdAt,
-  }));
+	// On mappe simplement pour correspondre à IProduct
+	return productsRaw.map(p => ({
+		id: p.id,
+		collection: p.collection,
+		name: p.name,
+		slug: p.slug,
+		images: Array.isArray(p.images)
+		? (p.images.filter((img): img is string => typeof img === "string"))
+		: [],
+		variants: (Array.isArray(p.variants)
+			? (p.variants as { id?: number; name?: string; duration?: string | number; price: number }[])
+			: []
+			).map(v => ({
+				id: v.id ?? 0,
+				name: v.name ?? "",
+				duration: String(v.duration ?? ""),
+				price: Number(v.price),
+			})),
+		createdAt: p.createdAt,
+		// Pour les champs manquants dans IProduct, on peut mettre des valeurs par défaut
+		description: [],
+		intro: "",
+		theme: [],
+		caracteristique: {	
+			composition: "",
+			meche: "",
+			parfum: "",
+			combustion: "",
+			poids: "",
+			contenant: "",
+			fabrication: "",	
+		},
+		stock: true,
+		promo: 0,
+		like: 0,
+	}));
 }
 
 // ---------- Total Price Calculation ----------
